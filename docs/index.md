@@ -2,22 +2,28 @@
 layout: home
 
 hero:
-  name: "2026 Roadmap"
-  text: "Master Your Skills"
-  tagline: "Comprehensive learning paths for modern technology"
+  name: "Dev Guides Hub"
+  text: "Master Your Future with Deep-Dive Roadmaps"
+  tagline: "Comprehensive, structured, and premium guides for modern technology."
   actions:
     - theme: brand
-      text: Start Learning Python
+      text: 🐍 Start Python
       link: /python/
     - theme: alt
-      text: View All Roadmaps
-      link: /python/
+      text: 🌐 Networking
+      link: /networking/
 
 features:
-  - title: Structured Learning
-    details: Step-by-step guides from beginner to expert levels.
-  - title: Visual Guides
-    details: Clean and intuitive documentation for better understanding.
-  - title: Premium Design
-    details: Modern aesthetics with dark mode support.
+  - icon: 🐍
+    title: Mastering Python
+    details: From basic syntax to advanced concurrency and performance optimization.
+  - icon: 🌐
+    title: Networking Complete
+    details: Deep-dive into OSI layers, TCP/IP, Routing, and Security components.
+  - icon: 🏗️
+    title: Design Patterns
+    details: SOLID principles, GoF patterns, and high-level software architecture.
+  - icon: 🏛️
+    title: Solution Architecture
+    details: Scalability, Cloud architectures, Microservices, and System Design.
 ---

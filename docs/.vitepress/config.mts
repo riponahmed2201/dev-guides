@@ -2,12 +2,15 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   base: '/dev-guides/',
-  title: "Python Essential Guide",
+  title: "Dev Guides Hub",
   description: "Comprehensive roadmaps for Python, Networking, and more.",
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Roadmaps', link: '/python/' }
+      { text: 'Python', link: '/python/' },
+      { text: 'Networking', link: '/networking/' },
+      { text: 'Design Patterns', link: '/design-patterns/' },
+      { text: 'Architecture', link: '/solution-architecture/' }
     ],
     sidebar: {
       '/python/': [
@@ -84,6 +87,62 @@ export default defineConfig({
             { text: 'Code Quality', link: '/python/code-quality' },
             { text: 'Debugging', link: '/python/debugging' },
             { text: 'Advanced Topics', link: '/python/adv-topics' },
+          ]
+        }
+      ],
+      '/networking/': [
+        {
+          text: 'Level 1: Beginner',
+          items: [
+            { text: 'Networking Introduction', link: '/networking/' },
+            { text: 'Networking Basics', link: '/networking/basics' },
+            { text: 'Network Components', link: '/networking/components' },
+            { text: 'OSI Model', link: '/networking/osi-model' },
+            { text: 'TCP/IP Model', link: '/networking/tcp-ip-model' },
+            { text: 'IPv4 Addressing', link: '/networking/ipv4' },
+            { text: 'Subnetting Basics', link: '/networking/subnetting' },
+          ]
+        },
+        {
+          text: 'Level 2: Intermediate',
+          collapsed: true,
+          items: [
+            { text: 'Advanced Subnetting', link: '/networking/adv-subnetting' },
+            { text: 'IPv6', link: '/networking/ipv6' },
+            { text: 'Switching Concepts', link: '/networking/switching' },
+            { text: 'VLANs', link: '/networking/vlans' },
+            { text: 'OSPF & Routing', link: '/networking/routing' },
+          ]
+        }
+      ],
+      '/design-patterns/': [
+        {
+          text: 'Level 1: Foundation',
+          items: [
+            { text: 'Introduction', link: '/design-patterns/' },
+            { text: 'OOP Fundamentals', link: '/design-patterns/oop-basics' },
+            { text: 'SOLID Principles', link: '/design-patterns/solid' },
+            { text: 'DRY, KISS, YAGNI', link: '/design-patterns/core-principles' },
+          ]
+        },
+        {
+          text: 'Level 2: Creational',
+          collapsed: true,
+          items: [
+            { text: 'Singleton', link: '/design-patterns/singleton' },
+            { text: 'Factory Method', link: '/design-patterns/factory' },
+            { text: 'Builder', link: '/design-patterns/builder' },
+          ]
+        }
+      ],
+      '/solution-architecture/': [
+        {
+          text: 'Level 1: Foundation',
+          items: [
+            { text: 'Architecture Intro', link: '/solution-architecture/' },
+            { text: 'SDLC & Agile', link: '/solution-architecture/sdlc' },
+            { text: 'System Design Basics', link: '/solution-architecture/system-design' },
+            { text: 'Cloud Intro', link: '/solution-architecture/cloud-intro' },
           ]
         }
       ]
