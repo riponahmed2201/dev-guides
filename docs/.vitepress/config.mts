@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  base: '/2026-learning-roadmap/',
+  base: '/dev-guides/',
   title: "Python Essential Guide",
   description: "Comprehensive roadmaps for Python, Networking, and more.",
   themeConfig: {
