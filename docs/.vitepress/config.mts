@@ -165,7 +165,7 @@ export default defineConfig({
           text: 'Level 1: Beginner',
           collapsed: false,
           items: [
-            { text: 'Introduction', link: '/fastapi/introduction' },
+            { text: 'Introduction', link: '/fastapi/' },
             { text: 'Routing & Endpoints', link: '/fastapi/routing' },
             { text: 'Pydantic Models', link: '/fastapi/pydantic' },
             { text: 'Response Handling', link: '/fastapi/response-handling' },
