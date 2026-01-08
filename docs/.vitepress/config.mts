@@ -98,11 +98,25 @@ export default defineConfig({
           items: [
             { text: 'Networking Introduction', link: '/networking/' },
             { text: 'Networking Basics', link: '/networking/basics' },
-            { text: 'Network Components', link: '/networking/components' },
-            { text: 'OSI Model', link: '/networking/osi-model' },
+            { text: 'Cables & Standards', link: '/networking/cables' },
+            { text: 'OSI Model Deep-Dive', link: '/networking/osi-model' },
             { text: 'TCP/IP Model', link: '/networking/tcp-ip-model' },
             { text: 'IPv4 Addressing', link: '/networking/ipv4' },
             { text: 'Subnetting Basics', link: '/networking/subnetting' },
+            { text: 'MAC Addressing', link: '/networking/mac-addressing' },
+            { text: 'Network Commands', link: '/networking/commands' },
+            { text: 'Network Ports', link: '/networking/ports' },
+            { text: 'DNS Basics', link: '/networking/dns-basics' },
+            { text: 'DHCP Basics', link: '/networking/dhcp-basics' },
+          ]
+        },
+        {
+          text: 'Level 2: Intermediate',
+          collapsed: false,
+          items: [
+            { text: 'Advanced Subnetting', link: '/networking/advanced-subnetting' },
+            { text: 'IPv6 Deep-Dive', link: '/networking/ipv6' },
+            { text: 'Network Components', link: '/networking/components' },
           ]
         },
         {
