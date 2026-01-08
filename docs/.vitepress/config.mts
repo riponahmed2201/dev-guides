@@ -11,7 +11,8 @@ export default defineConfig({
       { text: 'Python', link: '/python/' },
       { text: 'Networking', link: '/networking/' },
       { text: 'Design Patterns', link: '/design-patterns/' },
-      { text: 'Architecture', link: '/solution-architecture/' }
+      { text: 'Architecture', link: '/solution-architecture/' },
+      { text: 'FastAPI', link: '/fastapi/' }
     ],
     sidebar: {
       '/python/': [
@@ -146,14 +147,71 @@ export default defineConfig({
             { text: 'Cloud Intro', link: '/solution-architecture/cloud-intro' },
           ]
         }
+      ],
+      '/fastapi/': [
+        {
+          text: 'Level 1: Beginner',
+          collapsed: false,
+          items: [
+            { text: 'Introduction', link: '/fastapi/introduction' },
+            { text: 'Routing & Endpoints', link: '/fastapi/routing' },
+            { text: 'Pydantic Models', link: '/fastapi/pydantic' },
+            { text: 'Response Handling', link: '/fastapi/response-handling' },
+            { text: 'Request Data (Body/Query/Path)', link: '/fastapi/request-data' },
+          ]
+        },
+        {
+          text: 'Level 2: Intermediate',
+          collapsed: true,
+          items: [
+            { text: 'Path Configuration', link: '/fastapi/path-configuration' },
+            { text: 'Dependency Injection', link: '/fastapi/dependencies' },
+            { text: 'Security & Auth', link: '/fastapi/security' },
+            { text: 'Database (SQLAlchemy)', link: '/fastapi/database' },
+            { text: 'Middlewares', link: '/fastapi/middleware' },
+            { text: 'Error Handling', link: '/fastapi/error-handling' },
+          ]
+        },
+        {
+          text: 'Level 3: Advanced',
+          collapsed: true,
+          items: [
+            { text: 'Advanced Pydantic', link: '/fastapi/pydantic-advanced' },
+            { text: 'Testing (Pytest)', link: '/fastapi/testing' },
+            { text: 'Performance & Scalability', link: '/fastapi/performance' },
+            { text: 'WebSockets', link: '/fastapi/websockets' },
+          ]
+        },
+        {
+          text: 'Level 4: Expert',
+          collapsed: true,
+          items: [
+            { text: 'App Architecture', link: '/fastapi/architecture' },
+            { text: 'Deployment & DevOps', link: '/fastapi/deployment' },
+            { text: 'API Best Practices', link: '/fastapi/best-practices' },
+          ]
+        },
+        {
+          text: 'Practical Projects',
+          collapsed: false,
+          items: [
+            { text: 'Project 1: Task Manager API', link: '/fastapi/project-task-manager' },
+            { text: 'Project 2: Contact App', link: '/fastapi/project-contact-app' },
+            { text: 'Project 3: Blog Engine', link: '/fastapi/project-blog-engine' },
+            { text: 'Project 4: Library System', link: '/fastapi/project-library-system' },
+            { text: 'Project 5: Real-time Chat', link: '/fastapi/project-chat-app' },
+          ]
+        }
       ]
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/riponahmed2201' },
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/md-ripon-mia1' },
+      { icon: 'youtube', link: 'https://youtube.com/@riponahmed2201' },
     ],
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2026-present'
+      copyright: 'Copyright © 2026-present Md. Ripon Mia'
     }
   }
 })
