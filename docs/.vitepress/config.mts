@@ -108,6 +108,7 @@ export default defineConfig({
             { text: 'Network Ports', link: '/networking/ports' },
             { text: 'DNS Basics', link: '/networking/dns-basics' },
             { text: 'DHCP Basics', link: '/networking/dhcp-basics' },
+            { text: 'Network Components', link: '/networking/components' },
           ]
         },
         {
@@ -125,18 +126,6 @@ export default defineConfig({
             { text: 'Link-State (OSPF)', link: '/networking/routing-link-state' },
             { text: 'Path Vector (BGP)', link: '/networking/bgp-basics' },
             { text: 'Access Control Lists (ACL)', link: '/networking/acls' },
-            { text: 'Network Components', link: '/networking/components' },
-          ]
-        },
-        {
-          text: 'Level 2: Intermediate',
-          collapsed: true,
-          items: [
-            { text: 'Advanced Subnetting', link: '/networking/adv-subnetting' },
-            { text: 'IPv6', link: '/networking/ipv6' },
-            { text: 'Switching Concepts', link: '/networking/switching' },
-            { text: 'VLANs', link: '/networking/vlans' },
-            { text: 'OSPF & Routing', link: '/networking/routing' },
           ]
         }
       ],
