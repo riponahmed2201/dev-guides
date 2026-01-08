@@ -116,6 +116,15 @@ export default defineConfig({
           items: [
             { text: 'Advanced Subnetting', link: '/networking/advanced-subnetting' },
             { text: 'IPv6 Deep-Dive', link: '/networking/ipv6' },
+            { text: 'Switching Concepts', link: '/networking/switching' },
+            { text: 'VLANs & Trunking', link: '/networking/vlans' },
+            { text: 'Spanning Tree (STP)', link: '/networking/stp' },
+            { text: 'Link Aggregation (LACP)', link: '/networking/etherchannel' },
+            { text: 'Routing Fundamentals', link: '/networking/routing-basics' },
+            { text: 'Distance Vector (RIP/EIGRP)', link: '/networking/routing-distance-vector' },
+            { text: 'Link-State (OSPF)', link: '/networking/routing-link-state' },
+            { text: 'Path Vector (BGP)', link: '/networking/bgp-basics' },
+            { text: 'Access Control Lists (ACL)', link: '/networking/acls' },
             { text: 'Network Components', link: '/networking/components' },
           ]
         },
