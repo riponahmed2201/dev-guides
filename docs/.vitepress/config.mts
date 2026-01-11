@@ -229,6 +229,8 @@ export default defineConfig({
             { text: 'URLs and Routing', link: '/django/routing' },
             { text: 'Views (FBV)', link: '/django/views' },
             { text: 'Templates Basics', link: '/django/templates' },
+            { text: 'Models & ORM Basics', link: '/django/models-intro' },
+            { text: 'Django Admin', link: '/django/admin' },
           ]
         },
         {
