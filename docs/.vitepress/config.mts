@@ -12,7 +12,9 @@ export default defineConfig({
       { text: 'Networking', link: '/networking/' },
       { text: 'Design Patterns', link: '/design-patterns/' },
       { text: 'Architecture', link: '/solution-architecture/' },
-      { text: 'FastAPI', link: '/fastapi/' }
+      { text: 'FastAPI', link: '/fastapi/' },
+      { text: 'Django', link: '/django/' },
+      { text: 'DRF', link: '/django-rest-framework/' }
     ],
     sidebar: {
       '/python/': [
@@ -213,6 +215,55 @@ export default defineConfig({
             { text: 'Project 4: Library System', link: '/fastapi/project-library-system' },
             { text: 'Project 5: Real-time Chat', link: '/fastapi/project-chat-app' },
           ]
+        }
+      ],
+      '/django/': [
+        {
+          text: 'Level 1: Foundation',
+          collapsed: false,
+          items: [
+            { text: 'Introduction', link: '/django/introduction' },
+            { text: 'Environment Setup', link: '/django/basics' },
+          ]
+        },
+        {
+          text: 'Level 2: Intermediate',
+          collapsed: true,
+          items: []
+        },
+        {
+          text: 'Level 3: Advanced',
+          collapsed: true,
+          items: []
+        },
+        {
+          text: 'Level 4: Expert',
+          collapsed: true,
+          items: []
+        }
+      ],
+      '/django-rest-framework/': [
+        {
+          text: 'Level 1: Foundation',
+          collapsed: false,
+          items: [
+            { text: 'Introduction', link: '/django-rest-framework/' },
+          ]
+        },
+        {
+          text: 'Level 2: Intermediate',
+          collapsed: true,
+          items: []
+        },
+        {
+          text: 'Level 3: Advanced',
+          collapsed: true,
+          items: []
+        },
+        {
+          text: 'Level 4: Expert',
+          collapsed: true,
+          items: []
         }
       ]
     },

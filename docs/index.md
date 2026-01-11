@@ -23,7 +23,11 @@ features:
   - icon: 🏗️
     title: Design Patterns
     details: SOLID principles, GoF patterns, and high-level software architecture.
-  - icon: 🏛️
-    title: Solution Architecture
-    details: Scalability, Cloud architectures, Microservices, and System Design.
+  - icon: 🏰
+    title: Django Roadmap
+    details: Build robust web applications with the most popular Python framework.
+  - icon: 🔌
+    title: Django REST Framework
+    details: Master API development with powerful serialization and authentication.
 ---
+
