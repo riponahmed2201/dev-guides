@@ -74,4 +74,5 @@ Django কাজ করে MVT আর্কিটেকচারে:
 4. [Django Apps](/django/apps)
 5. [URLs and Routing](/django/routing)
 6. [Views (FBV)](/django/views)
+7. [Templates Basics](/django/templates)
 ... (Roadmap remains here as a summary)

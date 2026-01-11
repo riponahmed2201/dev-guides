@@ -228,6 +228,7 @@ export default defineConfig({
             { text: 'Django Apps', link: '/django/apps' },
             { text: 'URLs and Routing', link: '/django/routing' },
             { text: 'Views (FBV)', link: '/django/views' },
+            { text: 'Templates Basics', link: '/django/templates' },
           ]
         },
         {
