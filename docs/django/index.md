@@ -50,41 +50,7 @@ Django কাজ করে MVT আর্কিটেকচারে:
 
 ---
 
-## ৪. Installation (সেটআপ)
-
-Django শুরু করার জন্য আপনার কম্পিউটারে Python (3.8+) থাকতে হবে।
-
-### ৪.১ ভার্চুয়াল এনভায়রনমেন্ট তৈরি (Recommended)
-
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# Mac/Linux
-source venv/bin/activate
-```
-
-### ৪.২ Django ইন্সটল করা
-
-```bash
-pip install django
-```
-
-চেক করার জন্য টার্মিনালে লিখুন: `django-admin --version`
-
----
-
-## ৫. Django Project Structure (সংক্ষিপ্ত ধারণা)
-
-একটি নতুন প্রজেক্ট তৈরি করলে আপনি নিচের ফাইলগুলো দেখতে পাবেন:
-- `manage.py`: প্রজেক্ট ম্যানেজ করার মূল কমান্ড লাইন টুল।
-- `settings.py`: প্রজেক্টের সব কনফিগারেশন থাকে।
-- `urls.py`: ইউআরএল রাউটিং হ্যান্ডেল করে।
-
----
-
-## ৬. Who uses Django?
+## ৪. Who uses Django?
 
 বিশ্বের অনেক বড় বড় কোম্পানি Django ব্যবহার করে:
 - **Instagram:** তাদের পুরো ব্যাকএন্ড Django দিয়ে তৈরি।
@@ -93,7 +59,7 @@ pip install django
 ---
 
 ::: tip পরবর্তী ধাপ
-অভিনন্দন! আপনি Django-র প্রাথমিক ধারণা পেয়েছেন। পরবর্তী চ্যাপ্টারে আমরা শিখবো কীভাবে আপনার **প্রথম Django Project** শুরু করবেন এবং রান করবেন।
+অভিনন্দন! আপনি Django-র প্রাথমিক ধারণা পেয়েছেন। পরবর্তী চ্যাপ্টারে আমরা শিখবো কীভাবে আপনার **Environment Setup** করবেন।
 :::
 
 ---
@@ -103,6 +69,6 @@ pip install django
 তোমার জন্য Django শেখার একটা সম্পূর্ণ roadmap তৈরি করে দিলাম। ধাপে ধাপে follow করো।
 
 1. [Introduction](/django/)
-2. [Environment Setup](/django/)
+2. [Environment Setup](/django/basics)
 3. [First Django Project](/django/first-project)
 ... (Roadmap remains here as a summary)
