@@ -222,8 +222,8 @@ export default defineConfig({
           text: 'Level 1: Foundation',
           collapsed: false,
           items: [
-            { text: 'Introduction', link: '/django/introduction' },
-            { text: 'Environment Setup', link: '/django/basics' },
+            { text: 'Introduction', link: '/django/' },
+            { text: 'Environment Setup', link: '/django/' },
           ]
         },
         {
