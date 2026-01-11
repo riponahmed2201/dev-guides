@@ -232,6 +232,7 @@ export default defineConfig({
             { text: 'Models & ORM Basics', link: '/django/models-intro' },
             { text: 'Django Admin', link: '/django/admin' },
             { text: 'Forms Basics', link: '/django/forms' },
+            { text: 'Static Files', link: '/django/static-files' },
           ]
         },
         {

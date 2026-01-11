@@ -41,6 +41,7 @@ def contact_view(request):
 ```
 
 **template (contact.html):**
+::: v-pre
 ```html
 <form method="post">
     {% csrf_token %}
@@ -48,6 +49,7 @@ def contact_view(request):
     <button type="submit">Send</button>
 </form>
 ```
+:::
 
 **Rendering Options:**
 - `\{{ form.as_p }}`: প্রতিটি ফিল্ড `<p>` ট্যাগের মধ্যে।

@@ -78,4 +78,5 @@ Django কাজ করে MVT আর্কিটেকচারে:
 8. [Models & ORM Basics](/django/models-intro)
 9. [Django Admin](/django/admin)
 10. [Forms Basics](/django/forms)
+11. [Static Files](/django/static-files)
 ... (Roadmap remains here as a summary)
