@@ -71,4 +71,5 @@ Django কাজ করে MVT আর্কিটেকচারে:
 1. [Introduction](/django/)
 2. [Environment Setup](/django/basics)
 3. [First Django Project](/django/first-project)
+4. [Django Apps](/django/apps)
 ... (Roadmap remains here as a summary)

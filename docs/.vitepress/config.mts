@@ -225,6 +225,7 @@ export default defineConfig({
             { text: 'Introduction', link: '/django/' },
             { text: 'Basics & Setup', link: '/django/basics' },
             { text: 'First Django Project', link: '/django/first-project' },
+            { text: 'Django Apps', link: '/django/apps' },
           ]
         },
         {
