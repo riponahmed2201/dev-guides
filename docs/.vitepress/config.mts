@@ -279,6 +279,10 @@ export default defineConfig({
             { text: 'WebSockets & Channels', link: '/django/websockets-channels' },
             { text: 'Full-Text Search', link: '/django/full-text-search' },
             { text: 'API Documentation', link: '/django/api-documentation' },
+            { text: 'Background Jobs (RQ)', link: '/django/background-jobs' },
+            { text: 'Multi-tenancy', link: '/django/multi-tenancy' },
+            { text: 'Internationalization (i18n)', link: '/django/internationalization' },
+            { text: 'Localization (l10n)', link: '/django/localization' },
           ]
         },
         {
