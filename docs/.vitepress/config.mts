@@ -272,6 +272,13 @@ export default defineConfig({
             { text: 'DRF Advanced Topics', link: '/django/drf-advanced' },
             { text: 'Advanced File Uploads', link: '/django/file-uploads-advanced' },
             { text: 'Caching', link: '/django/caching' },
+            { text: 'Database Optimization', link: '/django/database-optimization' },
+            { text: 'Testing', link: '/django/testing' },
+            { text: 'Custom Management Commands', link: '/django/custom-commands' },
+            { text: 'Celery Integration', link: '/django/celery-integration' },
+            { text: 'WebSockets & Channels', link: '/django/websockets-channels' },
+            { text: 'Full-Text Search', link: '/django/full-text-search' },
+            { text: 'API Documentation', link: '/django/api-documentation' },
           ]
         },
         {
