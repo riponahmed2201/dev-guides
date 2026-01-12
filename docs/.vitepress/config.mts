@@ -238,12 +238,19 @@ export default defineConfig({
         {
           text: 'Level 2: Intermediate',
           collapsed: true,
-          items: []
+          items: [
+            { text: 'Models - Advanced Fields', link: '/django/models-advanced' },
+            { text: 'Model Methods & Properties', link: '/django/model-methods' },
+            { text: 'QuerySets & Database Queries', link: '/django/querysets' },
+          ]
         },
         {
           text: 'Level 3: Advanced',
           collapsed: true,
-          items: []
+          items: [
+            { text: 'Advanced Queries & Optimization', link: '/django/advanced-queries' },
+            { text: 'Model Relationships Deep Dive', link: '/django/model-relationships' },
+          ]
         },
         {
           text: 'Level 4: Expert',
