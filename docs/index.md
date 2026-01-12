@@ -23,8 +23,11 @@ features:
   - icon: 🏗️
     title: Design Patterns
     details: SOLID principles, GoF patterns, and high-level software architecture.
+  - icon: ⚡
+    title: FastAPI
+    details: Build high-performance APIs with Python 3.6+ based on standard Python type hints.
   - icon: 🏰
-    title: Django Roadmap
+    title: Django
     details: Build robust web applications with the most popular Python framework.
   - icon: 🔌
     title: Django REST Framework
