@@ -250,6 +250,14 @@ export default defineConfig({
           items: [
             { text: 'Advanced Queries & Optimization', link: '/django/advanced-queries' },
             { text: 'Model Relationships Deep Dive', link: '/django/model-relationships' },
+            { text: 'Class Based Views (CBV)', link: '/django/views-cbv' },
+            { text: 'Generic Views (CRUD)', link: '/django/views-generic' },
+            { text: 'Forms Advanced & Formsets', link: '/django/forms-advanced' },
+            { text: 'User Authentication & Login', link: '/django/authentication' },
+            { text: 'User Registration & Custom Model', link: '/django/registration' },
+            { text: 'Permissions & Authorization', link: '/django/permissions' },
+            { text: 'Sessions Framework', link: '/django/sessions' },
+            { text: 'Messages Framework', link: '/django/messages' },
           ]
         },
         {
