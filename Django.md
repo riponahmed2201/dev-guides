@@ -281,6 +281,7 @@
 - Cached template loader
 - Template inheritance strategies
 - Block override
+- Template fragment caching
 
 ### 29. Email Sending
 - Email configuration (SMTP)
