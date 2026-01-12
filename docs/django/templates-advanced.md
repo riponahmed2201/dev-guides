@@ -139,12 +139,16 @@ TEMPLATES = [
 
 প্যারেন্ট ব্লকের কন্টেন্ট রেখে নতুন কন্টেন্ট যোগ করতে:
 
+<div v-pre>
+
 ```html
 {% block sidebar %}
     {{ block.super }}
     <li>New Item</li>
 {% endblock %}
 ```
+
+</div>
 
 ## Template Fragment Caching
 

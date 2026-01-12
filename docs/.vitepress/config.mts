@@ -5,6 +5,11 @@ export default defineConfig({
   title: "Dev Guides Hub",
   description: "Comprehensive roadmaps for Python, Networking, and more.",
   ignoreDeadLinks: true,
+  markdown: {
+    attrs: {
+      disable: true
+    }
+  },
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
