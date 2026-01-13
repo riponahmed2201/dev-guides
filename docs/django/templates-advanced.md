@@ -1,3 +1,5 @@
+::: v-pre
+
 # Template Advanced
 
 Django Template সিস্টেমে বেসিক `{{ variable }}` এবং `{% tag %}` এর বাইরেও অনেক শক্তিশালী ফিচার আছে যা কমপ্লেক্স অ্যাপ্লিকেশনে কাজে লাগে। এখানে আমরা Custom Template Tags, Filters, Context Processors এবং Performance Optimization নিয়ে আলোচনা করব।
@@ -135,20 +137,18 @@ TEMPLATES = [
 2.  **`base_section.html`**: স্পেসিফিক সেকশনের লেআউট (যেমন `account/base.html`) যা `base.html` কে এক্সটেন্ড করে।
 3.  **`page.html`**: একচুয়াল পেজ যা `base_section.html` কে এক্সটেন্ড করে।
 
-**Block Override & `{{ block.super }}`**
+**Block Override & \{{ block.super \}}**
 
 প্যারেন্ট ব্লকের কন্টেন্ট রেখে নতুন কন্টেন্ট যোগ করতে:
 
-<div v-pre>
-
+::: v-pre
 ```html
 {% block sidebar %}
     {{ block.super }}
     <li>New Item</li>
 {% endblock %}
 ```
-
-</div>
+:::
 
 ## Template Fragment Caching
 
@@ -166,3 +166,5 @@ TEMPLATES = [
 ```
 
 এখানে `500` হলো সেকেন্ড এবং `sidebar` হলো ক্যাশ কি (Key)।
+
+:::

@@ -177,6 +177,7 @@ dashboard_admin = DashboardAdminSite(name='dashboard_admin')
 
 ### Custom Base Template
 
+::: v-pre
 ```html
 <!-- templates/admin/base_site.html -->
 
@@ -212,9 +213,11 @@ dashboard_admin = DashboardAdminSite(name='dashboard_admin')
 </div>
 {% endblock %}
 ```
+:::
 
 ### Custom Change List Template
 
+::: v-pre
 ```html
 <!-- templates/admin/myapp/product/change_list.html -->
 
@@ -256,9 +259,11 @@ dashboard_admin = DashboardAdminSite(name='dashboard_admin')
 {{ block.super }}
 {% endblock %}
 ```
+:::
 
 ### Custom Change Form Template
 
+::: v-pre
 ```html
 <!-- templates/admin/myapp/product/change_form.html -->
 
@@ -271,7 +276,8 @@ dashboard_admin = DashboardAdminSite(name='dashboard_admin')
 
 {{ block.super }}
 {% endblock %}
-
+```
+:::
 {% block after_field_sets %}
 <div class="custom-help-section">
     <h3>Help & Guidelines</h3>
@@ -283,6 +289,8 @@ dashboard_admin = DashboardAdminSite(name='dashboard_admin')
 </div>
 {% endblock %}
 
+::: v-pre
+```html
 {% block submit_buttons_bottom %}
 {{ block.super }}
 <div class="custom-actions">
@@ -295,6 +303,7 @@ dashboard_admin = DashboardAdminSite(name='dashboard_admin')
 </div>
 {% endblock %}
 ```
+:::
 
 ---
 

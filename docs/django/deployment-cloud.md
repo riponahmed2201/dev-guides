@@ -512,6 +512,7 @@ application = get_wsgi_application()
 
 ### GitHub Actions
 
+::: v-pre
 ```yaml
 # .github/workflows/deploy.yml
 
@@ -573,6 +574,7 @@ jobs:
           heroku_app_name: "myproject"
           heroku_email: "your-email@example.com"
 ```
+:::
 
 ### GitLab CI/CD
 
@@ -688,6 +690,7 @@ pipeline {
 
 ### Docker + CI/CD
 
+::: v-pre
 ```yaml
 # .github/workflows/docker-deploy.yml
 
@@ -728,6 +731,7 @@ jobs:
             docker-compose pull
             docker-compose up -d
 ```
+:::
 
 ---
 
