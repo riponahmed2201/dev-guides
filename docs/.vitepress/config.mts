@@ -247,12 +247,6 @@ export default defineConfig({
             { text: 'Models - Advanced Fields', link: '/django/models-advanced' },
             { text: 'Model Methods & Properties', link: '/django/model-methods' },
             { text: 'QuerySets & Database Queries', link: '/django/querysets' },
-          ]
-        },
-        {
-          text: 'Level 3: Advanced',
-          collapsed: true,
-          items: [
             { text: 'Advanced Queries & Optimization', link: '/django/advanced-queries' },
             { text: 'Model Relationships Deep Dive', link: '/django/model-relationships' },
             { text: 'Class Based Views (CBV)', link: '/django/views-cbv' },
@@ -268,6 +262,12 @@ export default defineConfig({
             { text: 'Templates Advanced', link: '/django/templates-advanced' },
             { text: 'Email Sending', link: '/django/email-sending' },
             { text: 'Pagination', link: '/django/pagination' },
+          ]
+        },
+        {
+          text: 'Level 3: Advanced',
+          collapsed: true,
+          items: [
             { text: 'Custom User Model', link: '/django/custom-user-model' },
             { text: 'Introduction to DRF', link: '/django/drf-intro' },
             { text: 'DRF Serializers', link: '/django/drf-serializers' },
@@ -293,7 +293,20 @@ export default defineConfig({
         {
           text: 'Level 4: Expert',
           collapsed: true,
-          items: []
+          items: [
+            { text: 'Security Best Practices', link: '/django/security-best-practices' },
+            { text: 'Django Security Features', link: '/django/security-features' },
+            { text: 'Database Transactions', link: '/django/database-transactions' },
+            { text: 'Database Migrations Advanced', link: '/django/migrations-advanced' },
+            { text: 'Custom Model Fields', link: '/django/custom-model-fields' },
+            { text: 'Django Admin Customization', link: '/django/admin-customization' },
+            { text: 'Performance Optimization', link: '/django/performance-optimization' },
+            { text: 'Deployment Preparation', link: '/django/deployment-preparation' },
+            { text: 'Deployment - Traditional', link: '/django/deployment-traditional' },
+            { text: 'Deployment - Docker', link: '/django/deployment-docker' },
+            { text: 'Deployment - Cloud Platforms', link: '/django/deployment-cloud' },
+            { text: 'Scalability', link: '/django/scalability' },
+          ]
         }
       ],
       '/django-rest-framework/': [
