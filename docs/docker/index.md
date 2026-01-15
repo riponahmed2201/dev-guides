@@ -25,7 +25,7 @@
 
 ### 🟡 Level 2: Intermediate
 এই লেভেলে আমরা কাস্টম ইমেজ তৈরি এবং মাল্টি-কন্টেইনার অ্যাপ নিয়ে কাজ করবো।
-- **Highlights:** [Dockerfile Basics](/docker/dockerfile-basics), [Dockerfile Instructions - Part 1](/docker/dockerfile-instructions-p1), [Dockerfile Instructions - Part 2](/docker/dockerfile-instructions-p2), Multi-stage Builds, Volumes, Networks, Docker Compose.
+- **Highlights:** [Dockerfile Basics](/docker/dockerfile-basics), [Dockerfile Instructions - Part 1](/docker/dockerfile-instructions-p1), [Dockerfile Instructions - Part 2](/docker/dockerfile-instructions-p2), [Building Docker Images](/docker/build-images), [Multi-stage Builds](/docker/multi-stage-builds), [Docker Volumes](/docker/volumes), [Volume Commands](/docker/volume-commands), Networks, Docker Compose.
 
 ### 🔴 Level 3: Advanced
 প্রোডাকশন লেভেল অপ্টিমাইজেশন এবং সিকিউরিটি নিয়ে গভীর আলোচনা।
