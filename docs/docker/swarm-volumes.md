@@ -20,6 +20,7 @@ docker service create \
 ## ২. ভলিউম ড্রাইভার (Volume Drivers)
 
 মাল্টি-নোড ক্লাস্টারে ডেটা শেয়ার করার জন্য আমাদের এক্সটার্নাল বা নেটওয়ার্ক ভলিউম ড্রাইভার ব্যবহার করতে হয়।
+
 - **REXRay:** বিভিন্ন ক্লাউড স্টোরেজ (AWS EBS, GCE Persistent Disk) ড্রাইভ হিসেবে ব্যবহার করতে দেয়।
 - **Portworx:** হাই-পারফরম্যান্স ডিস্ট্রিবিউটেড স্টোরেজ।
 - **Flocker:** ডেটা এবং কন্টেইনার একসাথে মুভ করতে সাহায্য করে।
@@ -31,7 +32,9 @@ docker service create \
 সবচেয়ে কমন এবং সহজ পদ্ধতি হলো একটি সেন্ট্রাল স্টোরেজ সার্ভার (NFS) ব্যবহার করা।
 
 ### NFS ভলিউম তৈরির উদাহরণ:
+
 ১. প্রথমে একটি ভলিউম তৈরি করুন যা NFS সার্ভারে পয়েন্ট করবে:
+
 ```bash
 docker volume create --driver local \
   --opt type=nfs \
@@ -41,6 +44,7 @@ docker volume create --driver local \
 ```
 
 ২. সার্ভিসে এই ভলিউমটি মাউন্ট করুন:
+
 ```bash
 docker service create --name web --mount source=shared-data,target=/app nginx
 ```
@@ -52,12 +56,14 @@ docker service create --name web --mount source=shared-data,target=/app nginx
 ## ৪. ক্লাউড স্টোরেজ ইন্টিগ্রেশন (Cloud Storage)
 
 আধুনিক ক্লাউড প্রোভাইডাররা (AWS, Azure, Google Cloud) নিজস্ব ড্রাইভার প্রদান করে।
+
 - **AWS EFS:** সোয়ার্ম ক্লাস্টারের জন্য ম্যানেজড NFS হিসেবে কাজ করে।
 - **Azure Files:** SMB/NFS প্রোটোকল ব্যবহার করে সব নোডে শেয়ার করা যায়।
 
 ---
 
 ## ৫. সোয়ার্ম ভলিউম টিপস
+
 - **Avoid Bind Mounts:** সোয়ার্মে বাইন্ড মাউন্ট এড়িয়ে চলুন কারণ সব নোডে একই ডিরেক্টরি পাথ থাকা বাধ্যতামূলক।
 - **Data Locality:** যদি নির্দিষ্ট কোনো নোডেই ডেটা রাখতে চান, তবে 'Placement Constraints' ব্যবহার করুন।
 - **Backups:** সেন্ট্রাল স্টোরেজ ব্যবহারের ফলে ব্যাকআপ নেওয়া অনেক সহজ হয়।

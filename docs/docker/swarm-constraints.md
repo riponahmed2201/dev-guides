@@ -27,6 +27,7 @@ docker service create \
 ```
 
 ### কমন কনস্ট্রেইন্ট উদাহরণ:
+
 - `node.role == manager` (শুধুমাত্র ম্যানেজার নোডে চলবে)
 - `node.role == worker` (শুধুমাত্র ওয়ার্কার নোডে চলবে)
 - `node.id == <NODE-ID>` (একটি নির্দিষ্ট নোডে চলবে)
@@ -46,6 +47,7 @@ docker service create \
   --placement-pref "spread=node.labels.datacenter" \
   nginx
 ```
+
 এখানে যদি ২টি ডেটাসেন্টার থাকে, সোয়ার্ম চেষ্টা করবে ৩টি করে কন্টেইনার প্রতিটি ডেটাসেন্টারে রান করতে।
 
 ---
@@ -72,7 +74,7 @@ docker service create \
 ## ৫. কম্পোজ/স্ট্যাক ফাইলে ব্যবহার
 
 ```yaml
-version: '3.8'
+version: "3.8"
 services:
   web:
     image: nginx
@@ -85,14 +87,15 @@ services:
           - spread: node.labels.datacenter
       resources:
         limits:
-          cpus: '0.50'
+          cpus: "0.50"
           memory: 512M
         reservations:
-          cpus: '0.25'
+          cpus: "0.25"
           memory: 256M
 ```
 
 ## ৬. সুবিধা
+
 - **Hardware Optimization:** বিশেষ কাজের জন্য বিশেষ ইক্যুইপমেন্ট (GPU, SSD) ব্যবহার করা যায়।
 - **Isolation:** সেনসিটিভ সার্ভিসগুলোকে আলাদা নোডে রাখা যায়।
 - **High Availability:** স্প্রেড স্ট্র্যাটেজি ব্যবহারের ফলে একটি পুরো র‍্যাক বা ডেটাসেন্টার ডাউন হলেও সার্ভিস সচল থাকে।

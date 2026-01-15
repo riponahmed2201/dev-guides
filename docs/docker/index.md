@@ -1,5 +1,7 @@
 # Docker Complete Learning Guide:
+
 ### Beginner Projects:
+
 1. **Beginner:** [Static Website (Nginx)](./project-static-website.md)
 2. **Beginner:** [Node.js App](./project-nodejs-app.md)
 3. **Beginner:** [Python Flask App](./project-flask-app.md)
@@ -7,6 +9,7 @@
 5. **Beginner:** [Database Container](../docs/docker/project-database.md): PostgreSQL/MongoDB setup
 
 ### Intermediate Projects:
+
 6. **[MERN Stack](../docs/docker/project-mern.md)**: MongoDB + Express + React + Node
 7. **[Microservices Demo](../docs/docker/project-microservices.md)**: Multiple interconnected services
 8. **[CI/CD Pipeline](../docs/docker/project-cicd.md)**: Automated build and deployment
@@ -20,6 +23,7 @@
 ---
 
 ## 🎯 কেন এই গাইডটি অনুসরণ করবেন?
+
 - **Zero to Hero:** একদম বেসিক থেকে শুরু করে এডভান্সড অর্কেস্ট্রেশন পর্যন্ত।
 - **Deep Dive:** প্রতিটি টপিকের ভেতরের মেকানিজম নিয়ে বিস্তারিত আলোচনা।
 - **Practical Examples:** বাস্তব জীবনের প্রজেক্ট এবং সিনারিও ভিত্তিক লার্নিং।
@@ -35,29 +39,37 @@
 </div>
 
 ### 🟢 Level 1: Foundation (Beginner)
+
 এখানে আমরা কন্টেইনারাইজেশনের মূল ভিত্তি নিয়ে কাজ করবো।
+
 - **Highlights:** [Container Fundamentals](/docker/basics), [Docker Introduction](/docker/intro), [Docker Architecture](/docker/architecture), [Installation](/docker/installation), [CLI Basics](/docker/cli-basics), [Docker Images](/docker/images), [Image Commands](/docker/image-commands), [Running Containers](/docker/containers), [Container Lifecycle](/docker/lifecycle), [Container Management](/docker/container-management), [Container Interaction](/docker/interaction), [Port Mapping](/docker/ports), [Environment Variables](/docker/env-vars), [Docker Hub](/docker/hub).
 
 ### 🟡 Level 2: Intermediate
+
 এই লেভেলে আমরা কাস্টম ইমেজ তৈরি এবং মাল্টি-কন্টেইনার অ্যাপ নিয়ে কাজ করবো।
+
 - **Highlights:** [Dockerfile Basics](/docker/dockerfile-basics), [Dockerfile Instructions - Part 1](/docker/dockerfile-instructions-p1), [Dockerfile Instructions - Part 2](/docker/dockerfile-instructions-p2), [Building Docker Images](/docker/build-images), [Multi-stage Builds](/docker/multi-stage-builds), [Docker Volumes](/docker/volumes), [Volume Commands](/docker/volume-commands), [Bind Mounts](/docker/bind-mounts), [Docker Networks](/docker/networking), [Network Commands](/docker/network-commands), [Container Networking](/docker/container-networking), [Docker Compose Intro](/docker/docker-compose-intro), [Compose File Structure](/docker/docker-compose-structure), [Compose Commands](/docker/docker-compose-commands), [Compose Services](/docker/docker-compose-services), [Compose Networks & Volumes](/docker/docker-compose-networks-volumes), [Compose Advanced](/docker/docker-compose-advanced).
 
 ### 🔴 Level 3: Advanced
+
 প্রোডাকশন লেভেল অপ্টিমাইজেশন এবং সিকিউরিটি নিয়ে গভীর আলোচনা।
+
 - **Highlights:** [Container Logs](/docker/container-logs), [Resource Management](/docker/resource-management), [Dockerfile Best Practices](/docker/dockerfile-best-practices), [.dockerignore File](/docker/dockerignore), [Image Optimization](/docker/image-optimization), [Alpine Linux Images](/docker/alpine), [Distroless Images](/docker/distroless), [Security Basics](/docker/security-basics), [USER Instruction](/docker/user-instruction), [Security Scanning](/docker/security-scanning), [Docker Secrets](/docker/secrets), [Health Checks](/docker/healthchecks), [Docker Registry](/docker/registry), [Harbor Registry](/docker/harbor), [Image Tagging Strategy](/docker/tagging-strategy), [Docker Context](/docker/context), [Docker BuildKit](/docker/buildkit), [Cache Optimization](/docker/cache-optimization), [Docker Plugins](/docker/plugins), [Docker APIs](/docker/apis), [Container Monitoring](/docker/monitoring).
 
 ### 🟣 Level 4: Expert (Orchestration & Beyond)
+
 স্কেল্যাবল আর্কিটেকচার এবং ক্লাস্টার ম্যানেজমেন্ট।
+
 - **Highlights:** [Orchestration Intro](/docker/orchestration-intro), [Swarm Basics](/docker/swarm-basics), [Swarm Setup](/docker/swarm-setup), [Swarm Services](/docker/swarm-services), [Service Deployment](/docker/swarm-deployment), [Swarm Networks](/docker/swarm-networks), [Swarm Volumes](/docker/swarm-volumes), [Stack Deployment](/docker/swarm-stack), [Updates & Rollbacks](/docker/swarm-updates), [Secrets](/docker/swarm-secrets), [Configs](/docker/swarm-configs), [Constraints](/docker/swarm-constraints), [Docker vs K8s](/docker/docker-vs-k8s), [Desktop K8s](/docker/docker-desktop-k8s), [Compose to K8s](/docker/compose-to-k8s), [CI/CD Integration](/docker/cicd), [Production Best Practices](/docker/production), [Performance Tuning](/docker/performance), [Troubleshooting](/docker/troubleshooting), [Debugging Tools](/docker/debugging-tools), [Multi-Arch Images](/docker/multi-arch), [Content Trust](/docker/content-trust), [Rootless Docker](/docker/rootless), [Docker on Windows](/docker/windows), [Docker on macOS](/docker/macos), [Docker Alternatives](/docker/alternatives), [Container Standards](/docker/container-standards), [Advanced Networking](/docker/advanced-networking).
 
 ---
 
 ## 🚀 আপনার যাত্রা শুরু হোক এখান থেকে
+
 আপনি যদি একদম নতুন হয়ে থাকেন, তবে সরাসরি **Level 1** থেকে শুরু করার পরামর্শ থাকবে।
 
 ::: info মনে রাখবেন
-Docker একদিনে শেখার বিষয় নয়। এটি একটি প্র্যাকটিক্যাল টুল। যত বেশি কমান্ড চালাবেন, তত বেশি শিখবেন। 
+Docker একদিনে শেখার বিষয় নয়। এটি একটি প্র্যাকটিক্যাল টুল। যত বেশি কমান্ড চালাবেন, তত বেশি শিখবেন।
 :::
 
-> [!IMPORTANT]
-> **প্রথম ধাপ:** শুরু করুন [Containerization Fundamentals](/docker/basics) দিয়ে।
+> [!IMPORTANT] > **প্রথম ধাপ:** শুরু করুন [Containerization Fundamentals](/docker/basics) দিয়ে।

@@ -17,16 +17,19 @@ docker service create --name my-web --replicas 3 -p 8080:80 nginx
 ## ২. সার্ভিস দেখা এবং লিস্ট করা (List & Inspect)
 
 বর্তমানে ক্লাস্টারে কি কি সার্ভিস চলছে তা দেখতে:
+
 ```bash
 docker service ls
 ```
 
 সার্ভিসের কন্টেইনারগুলো (Tasks) কোন কোন নোডে চলছে তা দেখতে:
+
 ```bash
 docker service ps <SERVICE-NAME>
 ```
 
 সার্ভিসের কন্টেইনারগুলোর সম্মিলিত লগ দেখতে:
+
 ```bash
 docker service logs <SERVICE-NAME>
 ```
@@ -40,7 +43,9 @@ docker service logs <SERVICE-NAME>
 ```bash
 docker service scale my-web=5
 ```
+
 অথবা:
+
 ```bash
 docker service update --replicas 5 my-web
 ```
@@ -74,6 +79,7 @@ docker service rm my-web
 ## ৬. Replicated vs Global Mode
 
 সার্ভিস দুই মোডে রান করতে পারে:
+
 - **Replicated (Default):** আপনি নির্দিষ্ট করে দেন কয়টি কন্টেইনার চলবে (যেমন ৫টি)। সোয়ার্ম সেগুলোকে নোডগুলোর মধ্যে ভাগ করে দেয়।
 - **Global:** প্রতিটি নোডে (ম্যানেজার এবং ওয়ার্কার) ঠিক একটি করে কন্টেইনার চলবে। এটি সাধারণত মনিটরিং এজেন্ট বা লগ কালেক্টরের জন্য ব্যবহৃত হয়।
 

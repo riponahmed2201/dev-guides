@@ -7,9 +7,11 @@
 ## ১. ইমেজ দেখা (List Images)
 
 আপনার লোকাল মেশিনে বর্তমানে কোন কোন ইমেজ আছে তা দেখার জন্য:
+
 ```bash
 docker images
 ```
+
 এই কমান্ডটি দিলে আপনি ইমেজের নাম (Repository), ট্যাগ (Tag), ইমেজ আইডি (Image ID), কতক্ষণ আগে তৈরি হয়েছে এবং সাইজ দেখতে পারবেন।
 
 ---
@@ -17,13 +19,17 @@ docker images
 ## ২. ইমেজ ডাউনলোড করা (Pull Image)
 
 Docker Hub থেকে কোনো ইমেজ ডাউনলোড করার জন্য:
+
 ```bash
 docker pull <image_name>
 ```
+
 **উদাহরণ:**
+
 ```bash
 docker pull nginx:latest
 ```
+
 এটি এনজিনএক্স (Nginx)-এর লেটেস্ট ভার্সনটি নামিয়ে আনবে।
 
 ---
@@ -31,9 +37,11 @@ docker pull nginx:latest
 ## ৩. ইমেজ আপলোড করা (Push Image)
 
 আপনার তৈরি করা কোনো ইমেজ Docker Hub বা অন্য কোনো রেজিস্ট্রিতে তুলে রাখার জন্য:
+
 ```bash
 docker push <your_username>/<image_name>:<tag>
 ```
+
 > [!IMPORTANT]
 > পুশ করার আগে অবশ্যই `docker login` করে নিতে হবে।
 
@@ -42,9 +50,11 @@ docker push <your_username>/<image_name>:<tag>
 ## ৪. ইমেজ ডিলিট করা (Remove Image)
 
 অপ্রয়োজনীয় ইমেজ লোকাল মেশিন থেকে মুছে ফেলার জন্য:
+
 ```bash
 docker rmi <image_id_or_name>
 ```
+
 যদি কোনো ইমেজ একটি রানিং কন্টেইনারের সাথে যুক্ত থাকে, তবে ডকার সেটি মুছতে দিবে না। সেক্ষেত্রে ফোর্সফুলি ডিলিট করতে `-f` ফ্ল্যাগ ব্যবহার করা যায় (তবে এটি সাবধানে করা উচিত)।
 
 ---
@@ -52,9 +62,11 @@ docker rmi <image_id_or_name>
 ## ৫. ইমেজের বিস্তারিত তথ্য (Inspect)
 
 একটি ইমেজের ভেতরে কী কী কনফিগারেশন আছে তা বিস্তারিত JSON ফরম্যাটে দেখার জন্য:
+
 ```bash
 docker image inspect <image_name_or_id>
 ```
+
 এটি আপনাকে ইমেজের লেয়ার, এনভায়রনমেন্ট ভেরিয়েবল এবং নেটওয়ার্ক কনফিগ দেখাবে।
 
 ---
@@ -62,9 +74,11 @@ docker image inspect <image_name_or_id>
 ## ৬. ইমেজের ইতিহাস দেখা (History)
 
 ইমেজটি কোন কোন লেয়ারের সমন্বয়ে তৈরি তা দেখার জন্য:
+
 ```bash
 docker image history <image_name_or_id>
 ```
+
 এটি আপনাকে প্রতিটি লেয়ারের সাইজ এবং কোন কমান্ডের মাধ্যমে লেয়ারটি তৈরি হয়েছে তা জানাবে।
 
 ---
@@ -72,10 +86,13 @@ docker image history <image_name_or_id>
 ## ৭. অপ্রয়োজনীয় ইমেজ ক্লিনআপ (Prune)
 
 আপনার সিস্টেমে অনেক সময় এমন ইমেজ থাকে যেগুলোর কোনো নাম বা ট্যাগ নেই (Dangling images)। এগুলো পরিষ্কার করার জন্য:
+
 ```bash
 docker image prune
 ```
+
 সব অপ্রয়োজনীয় (unused) ইমেজ ডিলিট করতে চাইলে:
+
 ```bash
 docker image prune -a
 ```
@@ -85,29 +102,33 @@ docker image prune -a
 ## ৮. ইমেজ সার্চ করা (Search)
 
 টার্মিনাল থেকেই Docker Hub-এ কোনো ইমেজ সার্চ করার জন্য:
+
 ```bash
 docker search <term>
 ```
+
 **উদাহরণ:**
+
 ```bash
 docker search python
 ```
+
 এটি আপনাকে জানাবে পাইথনের অফিসিয়াল ইমেজ কোনটি এবং সেটির রেটিং কেমন।
 
 ---
 
 ## কমান্ড সামারি টেবিল
 
-| Command | Description |
-| :--- | :--- |
-| `docker images` | সব লোকাল ইমেজ লিস্ট করে |
-| `docker pull` | রেজিস্ট্রি থেকে ইমেজ ডাউনলোড করে |
-| `docker push` | ইমেজে রেজিস্ট্রিতে আপলোড করে |
-| `docker rmi` | ইমেজ মুছে ফেলে |
-| `docker image inspect` | ইমেজের মেটাডেটা দেখায় |
-| `docker image history` | ইমেজের লেয়ার হিস্টোরি দেখায় |
-| `docker image prune` | অব্যবহৃত ইমেজ পরিষ্কার করে |
-| `docker search` | ডকার হাবে ইমেজ খুঁজে দেয় |
+| Command                | Description                      |
+| :--------------------- | :------------------------------- |
+| `docker images`        | সব লোকাল ইমেজ লিস্ট করে          |
+| `docker pull`          | রেজিস্ট্রি থেকে ইমেজ ডাউনলোড করে |
+| `docker push`          | ইমেজে রেজিস্ট্রিতে আপলোড করে     |
+| `docker rmi`           | ইমেজ মুছে ফেলে                   |
+| `docker image inspect` | ইমেজের মেটাডেটা দেখায়            |
+| `docker image history` | ইমেজের লেয়ার হিস্টোরি দেখায়     |
+| `docker image prune`   | অব্যবহৃত ইমেজ পরিষ্কার করে       |
+| `docker search`        | ডকার হাবে ইমেজ খুঁজে দেয়         |
 
 ---
 

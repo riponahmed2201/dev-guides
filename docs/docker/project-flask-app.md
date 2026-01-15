@@ -3,12 +3,14 @@
 এই প্রজেক্টে আমরা Python এর জনপ্রিয় ফ্রেমওয়ার্ক **Flask** ব্যবহার করে একটি সিম্পল REST API তৈরি করব এবং সেটিকে ডকার কন্টেইনারে রান করব। এটি ডেটা সায়েন্স এবং মেশিন লার্নিং ইঞ্জিনিয়ারদের জন্য খুব দরকারি।
 
 ## প্রজেক্টের লক্ষ্য
+
 - একটি সিম্পল Flask API তৈরি করা।
 - `requirements.txt` ফাইল ম্যানেজ করা।
 - Python এর জন্য অপ্টিমাইজড `Dockerfile` লেখা।
 - এনভায়রনমেন্ট ভেরিয়েবল হ্যান্ডেল করা।
 
 ## ১. প্রজেক্ট সেটআপ
+
 প্রথমে একটি ফোল্ডার তৈরি করুন:
 
 ```bash
@@ -19,6 +21,7 @@ cd flask-docker-app
 ## ২. অ্যাপ্লিকেশন কোড
 
 ### app.py
+
 `app.py` নামে একটি ফাইল তৈরি করুন:
 
 ```python
@@ -39,12 +42,15 @@ if __name__ == '__main__':
 ```
 
 ### requirements.txt
+
 ডিপেন্ডেন্সি লিস্ট করার জন্য `requirements.txt` তৈরি করুন:
+
 ```text
 flask==3.0.0
 ```
 
 ## ৩. Dockerfile তৈরি করা
+
 আমরা `python:3.9-slim` ইমেজ ব্যবহার করব কারণ এটি হালকা এবং প্রোডাকশনের জন্য ভালো।
 
 ```dockerfile
@@ -73,19 +79,23 @@ CMD ["python", "app.py"]
 ## ৪. বিল্ড এবং রান
 
 ### ইমেজ বিল্ড করা
+
 ```bash
 docker build -t my-flask-app .
 ```
 
 ### কন্টেইনার রান করা
+
 ```bash
 docker run -d -p 5000:5000 --name flask-api my-flask-app
 ```
 
 ## ৫. টেস্ট করা
+
 ব্রাউজার বা Postman এ হিট করুন: `http://localhost:5000`
 
 আউটপুট:
+
 ```json
 {
   "environment": "development",
@@ -94,10 +104,12 @@ docker run -d -p 5000:5000 --name flask-api my-flask-app
 ```
 
 ## ৬. ক্লিনআপ
+
 ```bash
 docker stop flask-api
 docker rm flask-api
 ```
 
 ## সারাংশ
+
 এই প্রজেক্টে আমরা শিখলাম কীভাবে Python অ্যাপ্লিকেশন ডকারাইজ করতে হয়। `pip install` এর সময় `--no-cache-dir` ব্যবহার করা ইমেজ সাইজ ছোট রাখার জন্য একটি বেস্ট প্র্যাকটিস।

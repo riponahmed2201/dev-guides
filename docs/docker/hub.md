@@ -6,7 +6,8 @@
 
 ## ১. Docker Hub অ্যাকাউন্ট তৈরি করা
 
-ডকার হাব ব্যবহার করার জন্য একটি অ্যাকাউন্ট থাকা জরুরি। 
+ডকার হাব ব্যবহার করার জন্য একটি অ্যাকাউন্ট থাকা জরুরি।
+
 - **কিভাবে:** [hub.docker.com](https://hub.docker.com/)-এ গিয়ে একটি ইউনিক ইউজারনেম এবং ইমেইল দিয়ে সাইন-আপ করুন।
 - **কেন:** আপনার নিজের ইমেজ আপলোড করতে এবং প্রাইভেট রিপোজিটরি ব্যবহার করতে অ্যাকাউন্টের প্রয়োজন হয়।
 
@@ -33,6 +34,7 @@
 ## ৪. ইমেজ রেটিং এবং ডাউনলোড
 
 কোন ইমেজটি ভালো সেটি বোঝার উপায়:
+
 - **Stars:** কতজন ইউজার ইমেজটিকে পছন্দ করেছে।
 - **Downloads:** কতবার ইমেজটি ডাউনলোড হয়েছে।
 - **Last Updated:** ইমেজটি কতদিন আগে আপডেট করা হয়েছে (পুরানো ইমেজ ব্যবহার না করাই ভালো)।
@@ -47,12 +49,12 @@
 
 ## কমান্ড সামারি টেবিল
 
-| Task | Command |
-| :--- | :--- |
-| Login to Hub | `docker login` |
-| Search Image | `docker search <term>` |
-| Pull Image | `docker pull <image>` |
-| Push Image | `docker push <user>/<image>` |
+| Task         | Command                      |
+| :----------- | :--------------------------- |
+| Login to Hub | `docker login`               |
+| Search Image | `docker search <term>`       |
+| Pull Image   | `docker pull <image>`        |
+| Push Image   | `docker push <user>/<image>` |
 
 ---
 

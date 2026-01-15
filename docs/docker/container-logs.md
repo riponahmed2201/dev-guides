@@ -25,6 +25,7 @@ docker run --log-driver syslog nginx
 ```
 
 **Docker Compose উদাহরণ:**
+
 ```yaml
 services:
   web:
@@ -32,8 +33,8 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: "10m"   # একটি লগের সাইজ সর্বোচ্চ ১০ মেগাবাইট
-        max-file: "3"     # সর্বোচ্চ ৩টি লগ ফাইল রাখবে (Log Rotation)
+        max-size: "10m" # একটি লগের সাইজ সর্বোচ্চ ১০ মেগাবাইট
+        max-file: "3" # সর্বোচ্চ ৩টি লগ ফাইল রাখবে (Log Rotation)
 ```
 
 ---
@@ -47,6 +48,7 @@ services:
 ## ৪. লগ অ্যাগ্রিগেশন (Log Aggregation)
 
 যখন আপনার অনেকগুলো সার্ভার এবং শয়ে শয়ে কন্টেইনার থাকে, তখন প্রতিটি কন্টেইনারে ঢুকে লগ দেখা সম্ভব হয় না। এজন্য **Centralized Logging** ব্যবহার করা হয়।
+
 - **EFK Stack:** ElasticSearch + Fluentd + Kibana
 - **ELK Stack:** ElasticSearch + Logstash + Kibana
 - **Grafana Loki:** বর্তমান সময়ের খুব পপুলার এবং লাইট-ওয়েট লগিং সলিউশন।

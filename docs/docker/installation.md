@@ -9,17 +9,19 @@ Docker ব্যবহার শুরু করার জন্য আপনা
 উইন্ডোজ মেশিনে ডকার ব্যবহার করার সবচেয়ে সহজ উপায় হলো **Docker Desktop**।
 
 ### প্রয়োজনীয় রিকোয়ারমেন্ট:
+
 - Windows 10/11 (64-bit).
 - **WSL 2 (Windows Subsystem for Linux)** ফিচারটি এনাবল থাকতে হবে (এটি ডকার অটোমেটিক সেটআপ করে দেয় এখন)।
 - কমপক্ষে 4GB RAM.
 - BIOS-এ **Virtualization** এনাবল থাকতে হবে।
 
 ### ইন্সটলেশন ধাপ:
-১. [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/) ডাউনলোড করুন।
-২. `.exe` ফাইলটি রান করুন।
-৩. "Use WSL 2 instead of Hyper-V" অপশনটি সিলেক্ট রাখুন (এটি রিকমেন্ডেড)।
-৪. ইন্সটল শেষে কম্পিউটার রিস্টার্ট দিন।
-৫. Docker Desktop অ্যাপটি ওপেন করুন এবং টার্মিনাল চেক করুন।
+
+- [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/) ডাউনলোড করুন।
+- `.exe` ফাইলটি রান করুন।
+- "Use WSL 2 instead of Hyper-V" অপশনটি সিলেক্ট রাখুন (এটি রিকমেন্ডেড)।
+- ইন্সটল শেষে কম্পিউটার রিস্টার্ট দিন।
+- Docker Desktop অ্যাপটি ওপেন করুন এবং টার্মিনাল চেক করুন।
 
 ---
 
@@ -27,9 +29,9 @@ Docker ব্যবহার শুরু করার জন্য আপনা
 
 ম্যাকেও ডকার ইন্সটল করা খুবই সহজ।
 
-১. [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/) ডাউনলোড করুন (আপনার প্রসেসর অনুযায়ী Intel chip বা Apple Silicon/M1/M2 সিলেক্ট করুন)।
-২. ডাউনলোড করা `.dmg` ফাইলটি ডাবল ক্লিক করুন এবং ডকার আইকনটি **Applications** ফোল্ডারে ড্র্যাগ করুন।
-৩. প্রথমবার ওপেন করার সময় কিছু পারমিশন চাইবে, যা অ্যালাউ করতে হবে।
+- [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/) ডাউনলোড করুন (আপনার প্রসেসর অনুযায়ী Intel chip বা Apple Silicon/M1/M2 সিলেক্ট করুন)।
+- ডাউনলোড করা `.dmg` ফাইলটি ডাবল ক্লিক করুন এবং ডকার আইকনটি **Applications** ফোল্ডারে ড্র্যাগ করুন।
+- প্রথমবার ওপেন করার সময় কিছু পারমিশন চাইবে, যা অ্যালাউ করতে হবে।
 
 ---
 
@@ -38,21 +40,28 @@ Docker ব্যবহার শুরু করার জন্য আপনা
 লিনাক্সে ডকার ইন্সটল করার জন্য কিছু কমান্ড ব্যবহার করতে হয়। নিচে উবুন্টুর উদাহরণ দেওয়া হলো, তবে সেন্ট-ওএস (CentOS) বা রেড-হ্যাটের জন্যও প্রায় একই রকম পদ্ধতি অনুসরণ করা হয়।
 
 ### Ubuntu-তে ইন্সটলেশন:
+
 ১. প্যাকেজ আপডেট করুন:
-   ```bash
-   sudo apt-get update
-   ```
+
+```bash
+sudo apt-get update
+```
+
 ২. কিছু প্রয়োজনীয় ডিপেন্ডেন্সি ইন্সটল করুন:
-   ```bash
-   sudo apt-get install ca-certificates curl gnupg
-   ```
+
+```bash
+sudo apt-get install ca-certificates curl gnupg
+```
+
 ৩. ডকারের অফিসিয়াল GPG key যোগ করুন এবং রিপোজিটরি সেটআপ করুন।
 ৪. ডকার ইঞ্জিন ইন্সটল করুন:
-   ```bash
-   sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-   ```
+
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
 
 ### CentOS-এ ইন্সটলেশন:
+
 CentOS-এ `dnf` বা `yum` ব্যবহার করে অফিসিয়াল ডকার রিপোজিটরি যোগ করে সহজেই ইন্সটল করা যায়।
 
 ---
@@ -62,13 +71,17 @@ CentOS-এ `dnf` বা `yum` ব্যবহার করে অফিসিয়
 লিনাক্সে প্যাকেজ ইন্সটল করলেই শেষ নয়, রুট পারমিশন ছাড়া ডকার চালানোর জন্য নিচের ধাপগুলো করতে হয়:
 
 ১. `docker` নামে একটি গ্রুপ তৈরি করুন:
-   ```bash
-   sudo groupadd docker
-   ```
+
+```bash
+sudo groupadd docker
+```
+
 ২. আপনার ইউজারকে সেই গ্রুপে যোগ করুন:
-   ```bash
-   sudo usermod -aG docker $USER
-   ```
+
+```bash
+sudo usermod -aG docker $USER
+```
+
 ৩. কম্পিউটার রিলগিন বা রিস্টার্ট দিন যাতে পারমিশন আপডেট হয়।
 
 ---
@@ -76,9 +89,11 @@ CentOS-এ `dnf` বা `yum` ব্যবহার করে অফিসিয়
 ## ৫. Version Verification
 
 ইন্সটলেশন ঠিকমতো হয়েছে কিনা তা চেক করার জন্য টার্মিনালে নিচের কমান্ডটি দিন:
+
 ```bash
 docker --version
 ```
+
 যদি আপনার ডকারের ভার্সন দেখায়, তার মানে ইন্সটলেশন সফল হয়েছে।
 
 ---
@@ -86,10 +101,13 @@ docker --version
 ## ৬. Hello World Container (The Ultimate Test)
 
 সবশেষে আমাদের একটি ছোট টেস্ট কন্টেইনার রান করতে হবে:
+
 ```bash
 docker run hello-world
 ```
+
 এই কমান্ডটি দিলে ডকার নিচের কাজগুলো করবে:
+
 - Docker Hub থেকে `hello-world` ইমেজটি ডাউনলোড করবে।
 - সেটি থেকে একটি কন্টেইনার তৈরি করবে।
 - একটি সাকসেস মেসেজ প্রিন্ট করবে এবং কন্টেইনারটি বন্ধ করে দেবে।
