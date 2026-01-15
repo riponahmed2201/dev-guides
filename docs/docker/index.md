@@ -33,7 +33,7 @@
 
 ### 🟣 Level 4: Expert (Orchestration & Beyond)
 স্কেল্যাবল আর্কিটেকচার এবং ক্লাস্টার ম্যানেজমেন্ট।
-- **Highlights:** [Orchestration Intro](/docker/orchestration-intro), [Swarm Basics](/docker/swarm-basics), [Swarm Setup](/docker/swarm-setup), [Swarm Services](/docker/swarm-services), [Service Deployment](/docker/swarm-deployment), [Swarm Networks](/docker/swarm-networks), [Swarm Volumes](/docker/swarm-volumes), [Stack Deployment](/docker/swarm-stack), Kubernetes Transition, CI/CD Integration, Production Best Practices.
+- **Highlights:** [Orchestration Intro](/docker/orchestration-intro), [Swarm Basics](/docker/swarm-basics), [Swarm Setup](/docker/swarm-setup), [Swarm Services](/docker/swarm-services), [Service Deployment](/docker/swarm-deployment), [Swarm Networks](/docker/swarm-networks), [Swarm Volumes](/docker/swarm-volumes), [Stack Deployment](/docker/swarm-stack), [Updates & Rollbacks](/docker/swarm-updates), [Secrets](/docker/swarm-secrets), [Configs](/docker/swarm-configs), [Constraints](/docker/swarm-constraints), Kubernetes Transition, CI/CD Integration, Production Best Practices.
 
 ---
 
