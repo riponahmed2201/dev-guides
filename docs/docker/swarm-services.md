@@ -81,5 +81,3 @@ docker service rm my-web
 # Global মোডে সার্ভিস তৈরি
 docker service create --name monitor --mode global prometheus/node-exporter
 ```
-
-পরবর্তী ধাপে আমরা দেখব কীভাবে সোয়ার্ম ক্লাস্টারে হার্ডওয়্যার রিসোর্স এবং নেটওয়ার্ক ম্যানেজ করতে হয়।
