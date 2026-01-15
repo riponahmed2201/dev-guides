@@ -32,5 +32,8 @@ features:
   - icon: 🔌
     title: Django REST Framework
     details: Master API development with powerful serialization and authentication.
+  - icon: 🐳
+    title: Docker & DevOps
+    details: Master containerization, orchestration, and modern deployment strategies.
 ---
 

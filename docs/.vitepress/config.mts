@@ -19,7 +19,8 @@ export default defineConfig({
       { text: 'Architecture', link: '/solution-architecture/' },
       { text: 'FastAPI', link: '/fastapi/' },
       { text: 'Django', link: '/django/' },
-      { text: 'DRF', link: '/django-rest-framework/' }
+      { text: 'DRF', link: '/django-rest-framework/' },
+      { text: 'Docker', link: '/docker/' }
     ],
     sidebar: {
       '/python/': [
@@ -331,6 +332,103 @@ export default defineConfig({
           text: 'Level 4: Expert',
           collapsed: true,
           items: []
+        }
+      ],
+      '/docker/': [
+        {
+          text: 'Level 1: Foundation',
+          collapsed: false,
+          items: [
+            { text: 'Introduction', link: '/docker/' },
+            { text: 'Containerization Fundamentals', link: '/docker/basics' },
+            { text: 'Docker Introduction', link: '/docker/intro' },
+            { text: 'Docker Architecture', link: '/docker/architecture' },
+            { text: 'Docker Installation', link: '/docker/installation' },
+            { text: 'Docker CLI Basics', link: '/docker/cli-basics' },
+            { text: 'Working with Docker Images', link: '/docker/images' },
+            { text: 'Docker Image Commands', link: '/docker/image-commands' },
+            { text: 'Running Containers', link: '/docker/run-containers' },
+            { text: 'Container Lifecycle', link: '/docker/lifecycle' },
+            { text: 'Container Management', link: '/docker/management' },
+            { text: 'Container Interaction', link: '/docker/interaction' },
+            { text: 'Port Mapping', link: '/docker/port-mapping' },
+            { text: 'Environment Variables', link: '/docker/env-vars' },
+            { text: 'Docker Hub', link: '/docker/hub' },
+          ]
+        },
+        {
+          text: 'Level 2: Intermediate',
+          collapsed: true,
+          items: [
+            { text: 'Dockerfile Basics', link: '/docker/dockerfile-basics' },
+            { text: 'Dockerfile Instructions 1', link: '/docker/dockerfile-1' },
+            { text: 'Dockerfile Instructions 2', link: '/docker/dockerfile-2' },
+            { text: 'Building Images', link: '/docker/build-images' },
+            { text: 'Multi-Stage Builds', link: '/docker/multi-stage' },
+            { text: 'Docker Volumes', link: '/docker/volumes' },
+            { text: 'Volume Commands', link: '/docker/volume-commands' },
+            { text: 'Bind Mounts', link: '/docker/bind-mounts' },
+            { text: 'Docker Networks', link: '/docker/networks' },
+            { text: 'Network Commands', link: '/docker/network-commands' },
+            { text: 'Container Networking', link: '/docker/container-networking' },
+            { text: 'Docker Compose Intro', link: '/docker/compose-intro' },
+            { text: 'Compose File Structure', link: '/docker/compose-structure' },
+            { text: 'Compose Commands', link: '/docker/compose-commands' },
+            { text: 'Compose Services', link: '/docker/compose-services' },
+            { text: 'Compose Networks & Volumes', link: '/docker/compose-networks-volumes' },
+            { text: 'Compose Advanced', link: '/docker/compose-advanced' },
+            { text: 'Container Logs', link: '/docker/logs' },
+            { text: 'Resource Management', link: '/docker/resource-management' },
+          ]
+        },
+        {
+          text: 'Level 3: Advanced',
+          collapsed: true,
+          items: [
+            { text: 'Dockerfile Best Practices', link: '/docker/dockerfile-best-practices' },
+            { text: '.dockerignore File', link: '/docker/dockerignore' },
+            { text: 'Image Optimization', link: '/docker/image-optimization' },
+            { text: 'Alpine Linux Images', link: '/docker/alpine' },
+            { text: 'Distroless Images', link: '/docker/distroless' },
+            { text: 'Security Basics', link: '/docker/security-basics' },
+            { text: 'USER Instruction', link: '/docker/user-instruction' },
+            { text: 'Security Scanning', link: '/docker/security-scanning' },
+            { text: 'Docker Secrets', link: '/docker/secrets' },
+            { text: 'Health Checks', link: '/docker/health-checks' },
+            { text: 'Docker Registry', link: '/docker/registry' },
+            { text: 'Harbor Registry', link: '/docker/harbor' },
+            { text: 'Tagging Strategy', link: '/docker/tagging' },
+            { text: 'Docker Context', link: '/docker/context' },
+            { text: 'Docker BuildKit', link: '/docker/buildkit' },
+            { text: 'Cache Optimization', link: '/docker/cache-optimization' },
+            { text: 'Docker Plugins', link: '/docker/plugins' },
+            { text: 'Docker APIs', link: '/docker/apis' },
+            { text: 'Monitoring Containers', link: '/docker/monitoring' },
+            { text: 'Orchestration Intro', link: '/docker/orchestration-intro' },
+          ]
+        },
+        {
+          text: 'Level 4: Expert',
+          collapsed: true,
+          items: [
+            { text: 'Docker Swarm Basics', link: '/docker/swarm-basics' },
+            { text: 'Swarm Cluster Setup', link: '/docker/swarm-setup' },
+            { text: 'Swarm Services', link: '/docker/swarm-services' },
+            { text: 'Service Deployment', link: '/docker/swarm-deployment' },
+            { text: 'Swarm Networks', link: '/docker/swarm-networks' },
+            { text: 'Swarm Volumes', link: '/docker/swarm-volumes' },
+            { text: 'Stack Deployment', link: '/docker/swarm-stack' },
+            { text: 'Updates & Rollbacks', link: '/docker/swarm-updates' },
+            { text: 'Secrets in Swarm', link: '/docker/swarm-secrets' },
+            { text: 'Configs in Swarm', link: '/docker/swarm-configs' },
+            { text: 'Service Constraints', link: '/docker/swarm-constraints' },
+            { text: 'Docker vs Kubernetes', link: '/docker/docker-vs-k8s' },
+            { text: 'Desktop Kubernetes', link: '/docker/desktop-k8s' },
+            { text: 'Compose to Kubernetes', link: '/docker/compose-to-k8s' },
+            { text: 'CI/CD with Docker', link: '/docker/cicd' },
+            { text: 'Docker in Production', link: '/docker/production' },
+            { text: 'Performance Tuning', link: '/docker/performance' },
+          ]
         }
       ]
     },
