@@ -1,4 +1,4 @@
-# Containerization Fundamentals: Deep Dive
+# Containerization Fundamentals
 
 ## ১. Container কী এবং কেন প্রয়োজন? (What is a Container and why is it needed?)
 
