@@ -1,4 +1,19 @@
-# Docker Complete Learning Guide: Beginner to Expert 🐳
+# Docker Complete Learning Guide:
+### Beginner Projects:
+1. **Beginner:** [Static Website (Nginx)](./project-static-website.md)
+2. **Beginner:** [Node.js App](./project-nodejs-app.md)
+3. **Beginner:** [Python Flask App](./project-flask-app.md)
+4. **Beginner:** [WordPress (Compose)](./project-wordpress.md)
+5. **Beginner:** [Database Container](../docs/docker/project-database.md): PostgreSQL/MongoDB setup
+
+### Intermediate Projects:
+6. **[MERN Stack](../docs/docker/project-mern.md)**: MongoDB + Express + React + Node
+7. **[Microservices Demo](../docs/docker/project-microservices.md)**: Multiple interconnected services
+8. **[CI/CD Pipeline](../docs/docker/project-cicd.md)**: Automated build and deployment
+9. **[Reverse Proxy Setup](../docs/docker/project-reverse-proxy.md)**: Nginx + multiple backends
+10. **[Monitoring Stack](../docs/docker/project-monitoring-stack.md)**: Prometheus + Grafana + Alertmanager
+11. **[ELK Stack](../docs/docker/project-elk-stack.md)**: Elasticsearch + Logstash + Kibana
+12. **[Redis Cache](../docs/docker/project-redis.md)**: Application with Redis caching
 
 স্বাগতম! এটি একটি প্রফেশনাল এবং স্টেপ-বাই-স্টেপ **Docker & Containerization** লার্নিং গাইড। আধুনিক সফটওয়্যার ইঞ্জিনিয়ারিং এবং DevOps এর জগতে Docker শেখা এখন কোনো অপশন নয়, বরং একটি অপরিহার্য দক্ষতা।
 
