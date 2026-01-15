@@ -25,11 +25,11 @@
 
 ### 🟡 Level 2: Intermediate
 এই লেভেলে আমরা কাস্টম ইমেজ তৈরি এবং মাল্টি-কন্টেইনার অ্যাপ নিয়ে কাজ করবো।
-- **Highlights:** [Dockerfile Basics](/docker/dockerfile-basics), [Dockerfile Instructions - Part 1](/docker/dockerfile-instructions-p1), [Dockerfile Instructions - Part 2](/docker/dockerfile-instructions-p2), [Building Docker Images](/docker/build-images), [Multi-stage Builds](/docker/multi-stage-builds), [Docker Volumes](/docker/volumes), [Volume Commands](/docker/volume-commands), [Bind Mounts](/docker/bind-mounts), [Docker Networks](/docker/networking), [Network Commands](/docker/network-commands), [Container Networking](/docker/container-networking), [Docker Compose Intro](/docker/docker-compose-intro), Docker Compose Commands.
+- **Highlights:** [Dockerfile Basics](/docker/dockerfile-basics), [Dockerfile Instructions - Part 1](/docker/dockerfile-instructions-p1), [Dockerfile Instructions - Part 2](/docker/dockerfile-instructions-p2), [Building Docker Images](/docker/build-images), [Multi-stage Builds](/docker/multi-stage-builds), [Docker Volumes](/docker/volumes), [Volume Commands](/docker/volume-commands), [Bind Mounts](/docker/bind-mounts), [Docker Networks](/docker/networking), [Network Commands](/docker/network-commands), [Container Networking](/docker/container-networking), [Docker Compose Intro](/docker/docker-compose-intro), [Compose File Structure](/docker/docker-compose-structure), [Compose Commands](/docker/docker-compose-commands), [Compose Services](/docker/docker-compose-services), [Compose Networks & Volumes](/docker/docker-compose-networks-volumes), [Compose Advanced](/docker/docker-compose-advanced).
 
 ### 🔴 Level 3: Advanced
 প্রোডাকশন লেভেল অপ্টিমাইজেশন এবং সিকিউরিটি নিয়ে গভীর আলোচনা।
-- **Highlights:** Image Optimization, Security Scanning, Secrets, Monitoring, APIs, BuildKit.
+- **Highlights:** [Container Logs](/docker/container-logs), [Resource Management](/docker/resource-management), Docker Security, Best Practices.
 
 ### 🟣 Level 4: Expert (Orchestration & Beyond)
 স্কেল্যাবল আর্কিটেকচার এবং ক্লাস্টার ম্যানেজমেন্ট।
