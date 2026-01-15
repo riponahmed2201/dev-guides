@@ -21,7 +21,7 @@
 
 ### 🟢 Level 1: Foundation (Beginner)
 এখানে আমরা কন্টেইনারাইজেশনের মূল ভিত্তি নিয়ে কাজ করবো।
-- **Highlights:** [Container Fundamentals](/docker/basics), [Docker Introduction](/docker/intro), Docker Architecture, Installation, CLI Basics, Image & Container Management.
+- **Highlights:** [Container Fundamentals](/docker/basics), [Docker Introduction](/docker/intro), [Docker Architecture](/docker/architecture), [Installation](/docker/installation), CLI Basics, Image & Container Management.
 
 ### 🟡 Level 2: Intermediate
 এই লেভেলে আমরা কাস্টম ইমেজ তৈরি এবং মাল্টি-কন্টেইনার অ্যাপ নিয়ে কাজ করবো।
