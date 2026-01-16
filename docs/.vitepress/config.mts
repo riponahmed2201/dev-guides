@@ -453,6 +453,7 @@ export default defineConfig({
             { text: 'RESTful API Development', link: '/nodejs/rest-api' },
             { text: 'Database Integration', link: '/nodejs/database' },
             { text: 'Authentication & Security', link: '/nodejs/auth' },
+            { text: 'Security Best Practices', link: '/nodejs/security' },
           ]
         }
       ]

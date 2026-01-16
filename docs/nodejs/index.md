@@ -74,3 +74,9 @@ Node.js এর সবচেয়ে জনপ্রিয় ওয়েব �
 - JWT (JSON Web Token), Bcrypt.
 - Session vs Token Auth.
 - Authorization & RBAC.
+
+### [5. Security Best Practices](./security.md)
+অ্যাপ্লিকেশনকে সুরক্ষিত রাখার উপায়।
+- Input Validation, Sanitization.
+- SQL Injection, XSS, CSRF Protection.
+- Rate Limiting, Helmet, CORS.
