@@ -29,3 +29,11 @@ ES6 (ECMAScript 2015) এবং এর পরের ভার্সনগুল�
 - Classes, Modules (ESM).
 - Promises, Async/Await.
 - Destructuring, Spread/Rest Operators.
+
+### [4. Node.js Core Concepts](./core-concepts.md)
+Node.js কিভাবে কাজ করে তার ইন্টারনাল আর্কিটেকচার বোঝা।
+- Event Loop & Non-blocking I/O.
+- Single-threaded nature.
+- Global Objects.
+
+### [5. NPM & Package Management](./npm.md)

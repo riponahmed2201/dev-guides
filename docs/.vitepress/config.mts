@@ -439,6 +439,8 @@ export default defineConfig({
             { text: 'Introduction', link: '/nodejs/' },
             { text: 'Prerequisites & Setup', link: '/nodejs/prerequisites' },
             { text: 'JavaScript Fundamentals', link: '/nodejs/js-fundamentals' },
+            { text: 'ES6+ Advanced JS', link: '/nodejs/es6-advanced' },
+            { text: 'Core Concepts', link: '/nodejs/core-concepts' },
           ]
         }
       ]
