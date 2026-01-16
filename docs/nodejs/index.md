@@ -63,3 +63,8 @@ Node.js এর সবচেয়ে জনপ্রিয় ওয়েব �
 প্রফেশনাল API ডিজাইনের মূলনীতি।
 - REST Principles, CRUD Operations.
 - Status Codes, Versioning.
+
+### [3. Database Integration](./database.md)
+ডেটা সংরক্ষণ এবং ম্যানেজমেন্ট।
+- **MongoDB** (With Mongoose).
+- **PostgreSQL/MySQL** (With Sequelize).
