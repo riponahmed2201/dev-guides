@@ -58,3 +58,8 @@ Node.js এর পাওয়ারফুল বিল্ট-ইন মডি�
 Node.js এর সবচেয়ে জনপ্রিয় ওয়েব ফ্রেমওয়ার্ক।
 - Routing, Middleware, and Servers.
 - Template Engines & Static Files.
+
+### [2. RESTful API Development](./rest-api.md)
+প্রফেশনাল API ডিজাইনের মূলনীতি।
+- REST Principles, CRUD Operations.
+- Status Codes, Versioning.

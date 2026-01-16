@@ -450,6 +450,7 @@ export default defineConfig({
           text: 'Level 2: Intermediate',
           items: [
             { text: 'Express.js Framework', link: '/nodejs/express' },
+            { text: 'RESTful API Development', link: '/nodejs/rest-api' },
           ]
         }
       ]
