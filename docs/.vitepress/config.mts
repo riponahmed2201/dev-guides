@@ -452,6 +452,7 @@ export default defineConfig({
             { text: 'Express.js Framework', link: '/nodejs/express' },
             { text: 'RESTful API Development', link: '/nodejs/rest-api' },
             { text: 'Database Integration', link: '/nodejs/database' },
+            { text: 'Authentication & Security', link: '/nodejs/auth' },
           ]
         }
       ]

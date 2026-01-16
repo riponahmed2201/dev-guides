@@ -68,3 +68,9 @@ Node.js এর সবচেয়ে জনপ্রিয় ওয়েব �
 ডেটা সংরক্ষণ এবং ম্যানেজমেন্ট।
 - **MongoDB** (With Mongoose).
 - **PostgreSQL/MySQL** (With Sequelize).
+
+### [4. Authentication & Security](./auth.md)
+অ্যাপ্লিকেশন সিকিউরিটি এবং লগইন সিস্টেম।
+- JWT (JSON Web Token), Bcrypt.
+- Session vs Token Auth.
+- Authorization & RBAC.
