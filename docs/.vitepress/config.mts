@@ -20,7 +20,8 @@ export default defineConfig({
       { text: 'FastAPI', link: '/fastapi/' },
       { text: 'Django', link: '/django/' },
       { text: 'DRF', link: '/django-rest-framework/' },
-      { text: 'Docker', link: '/docker/' }
+      { text: 'Docker', link: '/docker/' },
+      { text: 'Node.js', link: '/nodejs/' }
     ],
     sidebar: {
       '/python/': [
@@ -428,6 +429,16 @@ export default defineConfig({
             { text: 'CI/CD with Docker', link: '/docker/cicd' },
             { text: 'Docker in Production', link: '/docker/production' },
             { text: 'Performance Tuning', link: '/docker/performance' },
+          ]
+        }
+      ],
+      '/nodejs/': [
+        {
+          text: 'Level 1: Foundation (Beginner)',
+          items: [
+            { text: 'Introduction', link: '/nodejs/' },
+            { text: 'Prerequisites & Setup', link: '/nodejs/prerequisites' },
+            { text: 'JavaScript Fundamentals', link: '/nodejs/js-fundamentals' },
           ]
         }
       ]
