@@ -443,6 +443,7 @@ export default defineConfig({
             { text: 'Core Concepts', link: '/nodejs/core-concepts' },
             { text: 'NPM & Packages', link: '/nodejs/npm' },
             { text: 'Built-in Modules', link: '/nodejs/built-in-modules' },
+            { text: 'Beginner Projects', link: '/nodejs/beginner-projects' },
           ]
         }
       ]
