@@ -442,6 +442,7 @@ export default defineConfig({
             { text: 'ES6+ Advanced JS', link: '/nodejs/es6-advanced' },
             { text: 'Core Concepts', link: '/nodejs/core-concepts' },
             { text: 'NPM & Packages', link: '/nodejs/npm' },
+            { text: 'Built-in Modules', link: '/nodejs/built-in-modules' },
           ]
         }
       ]

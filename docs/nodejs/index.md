@@ -43,3 +43,8 @@ Node.js প্রজেক্টের ডিপেনডেন্সি ম্�
 - Semantic Versioning.
 
 ### [6. Core Built-in Modules](./built-in-modules.md)
+Node.js এর পাওয়ারফুল বিল্ট-ইন মডিউলস।
+- `fs` (File System), `path`.
+- `os`, `events`, `http`.
+
+### [7. Beginner Projects](./beginner-projects.md)
