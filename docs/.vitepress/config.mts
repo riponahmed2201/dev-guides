@@ -445,6 +445,12 @@ export default defineConfig({
             { text: 'Built-in Modules', link: '/nodejs/built-in-modules' },
             { text: 'Beginner Projects', link: '/nodejs/beginner-projects' },
           ]
+        },
+        {
+          text: 'Level 2: Intermediate',
+          items: [
+            { text: 'Express.js Framework', link: '/nodejs/express' },
+          ]
         }
       ]
     },
