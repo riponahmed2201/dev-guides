@@ -88,3 +88,12 @@ Node.js এর সবচেয়ে জনপ্রিয় ওয়েব �
 - Cloud Storage (AWS S3, Cloudinary).
 - CSV/Excel Handling.
 - PDF Generation.
+
+### [7. Error Handling & Debugging](./error-handling.md)
+Error management এবং debugging techniques।
+- Try-Catch Blocks.
+- Error Handling Middleware.
+- Custom Error Classes.
+- Error Logging (Winston).
+- Debugging with VS Code.
+- Stack Traces Analysis.
