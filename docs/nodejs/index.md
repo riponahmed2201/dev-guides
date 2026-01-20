@@ -136,3 +136,16 @@ Memory-efficient data processing এবং large file handling।
 - Custom Stream Implementation.
 - Large File Processing.
 - Production Streaming Patterns.
+
+### [4. Real-time Communication](./realtime-communication.md)
+WebSockets, Socket.io এবং Server-Sent Events (SSE)।
+- WebSocket Protocol & Native Implementation.
+- Socket.io Setup & Configuration.
+- Events, Rooms & Namespaces.
+- Broadcasting Patterns.
+- Authentication & Authorization.
+- SSE (Server-Sent Events).
+- Scalability & Load Balancing.
+- Redis Adapter for Multi-server.
+- Security Best Practices.
+- Production Deployment.

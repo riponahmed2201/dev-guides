@@ -465,6 +465,7 @@ export default defineConfig({
             { text: 'Advanced Express Patterns', link: '/nodejs/advanced-express' },
             { text: 'Asynchronous Programming', link: '/nodejs/async-programming' },
             { text: 'Streams & Buffers', link: '/nodejs/streams-buffers' },
+            { text: 'Real-time Communication', link: '/nodejs/realtime-communication' },
           ]
         }
       ]
