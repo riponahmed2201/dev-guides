@@ -466,6 +466,7 @@ export default defineConfig({
             { text: 'Asynchronous Programming', link: '/nodejs/async-programming' },
             { text: 'Streams & Buffers', link: '/nodejs/streams-buffers' },
             { text: 'Real-time Communication', link: '/nodejs/realtime-communication' },
+            { text: 'Testing & Quality Assurance', link: '/nodejs/testing-quality' },
           ]
         }
       ]

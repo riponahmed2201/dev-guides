@@ -21,22 +21,22 @@ Modern web applications এ real-time communication অপরিহার্য�
 10. [Engine.io vs Socket.io](#engineio-vs-socketio)
 11. [Transport Mechanisms](#transport-mechanisms)
 12. [Socket.io Setup & Basics](#socketio-setup--basics)
-6. [Events & Event Handling](#events--event-handling)
-7. [Rooms & Namespaces](#rooms--namespaces)
-8. [Broadcasting Patterns](#broadcasting-patterns)
-9. [Authentication & Authorization](#authentication--authorization)
+13. [Events & Event Handling](#events--event-handling)
+14. [Rooms & Namespaces](#rooms--namespaces)
+15. [Broadcasting Patterns](#broadcasting-patterns)
+16. [Authentication & Authorization](#authentication--authorization)
 
 ### Server-Sent Events
-10. [SSE Fundamentals](#sse-fundamentals)
-11. [SSE vs WebSockets](#sse-vs-websockets)
+17. [SSE Fundamentals](#sse-fundamentals)
+18. [SSE vs WebSockets](#sse-vs-websockets)
 
 ### Advanced Topics
-12. [Scalability & Load Balancing](#scalability--load-balancing)
-13. [Redis Adapter for Multi-server](#redis-adapter-for-multi-server)
-14. [Performance Optimization](#performance-optimization)
-15. [Security Best Practices](#security-best-practices)
-16. [Error Handling & Reconnection](#error-handling--reconnection)
-17. [Production Deployment Patterns](#production-deployment-patterns)
+19. [Scalability & Load Balancing](#scalability--load-balancing)
+20. [Redis Adapter for Multi-server](#redis-adapter-for-multi-server)
+21. [Performance Optimization](#performance-optimization)
+22. [Security Best Practices](#security-best-practices)
+23. [Error Handling & Reconnection](#error-handling--reconnection)
+24. [Production Deployment Patterns](#production-deployment-patterns)
 
 ---
 

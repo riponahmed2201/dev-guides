@@ -149,3 +149,16 @@ WebSockets, Socket.io এবং Server-Sent Events (SSE)।
 - Redis Adapter for Multi-server.
 - Security Best Practices.
 - Production Deployment.
+
+### [5. Testing & Quality Assurance](./testing-quality.md)
+Comprehensive testing strategies এবং best practices।
+- Testing Pyramid & Types.
+- Unit Testing Fundamentals.
+- Jest Framework Complete.
+- Mocha & Chai.
+- Supertest API Testing.
+- Mocking & Stubbing.
+- Test-Driven Development (TDD).
+- Code Coverage.
+- E2E Testing.
+- CI/CD Integration.
