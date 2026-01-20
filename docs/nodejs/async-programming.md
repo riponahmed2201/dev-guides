@@ -19,6 +19,11 @@ Asynchronous programming হলো Node.js এর core strength। এই গা
 8. [Cluster Module](#cluster-module-for-scaling)
 9. [PM2 Process Manager](#pm2-process-manager)
 
+### Production-Ready Async
+10. [Async Best Practices & Performance](#async-best-practices--performance)
+11. [AbortController & Cancellation](#abortcontroller--cancellation)
+12. [Async Debugging & Monitoring](#async-debugging--monitoring)
+
 ---
 
 ## Event Loop বিস্তারিত
@@ -1348,4 +1353,1364 @@ pm2 resurrect
 pm2 startup
 ```
 
-এই comprehensive guide এ Asynchronous Programming এর সব advanced concepts cover করা হয়েছে। এই knowledge দিয়ে আপনি high-performance Node.js applications তৈরি করতে পারবেন! 🚀
+---
+
+## Async Best Practices & Performance
+
+Production-level async code লেখার জন্য best practices এবং performance optimization techniques।
+
+### 1. Common Async Patterns ✅
+
+#### Pattern 1: Parallel Execution
+```javascript
+// ❌ BAD: Sequential (slow)
+async function getUsers() {
+  const user1 = await fetchUser(1);  // 1 sec
+  const user2 = await fetchUser(2);  // 1 sec
+  const user3 = await fetchUser(3);  // 1 sec
+  return [user1, user2, user3];     // Total: 3 sec
+}
+
+// ✅ GOOD: Parallel (fast)
+async function getUsersParallel() {
+  const [user1, user2, user3] = await Promise.all([
+    fetchUser(1),
+    fetchUser(2),
+    fetchUser(3)
+  ]);
+  return [user1, user2, user3];     // Total: 1 sec
+}
+
+// ✅ BETTER: With error handling
+async function getUsersSafe() {
+  const results = await Promise.allSettled([
+    fetchUser(1),
+    fetchUser(2),
+    fetchUser(3)
+  ]);
+  
+  return results
+    .filter(r => r.status === 'fulfilled')
+    .map(r => r.value);
+}
+```
+
+#### Pattern 2: Rate Limiting
+```javascript
+// ✅ Controlled Concurrency
+class AsyncQueue {
+  constructor(concurrency = 3) {
+    this.concurrency = concurrency;
+    this.running = 0;
+    this.queue = [];
+  }
+  
+  async run(fn) {
+    while (this.running >= this.concurrency) {
+      await new Promise(resolve => this.queue.push(resolve));
+    }
+    
+    this.running++;
+    
+    try {
+      return await fn();
+    } finally {
+      this.running--;
+      const resolve = this.queue.shift();
+      if (resolve) resolve();
+    }
+  }
+}
+
+// Usage
+const queue = new AsyncQueue(3); // Max 3 concurrent
+
+const userIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const users = await Promise.all(
+  userIds.map(id => queue.run(() => fetchUser(id)))
+);
+```
+
+#### Pattern 3: Batch Processing
+```javascript
+// ✅ Process in Batches
+async function processBatch(items, batchSize = 5) {
+  const results = [];
+  
+  for (let i = 0; i < items.length; i += batchSize) {
+    const batch = items.slice(i, i + batchSize);
+    const batchResults = await Promise.all(
+      batch.map(item => processItem(item))
+    );
+    results.push(...batchResults);
+    
+    // Optional: delay between batches
+    if (i + batchSize < items.length) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+  }
+  
+  return results;
+}
+
+// Usage
+const items = Array.from({ length: 100 }, (_, i) => i);
+const results = await processBatch(items, 10);
+```
+
+### 2. Common Anti-Patterns ❌
+
+#### Anti-Pattern 1: Unhandled Promise Rejections
+```javascript
+// ❌ BAD: Silent failure
+async function badExample() {
+  fetchData(); // Missing await - promise floating!
+  return 'done';
+}
+
+// ✅ GOOD: Proper handling
+async function goodExample() {
+  try {
+    await fetchData();
+    return 'done';
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+}
+
+// ✅ BETTER: Global handler (backup)
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  // Log to monitoring service
+  logger.error({ reason, promise });
+});
+```
+
+#### Anti-Pattern 2: Callback Hell in Async/Await
+```javascript
+// ❌ BAD: Nested callbacks
+async function badNesting() {
+  return fetchUser().then(user => {
+    return fetchPosts(user.id).then(posts => {
+      return fetchComments(posts[0].id).then(comments => {
+        return { user, posts, comments };
+      });
+    });
+  });
+}
+
+// ✅ GOOD: Flat structure
+async function goodStructure() {
+  const user = await fetchUser();
+  const posts = await fetchPosts(user.id);
+  const comments = await fetchComments(posts[0].id);
+  return { user, posts, comments };
+}
+
+// ✅ BETTER: Parallel when possible
+async function betterStructure() {
+  const user = await fetchUser();
+  const [posts, profile] = await Promise.all([
+    fetchPosts(user.id),
+    fetchProfile(user.id)
+  ]);
+  const comments = await fetchComments(posts[0].id);
+  return { user, posts, profile, comments };
+}
+```
+
+#### Anti-Pattern 3: Memory Leaks
+```javascript
+// ❌ BAD: Memory leak
+class DataProcessor {
+  constructor() {
+    this.cache = new Map();
+  }
+  
+  async processData(id) {
+    const data = await fetchData(id);
+    this.cache.set(id, data); // Never cleaned up!
+    return data;
+  }
+}
+
+// ✅ GOOD: With cleanup
+class DataProcessorSafe {
+  constructor(maxSize = 100) {
+    this.cache = new Map();
+    this.maxSize = maxSize;
+  }
+  
+  async processData(id) {
+    // Check cache first
+    if (this.cache.has(id)) {
+      return this.cache.get(id);
+    }
+    
+    const data = await fetchData(id);
+    
+    // LRU eviction
+    if (this.cache.size >= this.maxSize) {
+      const firstKey = this.cache.keys().next().value;
+      this.cache.delete(firstKey);
+    }
+    
+    this.cache.set(id, data);
+    return data;
+  }
+  
+  cleanup() {
+    this.cache.clear();
+  }
+}
+```
+
+### 3. Performance Optimization
+
+#### Optimization 1: Lazy Loading
+```javascript
+// ✅ Load only when needed
+class DatabaseConnection {
+  constructor() {
+    this._connection = null;
+  }
+  
+  async getConnection() {
+    if (!this._connection) {
+      this._connection = await this.connect();
+    }
+    return this._connection;
+  }
+  
+  async connect() {
+    console.log('Connecting to database...');
+    // Expensive operation
+    return await createConnection();
+  }
+  
+  async query(sql) {
+    const conn = await this.getConnection();
+    return conn.query(sql);
+  }
+}
+```
+
+#### Optimization 2: Memoization
+```javascript
+// ✅ Cache expensive async operations
+function asyncMemoize(fn) {
+  const cache = new Map();
+  
+  return async function(...args) {
+    const key = JSON.stringify(args);
+    
+    if (cache.has(key)) {
+      console.log('Cache hit!');
+      return cache.get(key);
+    }
+    
+    console.log('Cache miss, executing...');
+    const result = await fn.apply(this, args);
+    cache.set(key, result);
+    return result;
+  };
+}
+
+// Usage
+const expensiveOperation = asyncMemoize(async (n) => {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  return n * n;
+});
+
+console.time('first');
+await expensiveOperation(5); // Takes 1 sec
+console.timeEnd('first');
+
+console.time('second');
+await expensiveOperation(5); // Instant (cached)
+console.timeEnd('second');
+```
+
+#### Optimization 3: Debouncing Async Calls
+```javascript
+// ✅ Prevent duplicate calls
+function asyncDebounce(fn, delay = 300) {
+  let timeoutId;
+  let lastPromise;
+  
+  return function(...args) {
+    clearTimeout(timeoutId);
+    
+    return new Promise((resolve, reject) => {
+      timeoutId = setTimeout(async () => {
+        try {
+          lastPromise = fn.apply(this, args);
+          const result = await lastPromise;
+          resolve(result);
+        } catch (error) {
+          reject(error);
+        }
+      }, delay);
+    });
+  };
+}
+
+// Usage: Search API
+const searchAPI = asyncDebounce(async (query) => {
+  const response = await fetch(`/api/search?q=${query}`);
+  return response.json();
+}, 300);
+
+// User types fast - only last call executes
+await searchAPI('h');
+await searchAPI('he');
+await searchAPI('hel');
+await searchAPI('hello'); // Only this executes
+```
+
+### 4. Memory Management
+
+#### Strategy 1: Stream Large Data
+```javascript
+// ❌ BAD: Load everything in memory
+async function processLargeFileBad(filename) {
+  const data = await fs.promises.readFile(filename, 'utf8');
+  return data.split('\n').map(line => processLine(line));
+}
+
+// ✅ GOOD: Stream processing
+const fs = require('fs');
+const readline = require('readline');
+
+async function processLargeFileGood(filename) {
+  const fileStream = fs.createReadStream(filename);
+  const rl = readline.createInterface({
+    input: fileStream,
+    crlfDelay: Infinity
+  });
+  
+  const results = [];
+  for await (const line of rl) {
+    results.push(processLine(line));
+  }
+  
+  return results;
+}
+```
+
+#### Strategy 2: Generator for Large Sets
+```javascript
+// ✅ Memory efficient iteration
+async function* fetchAllUsers() {
+  let page = 1;
+  let hasMore = true;
+  
+  while (hasMore) {
+    const response = await fetch(`/api/users?page=${page}`);
+    const data = await response.json();
+    
+    for (const user of data.users) {
+      yield user;
+    }
+    
+    hasMore = data.hasMore;
+    page++;
+  }
+}
+
+// Usage: Process one at a time
+for await (const user of fetchAllUsers()) {
+  await processUser(user);
+  // Only one user in memory at a time
+}
+```
+
+#### Strategy 3: Cleanup Resources
+```javascript
+// ✅ Proper resource cleanup
+class ResourceManager {
+  constructor() {
+    this.resources = new Set();
+  }
+  
+  async acquire(createResource) {
+    const resource = await createResource();
+    this.resources.add(resource);
+    return resource;
+  }
+  
+  async release(resource) {
+    if (this.resources.has(resource)) {
+      if (resource.close) await resource.close();
+      if (resource.destroy) await resource.destroy();
+      this.resources.delete(resource);
+    }
+  }
+  
+  async cleanup() {
+    const promises = Array.from(this.resources).map(r => this.release(r));
+    await Promise.allSettled(promises);
+  }
+}
+
+// Usage
+const manager = new ResourceManager();
+
+try {
+  const db = await manager.acquire(() => connectDatabase());
+  const cache = await manager.acquire(() => connectRedis());
+  
+  // Use resources
+  await db.query('SELECT * FROM users');
+} finally {
+  await manager.cleanup(); // Always cleanup
+}
+```
+
+### 5. Performance Monitoring
+
+```javascript
+// ✅ Track async operation performance
+class PerformanceTracker {
+  constructor() {
+    this.metrics = new Map();
+  }
+  
+  async track(name, fn) {
+    const start = Date.now();
+    
+    try {
+      const result = await fn();
+      const duration = Date.now() - start;
+      
+      this.recordMetric(name, duration, 'success');
+      return result;
+    } catch (error) {
+      const duration = Date.now() - start;
+      this.recordMetric(name, duration, 'error');
+      throw error;
+    }
+  }
+  
+  recordMetric(name, duration, status) {
+    if (!this.metrics.has(name)) {
+      this.metrics.set(name, {
+        count: 0,
+        totalDuration: 0,
+        errors: 0,
+        successes: 0
+      });
+    }
+    
+    const metric = this.metrics.get(name);
+    metric.count++;
+    metric.totalDuration += duration;
+    metric[status === 'success' ? 'successes' : 'errors']++;
+  }
+  
+  getStats(name) {
+    const metric = this.metrics.get(name);
+    if (!metric) return null;
+    
+    return {
+      avgDuration: metric.totalDuration / metric.count,
+      count: metric.count,
+      successRate: (metric.successes / metric.count) * 100,
+      errors: metric.errors
+    };
+  }
+  
+  report() {
+    console.log('\n📊 Performance Report:');
+    for (const [name, stats] of this.metrics.entries()) {
+      console.log(`\n${name}:`);
+      console.log(`  Calls: ${stats.count}`);
+      console.log(`  Avg Duration: ${(stats.totalDuration / stats.count).toFixed(2)}ms`);
+      console.log(`  Success Rate: ${((stats.successes / stats.count) * 100).toFixed(2)}%`);
+    }
+  }
+}
+
+// Usage
+const tracker = new PerformanceTracker();
+
+await tracker.track('fetchUser', () => fetchUser(1));
+await tracker.track('fetchPosts', () => fetchPosts());
+
+tracker.report();
+```
+
+---
+
+## AbortController & Cancellation
+
+Modern request cancellation এবং timeout handling using AbortController API।
+
+### 1. Basic AbortController
+
+```javascript
+// ✅ Basic cancellation
+async function fetchWithTimeout(url, timeout = 5000) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
+  
+  try {
+    const response = await fetch(url, {
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+    return await response.json();
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      throw new Error(`Request timeout after ${timeout}ms`);
+    }
+    throw error;
+  }
+}
+
+// Usage
+try {
+  const data = await fetchWithTimeout('https://api.example.com/slow', 3000);
+  console.log(data);
+} catch (error) {
+  console.error('Request failed:', error.message);
+}
+```
+
+### 2. Manual Cancellation
+
+```javascript
+// ✅ User-triggered cancellation
+class CancellableRequest {
+  constructor() {
+    this.controller = null;
+  }
+  
+  async fetch(url) {
+    // Cancel previous request if exists
+    if (this.controller) {
+      this.controller.abort();
+    }
+    
+    this.controller = new AbortController();
+    
+    try {
+      const response = await fetch(url, {
+        signal: this.controller.signal
+      });
+      return await response.json();
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        console.log('Request cancelled');
+        return null;
+      }
+      throw error;
+    }
+  }
+  
+  cancel() {
+    if (this.controller) {
+      this.controller.abort();
+      this.controller = null;
+    }
+  }
+}
+
+// Usage: Search with cancellation
+const searchRequest = new CancellableRequest();
+
+async function handleSearch(query) {
+  const results = await searchRequest.fetch(`/api/search?q=${query}`);
+  if (results) {
+    displayResults(results);
+  }
+}
+
+// User types fast - previous requests cancelled
+handleSearch('h');
+handleSearch('he');
+handleSearch('hel'); // Previous 2 cancelled
+```
+
+### 3. Multiple Operations with Single Controller
+
+```javascript
+// ✅ Cancel multiple operations together
+async function fetchUserData(userId, signal) {
+  const [user, posts, comments] = await Promise.all([
+    fetch(`/api/users/${userId}`, { signal }),
+    fetch(`/api/users/${userId}/posts`, { signal }),
+    fetch(`/api/users/${userId}/comments`, { signal })
+  ]);
+  
+  return {
+    user: await user.json(),
+    posts: await posts.json(),
+    comments: await comments.json()
+  };
+}
+
+// Usage
+const controller = new AbortController();
+
+// Start fetching
+const dataPromise = fetchUserData(123, controller.signal);
+
+// Cancel after 5 seconds
+setTimeout(() => {
+  console.log('Cancelling all requests...');
+  controller.abort();
+}, 5000);
+
+try {
+  const data = await dataPromise;
+  console.log('Data loaded:', data);
+} catch (error) {
+  if (error.name === 'AbortError') {
+    console.log('All requests cancelled');
+  }
+}
+```
+
+### 4. Custom Async Functions with AbortSignal
+
+```javascript
+// ✅ Make custom functions cancellable
+async function processLargeArray(items, signal) {
+  const results = [];
+  
+  for (let i = 0; i < items.length; i++) {
+    // Check if cancelled
+    if (signal.aborted) {
+      throw new Error('Operation cancelled');
+    }
+    
+    // Process item
+    const result = await processItem(items[i]);
+    results.push(result);
+    
+    // Allow cancellation between iterations
+    await new Promise(resolve => setTimeout(resolve, 0));
+  }
+  
+  return results;
+}
+
+// Usage
+const controller = new AbortController();
+
+const items = Array.from({ length: 1000 }, (_, i) => i);
+const promise = processLargeArray(items, controller.signal);
+
+// Cancel after 2 seconds
+setTimeout(() => controller.abort(), 2000);
+
+try {
+  const results = await promise;
+  console.log('Processed:', results.length);
+} catch (error) {
+  console.error('Cancelled:', error.message);
+}
+```
+
+### 5. Timeout Wrapper for Any Async Function
+
+```javascript
+// ✅ Generic timeout wrapper
+function withTimeout(promise, timeoutMs) {
+  const controller = new AbortController();
+  
+  const timeoutPromise = new Promise((_, reject) => {
+    setTimeout(() => {
+      controller.abort();
+      reject(new Error(`Operation timeout after ${timeoutMs}ms`));
+    }, timeoutMs);
+  });
+  
+  return Promise.race([promise, timeoutPromise]);
+}
+
+// Usage
+async function slowOperation() {
+  await new Promise(resolve => setTimeout(resolve, 5000));
+  return 'Done!';
+}
+
+try {
+  const result = await withTimeout(slowOperation(), 2000);
+  console.log(result);
+} catch (error) {
+  console.error('Timeout:', error.message);
+}
+```
+
+### 6. Cleanup with AbortSignal
+
+```javascript
+// ✅ Cleanup resources on abort
+class DataFetcher {
+  async fetchWithCleanup(url, signal) {
+    const resources = [];
+    
+    // Register cleanup handler
+    signal.addEventListener('abort', () => {
+      console.log('Cleaning up resources...');
+      resources.forEach(resource => {
+        if (resource.close) resource.close();
+      });
+    });
+    
+    try {
+      // Simulate resource allocation
+      const connection = await openConnection(url);
+      resources.push(connection);
+      
+      const stream = await connection.getStream();
+      resources.push(stream);
+      
+      // Fetch data
+      const data = await stream.read({ signal });
+      return data;
+    } finally {
+      // Always cleanup
+      resources.forEach(resource => {
+        if (resource.close) resource.close();
+      });
+    }
+  }
+}
+
+// Usage
+const controller = new AbortController();
+const fetcher = new DataFetcher();
+
+setTimeout(() => controller.abort(), 3000);
+
+try {
+  const data = await fetcher.fetchWithCleanup('/api/data', controller.signal);
+  console.log(data);
+} catch (error) {
+  console.error('Error:', error.message);
+}
+```
+
+### 7. React/UI Integration Example
+
+```javascript
+// ✅ Real-world example: Auto-complete search
+class SearchComponent {
+  constructor() {
+    this.currentController = null;
+  }
+  
+  async search(query) {
+    // Cancel previous search
+    if (this.currentController) {
+      this.currentController.abort();
+    }
+    
+    // Create new controller
+    this.currentController = new AbortController();
+    const signal = this.currentController.signal;
+    
+    try {
+      // Add delay (debounce)
+      await new Promise((resolve, reject) => {
+        const timeoutId = setTimeout(resolve, 300);
+        signal.addEventListener('abort', () => {
+          clearTimeout(timeoutId);
+          reject(new Error('Aborted'));
+        });
+      });
+      
+      // Fetch results
+      const response = await fetch(`/api/search?q=${query}`, { signal });
+      const results = await response.json();
+      
+      this.displayResults(results);
+    } catch (error) {
+      if (error.name !== 'AbortError') {
+        console.error('Search error:', error);
+      }
+    }
+  }
+  
+  displayResults(results) {
+    console.log('Search results:', results);
+  }
+}
+
+// Usage
+const search = new SearchComponent();
+
+// User types fast
+search.search('n');
+search.search('no');
+search.search('nod');
+search.search('node');  // Only this completes
+```
+
+---
+
+## Async Debugging & Monitoring
+
+Production-level debugging এবং monitoring techniques for async operations।
+
+### 1. Async Hooks API (Advanced)
+
+```javascript
+const async_hooks = require('async_hooks');
+const fs = require('fs');
+
+// ✅ Track all async operations
+class AsyncTracker {
+  constructor() {
+    this.operations = new Map();
+    this.hook = null;
+  }
+  
+  start() {
+    this.hook = async_hooks.createHook({
+      init: (asyncId, type, triggerAsyncId) => {
+        this.operations.set(asyncId, {
+          type,
+          triggerAsyncId,
+          stack: new Error().stack,
+          timestamp: Date.now()
+        });
+      },
+      
+      destroy: (asyncId) => {
+        const operation = this.operations.get(asyncId);
+        if (operation) {
+          const duration = Date.now() - operation.timestamp;
+          console.log(`${operation.type} completed in ${duration}ms`);
+          this.operations.delete(asyncId);
+        }
+      }
+    });
+    
+    this.hook.enable();
+    console.log('Async tracking enabled');
+  }
+  
+  stop() {
+    if (this.hook) {
+      this.hook.disable();
+      console.log('Async tracking disabled');
+    }
+  }
+  
+  getActiveOperations() {
+    return Array.from(this.operations.entries()).map(([id, op]) => ({
+      id,
+      type: op.type,
+      duration: Date.now() - op.timestamp
+    }));
+  }
+}
+
+// Usage
+const tracker = new AsyncTracker();
+tracker.start();
+
+setTimeout(() => {
+  console.log('Active operations:', tracker.getActiveOperations());
+  tracker.stop();
+}, 5000);
+```
+
+### 2. Async Context Tracking (AsyncLocalStorage)
+
+```javascript
+const { AsyncLocalStorage } = require('async_hooks');
+
+// ✅ Track request context across async calls
+const requestContext = new AsyncLocalStorage();
+
+class RequestTracker {
+  static run(requestId, callback) {
+    return requestContext.run({ requestId, startTime: Date.now() }, callback);
+  }
+  
+  static getRequestId() {
+    const context = requestContext.getStore();
+    return context?.requestId || 'unknown';
+  }
+  
+  static getDuration() {
+    const context = requestContext.getStore();
+    if (!context) return 0;
+    return Date.now() - context.startTime;
+  }
+}
+
+// Enhanced logger with context
+class Logger {
+  log(message, data = {}) {
+    console.log(JSON.stringify({
+      timestamp: new Date().toISOString(),
+      requestId: RequestTracker.getRequestId(),
+      duration: RequestTracker.getDuration(),
+      message,
+      ...data
+    }));
+  }
+}
+
+const logger = new Logger();
+
+// Usage in Express
+app.use((req, res, next) => {
+  const requestId = req.headers['x-request-id'] || Math.random().toString(36);
+  RequestTracker.run(requestId, () => {
+    logger.log('Request started', { method: req.method, url: req.url });
+    next();
+  });
+});
+
+app.get('/api/users', async (req, res) => {
+  logger.log('Fetching users');
+  const users = await fetchUsers();
+  
+  logger.log('Processing users');
+  const processed = await processUsers(users);
+  
+  logger.log('Request completed', { count: processed.length });
+  res.json(processed);
+});
+
+// All logs will have same requestId!
+```
+
+### 3. Promise State Inspection
+
+```javascript
+// ✅ Check promise state
+function getPromiseState(promise) {
+  const uniqueValue = Symbol('test');
+  
+  return Promise.race([promise, Promise.resolve(uniqueValue)])
+    .then(value => {
+      if (value === uniqueValue) {
+        return 'pending';
+      }
+      return 'fulfilled';
+    })
+    .catch(() => 'rejected');
+}
+
+// Usage
+const promise1 = new Promise(resolve => setTimeout(resolve, 1000));
+const promise2 = Promise.resolve('done');
+const promise3 = Promise.reject('error');
+
+console.log(await getPromiseState(promise1)); // 'pending'
+console.log(await getPromiseState(promise2)); // 'fulfilled'
+console.log(await getPromiseState(promise3)); // 'rejected'
+```
+
+### 4. Async Stack Trace Enhancement
+
+```javascript
+// ✅ Better error stack traces
+Error.stackTraceLimit = 50; // Increase stack trace depth
+
+class AsyncError extends Error {
+  constructor(message, originalError) {
+    super(message);
+    this.name = 'AsyncError';
+    this.originalError = originalError;
+    this.asyncStack = this.captureAsyncStack();
+  }
+  
+  captureAsyncStack() {
+    const stack = [];
+    let error = this.originalError;
+    
+    while (error) {
+      stack.push({
+        message: error.message,
+        stack: error.stack
+      });
+      error = error.cause || error.originalError;
+    }
+    
+    return stack;
+  }
+  
+  get fullStack() {
+    let result = this.stack;
+    
+    if (this.asyncStack.length > 0) {
+      result += '\n\nAsync Stack Trace:';
+      this.asyncStack.forEach((s, i) => {
+        result += `\n\n[${i + 1}] ${s.message}\n${s.stack}`;
+      });
+    }
+    
+    return result;
+  }
+}
+
+// Usage
+async function level3() {
+  throw new Error('Database connection failed');
+}
+
+async function level2() {
+  try {
+    await level3();
+  } catch (error) {
+    throw new AsyncError('Failed to fetch user', error);
+  }
+}
+
+async function level1() {
+  try {
+    await level2();
+  } catch (error) {
+    console.error(error.fullStack);
+  }
+}
+
+level1();
+```
+
+### 5. Performance Profiling
+
+```javascript
+const { performance, PerformanceObserver } = require('perf_hooks');
+
+// ✅ Detailed performance monitoring
+class AsyncProfiler {
+  constructor() {
+    this.marks = new Map();
+    this.measurements = [];
+    
+    this.observer = new PerformanceObserver((list) => {
+      const entries = list.getEntries();
+      entries.forEach(entry => {
+        this.measurements.push({
+          name: entry.name,
+          duration: entry.duration,
+          startTime: entry.startTime
+        });
+      });
+    });
+    
+    this.observer.observe({ entryTypes: ['measure'] });
+  }
+  
+  async profile(name, fn) {
+    const startMark = `${name}-start`;
+    const endMark = `${name}-end`;
+    
+    performance.mark(startMark);
+    
+    try {
+      const result = await fn();
+      performance.mark(endMark);
+      performance.measure(name, startMark, endMark);
+      return result;
+    } catch (error) {
+      performance.mark(endMark);
+      performance.measure(name, startMark, endMark);
+      throw error;
+    }
+  }
+  
+  getReport() {
+    const report = {};
+    
+    this.measurements.forEach(m => {
+      if (!report[m.name]) {
+        report[m.name] = {
+          count: 0,
+          totalDuration: 0,
+          minDuration: Infinity,
+          maxDuration: -Infinity
+        };
+      }
+      
+      const stat = report[m.name];
+      stat.count++;
+      stat.totalDuration += m.duration;
+      stat.minDuration = Math.min(stat.minDuration, m.duration);
+      stat.maxDuration = Math.max(stat.maxDuration, m.duration);
+      stat.avgDuration = stat.totalDuration / stat.count;
+    });
+    
+    return report;
+  }
+  
+  printReport() {
+    const report = this.getReport();
+    
+    console.log('\n📊 Performance Report:');
+    console.log('═'.repeat(80));
+    
+    Object.entries(report).forEach(([name, stats]) => {
+      console.log(`\n${name}:`);
+      console.log(`  Calls: ${stats.count}`);
+      console.log(`  Avg: ${stats.avgDuration.toFixed(2)}ms`);
+      console.log(`  Min: ${stats.minDuration.toFixed(2)}ms`);
+      console.log(`  Max: ${stats.maxDuration.toFixed(2)}ms`);
+      console.log(`  Total: ${stats.totalDuration.toFixed(2)}ms`);
+    });
+    
+    console.log('\n' + '═'.repeat(80));
+  }
+}
+
+// Usage
+const profiler = new AsyncProfiler();
+
+async function fetchUser(id) {
+  await new Promise(resolve => setTimeout(resolve, Math.random() * 100));
+  return { id, name: `User ${id}` };
+}
+
+async function fetchPosts(userId) {
+  await new Promise(resolve => setTimeout(resolve, Math.random() * 200));
+  return [{ id: 1, userId, title: 'Post 1' }];
+}
+
+async function main() {
+  for (let i = 0; i < 10; i++) {
+    await profiler.profile('fetchUser', () => fetchUser(i));
+    await profiler.profile('fetchPosts', () => fetchPosts(i));
+  }
+  
+  profiler.printReport();
+}
+
+main();
+```
+
+### 6. Memory Leak Detection
+
+```javascript
+// ✅ Detect memory leaks in async code
+class MemoryLeakDetector {
+  constructor(options = {}) {
+    this.threshold = options.threshold || 100; // MB
+    this.interval = options.interval || 5000; // ms
+    this.snapshots = [];
+    this.timer = null;
+  }
+  
+  start() {
+    this.timer = setInterval(() => {
+      const usage = process.memoryUsage();
+      const heapMB = (usage.heapUsed / 1024 / 1024).toFixed(2);
+      
+      this.snapshots.push({
+        timestamp: Date.now(),
+        heapUsed: parseFloat(heapMB),
+        rss: (usage.rss / 1024 / 1024).toFixed(2)
+      });
+      
+      // Keep only last 10 snapshots
+      if (this.snapshots.length > 10) {
+        this.snapshots.shift();
+      }
+      
+      // Check for leak
+      this.checkForLeak();
+    }, this.interval);
+    
+    console.log('Memory leak detector started');
+  }
+  
+  stop() {
+    if (this.timer) {
+      clearInterval(this.timer);
+      console.log('Memory leak detector stopped');
+    }
+  }
+  
+  checkForLeak() {
+    if (this.snapshots.length < 3) return;
+    
+    const recent = this.snapshots.slice(-3);
+    const increasing = recent.every((snapshot, i) => {
+      if (i === 0) return true;
+      return snapshot.heapUsed > recent[i - 1].heapUsed;
+    });
+    
+    if (increasing) {
+      const growth = recent[2].heapUsed - recent[0].heapUsed;
+      console.warn(`⚠️  Possible memory leak detected!`);
+      console.warn(`   Heap growth: +${growth.toFixed(2)}MB`);
+      console.warn(`   Current heap: ${recent[2].heapUsed}MB`);
+    }
+  }
+  
+  getReport() {
+    return {
+      snapshots: this.snapshots,
+      currentHeap: this.snapshots[this.snapshots.length - 1]?.heapUsed || 0
+    };
+  }
+}
+
+// Usage
+const detector = new MemoryLeakDetector({ interval: 2000 });
+detector.start();
+
+// Simulate leak
+const leakyArray = [];
+setInterval(() => {
+  leakyArray.push(new Array(1000000).fill('leak'));
+}, 3000);
+
+// Detector will warn about memory growth
+```
+
+### 7. Production Monitoring Integration
+
+```javascript
+// ✅ Complete monitoring solution
+class ProductionAsyncMonitor {
+  constructor(serviceName) {
+    this.serviceName = serviceName;
+    this.metrics = {
+      requests: 0,
+      errors: 0,
+      slowRequests: 0
+    };
+  }
+  
+  async monitor(operationName, fn, options = {}) {
+    const startTime = Date.now();
+    const requestId = this.generateRequestId();
+    
+    this.log('info', 'Operation started', {
+      requestId,
+      operationName
+    });
+    
+    try {
+      const result = await fn();
+      const duration = Date.now() - startTime;
+      
+      this.metrics.requests++;
+      
+      if (duration > (options.slowThreshold || 1000)) {
+        this.metrics.slowRequests++;
+        this.log('warn', 'Slow operation', {
+          requestId,
+          operationName,
+          duration
+        });
+      }
+      
+      this.log('info', 'Operation completed', {
+        requestId,
+        operationName,
+        duration
+      });
+      
+      return result;
+    } catch (error) {
+      this.metrics.errors++;
+      
+      this.log('error', 'Operation failed', {
+        requestId,
+        operationName,
+        error: error.message,
+        stack: error.stack
+      });
+      
+      // Send to monitoring service (e.g., Sentry, DataDog)
+      this.reportError(error, { requestId, operationName });
+      
+      throw error;
+    }
+  }
+  
+  log(level, message, data) {
+    console.log(JSON.stringify({
+      timestamp: new Date().toISOString(),
+      service: this.serviceName,
+      level,
+      message,
+      ...data
+    }));
+  }
+  
+  reportError(error, context) {
+    // Integrate with error tracking service
+    // Example: Sentry.captureException(error, { contexts: context });
+    console.error('Error reported:', error.message, context);
+  }
+  
+  generateRequestId() {
+    return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  }
+  
+  getMetrics() {
+    return {
+      ...this.metrics,
+      errorRate: (this.metrics.errors / this.metrics.requests * 100).toFixed(2) + '%',
+      slowRate: (this.metrics.slowRequests / this.metrics.requests * 100).toFixed(2) + '%'
+    };
+  }
+}
+
+// Usage
+const monitor = new ProductionAsyncMonitor('user-service');
+
+app.get('/api/users/:id', async (req, res) => {
+  try {
+    const user = await monitor.monitor('fetchUser', 
+      () => fetchUser(req.params.id),
+      { slowThreshold: 500 }
+    );
+    
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Get metrics
+setInterval(() => {
+  console.log('Current metrics:', monitor.getMetrics());
+}, 60000);
+```
+
+---
+
+এই advanced sections যোগ করার মাধ্যমে এখন async-programming.md file সম্পূর্ণ production-ready! 
+
+## 🎯 নতুন যা যোগ হয়েছে:
+
+### **Section 10: Async Best Practices & Performance**
+- ✅ Common patterns (Parallel execution, Rate limiting, Batch processing)
+- ✅ Anti-patterns এবং কিভাবে এড়াবেন
+- ✅ Performance optimization (Lazy loading, Memoization, Debouncing)
+- ✅ Memory management strategies
+- ✅ Performance tracking system
+
+### **Section 11: AbortController & Cancellation**
+- ✅ Basic request cancellation
+- ✅ Timeout implementation
+- ✅ Manual user-triggered cancellation
+- ✅ Multiple operations cancellation
+- ✅ Custom async functions with abort support
+- ✅ Cleanup on cancellation
+- ✅ Real-world UI integration example
+
+### **Section 12: Async Debugging & Monitoring**
+- ✅ Async Hooks API for operation tracking
+- ✅ AsyncLocalStorage for context propagation
+- ✅ Promise state inspection
+- ✅ Enhanced stack traces
+- ✅ Performance profiling with perf_hooks
+- ✅ Memory leak detection
+- ✅ Production monitoring integration
+
+এই comprehensive guide এ এখন Asynchronous Programming এর সব production-level concepts cover করা হয়েছে! 🚀
