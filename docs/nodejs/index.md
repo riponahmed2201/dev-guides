@@ -97,3 +97,12 @@ Error management এবং debugging techniques।
 - Error Logging (Winston).
 - Debugging with VS Code.
 - Stack Traces Analysis.
+
+### [8. Intermediate Projects](./intermediate-projects.md)
+Real-world projects দিয়ে skills practice করুন।
+- Blog API with Authentication.
+- E-commerce Backend (Products, Cart, Orders).
+- Social Media API (Posts, Comments, Likes).
+- Task Management System.
+- User Management with RBAC.
+- File Upload Service.
