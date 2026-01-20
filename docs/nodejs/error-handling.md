@@ -3,16 +3,30 @@
 Error handling এবং debugging হলো professional Node.js development এর অত্যন্ত গুরুত্বপূর্ণ দুটি skill। এই গাইডে আপনি শিখবেন কিভাবে errors সঠিকভাবে handle করতে হয় এবং দ্রুত bugs খুঁজে বের করতে হয়।
 
 ## 📑 Table of Contents
+
+### Basic Topics
 1. [Try-Catch Blocks](#try-catch-blocks)
 2. [Error Handling Middleware](#error-handling-middleware)
 3. [Custom Error Classes](#custom-error-classes)
 4. [Operational vs Programming Errors](#operational-vs-programming-errors)
 5. [Error Logging](#error-logging)
+
+### Debugging
 6. [Debugging Techniques](#debugging-techniques)
 7. [Node.js Debugger](#nodejs-debugger)
 8. [VS Code Debugging](#vs-code-debugging)
 9. [Console Methods](#console-methods)
 10. [Stack Traces পড়া](#stack-traces-পড়া)
+
+### Advanced Topics
+11. [Unhandled Rejections & Uncaught Exceptions](#unhandled-rejections--uncaught-exceptions)
+12. [Graceful Shutdown](#graceful-shutdown)
+13. [Circuit Breaker Pattern](#circuit-breaker-pattern)
+14. [Retry Mechanisms](#retry-mechanisms)
+15. [Database Transaction Errors](#database-transaction-errors)
+16. [External API Error Handling](#external-api-error-handling)
+17. [Error Recovery Strategies](#error-recovery-strategies)
+18. [Production Error Monitoring](#production-error-monitoring)
 
 ---
 
@@ -1692,6 +1706,1595 @@ process.on('uncaughtException', (error) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   logger.info(`Server running on port ${PORT}`);
+});
+```
+
+---
+
+## Unhandled Rejections & Uncaught Exceptions
+
+Node.js application এ unhandled errors handle করা অত্যন্ত গুরুত্বপূর্ণ।
+
+### 1. Unhandled Promise Rejections
+
+Promise reject হলে কিন্তু `.catch()` না থাকলে এটি unhandled rejection।
+
+```javascript
+// ❌ Bad - Unhandled rejection
+async function fetchData() {
+  const data = await fetch('https://api.example.com/data');
+  return data.json();
+}
+
+fetchData(); // No error handling!
+
+// ✅ Good - Proper handling
+async function fetchData() {
+  try {
+    const data = await fetch('https://api.example.com/data');
+    return data.json();
+  } catch (error) {
+    console.error('Fetch error:', error);
+    throw error;
+  }
+}
+
+fetchData().catch(error => {
+  console.error('Failed to fetch data:', error);
+});
+```
+
+### 2. Global Unhandled Rejection Handler
+
+```javascript
+// server.js
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise);
+  console.error('Reason:', reason);
+  
+  // Log to error tracking service
+  logger.error('Unhandled Rejection', {
+    reason: reason,
+    promise: promise
+  });
+  
+  // Gracefully shutdown
+  server.close(() => {
+    process.exit(1);
+  });
+});
+
+// Example that triggers unhandled rejection
+Promise.reject(new Error('Oops!')); // Will be caught by handler
+```
+
+### 3. Uncaught Exceptions
+
+Synchronous code এ error throw হলে কিন্তু catch না করলে uncaught exception হয়।
+
+```javascript
+process.on('uncaughtException', (error, origin) => {
+  console.error('Uncaught Exception!');
+  console.error('Error:', error);
+  console.error('Origin:', origin);
+  
+  logger.error('Uncaught Exception', {
+    error: error.message,
+    stack: error.stack,
+    origin: origin
+  });
+  
+  // Exit process - uncaught exceptions are serious
+  process.exit(1);
+});
+
+// This will trigger uncaught exception
+// throw new Error('This is uncaught!');
+```
+
+### 4. Warning Events
+
+```javascript
+process.on('warning', (warning) => {
+  console.warn('Warning:', warning.name);
+  console.warn('Message:', warning.message);
+  console.warn('Stack:', warning.stack);
+  
+  // Common warnings:
+  // - MaxListenersExceededWarning
+  // - DeprecationWarning
+  // - ExperimentalWarning
+});
+```
+
+### 5. Complete Error Handler Setup
+
+```javascript
+// config/errorHandlers.js
+const logger = require('./logger');
+
+const setupErrorHandlers = (server) => {
+  // Unhandled Promise Rejections
+  process.on('unhandledRejection', (reason, promise) => {
+    logger.error('Unhandled Promise Rejection', {
+      reason: reason instanceof Error ? reason.message : reason,
+      stack: reason instanceof Error ? reason.stack : undefined,
+      promise: promise
+    });
+    
+    gracefulShutdown(server, 'unhandledRejection');
+  });
+  
+  // Uncaught Exceptions
+  process.on('uncaughtException', (error) => {
+    logger.error('Uncaught Exception', {
+      error: error.message,
+      stack: error.stack
+    });
+    
+    gracefulShutdown(server, 'uncaughtException');
+  });
+  
+  // SIGTERM signal
+  process.on('SIGTERM', () => {
+    logger.info('SIGTERM signal received');
+    gracefulShutdown(server, 'SIGTERM');
+  });
+  
+  // SIGINT signal (Ctrl+C)
+  process.on('SIGINT', () => {
+    logger.info('SIGINT signal received');
+    gracefulShutdown(server, 'SIGINT');
+  });
+};
+
+const gracefulShutdown = (server, signal) => {
+  logger.info(`${signal} received, starting graceful shutdown`);
+  
+  server.close(() => {
+    logger.info('HTTP server closed');
+    
+    // Close database connections
+    mongoose.connection.close(false, () => {
+      logger.info('MongoDB connection closed');
+      process.exit(signal === 'SIGTERM' || signal === 'SIGINT' ? 0 : 1);
+    });
+  });
+  
+  // Force shutdown after 10 seconds
+  setTimeout(() => {
+    logger.error('Forced shutdown after timeout');
+    process.exit(1);
+  }, 10000);
+};
+
+module.exports = setupErrorHandlers;
+```
+
+**Usage in server.js:**
+```javascript
+const app = require('./app');
+const setupErrorHandlers = require('./config/errorHandlers');
+
+const server = app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+// Setup error handlers
+setupErrorHandlers(server);
+```
+
+---
+
+## Graceful Shutdown
+
+Application বন্ধ করার সময় সঠিকভাবে cleanup করা অত্যন্ত গুরুত্বপূর্ণ।
+
+### 1. Basic Graceful Shutdown
+
+```javascript
+const gracefulShutdown = (server) => {
+  console.log('Received shutdown signal, closing server...');
+  
+  // Stop accepting new connections
+  server.close(() => {
+    console.log('Server closed, exiting process');
+    process.exit(0);
+  });
+  
+  // Force shutdown after 30 seconds
+  setTimeout(() => {
+    console.error('Forced shutdown!');
+    process.exit(1);
+  }, 30000);
+};
+
+process.on('SIGTERM', () => gracefulShutdown(server));
+process.on('SIGINT', () => gracefulShutdown(server));
+```
+
+### 2. Complete Graceful Shutdown with Cleanup
+
+```javascript
+class GracefulShutdown {
+  constructor(server, options = {}) {
+    this.server = server;
+    this.timeout = options.timeout || 30000;
+    this.connections = new Set();
+    this.isShuttingDown = false;
+    
+    // Track all connections
+    this.server.on('connection', (conn) => {
+      this.connections.add(conn);
+      conn.on('close', () => {
+        this.connections.delete(conn);
+      });
+    });
+  }
+  
+  async shutdown(signal) {
+    if (this.isShuttingDown) {
+      console.log('Shutdown already in progress');
+      return;
+    }
+    
+    this.isShuttingDown = true;
+    console.log(`${signal} received, starting graceful shutdown`);
+    
+    // Stop accepting new requests
+    this.server.close(async () => {
+      console.log('HTTP server closed');
+      await this.cleanup();
+      process.exit(0);
+    });
+    
+    // Close existing connections
+    for (const conn of this.connections) {
+      conn.end();
+      setTimeout(() => conn.destroy(), 5000);
+    }
+    
+    // Force shutdown after timeout
+    setTimeout(() => {
+      console.error('Forced shutdown after timeout');
+      process.exit(1);
+    }, this.timeout);
+  }
+  
+  async cleanup() {
+    console.log('Starting cleanup...');
+    
+    const tasks = [];
+    
+    // Close database connections
+    if (mongoose.connection.readyState === 1) {
+      tasks.push(
+        mongoose.connection.close(false)
+          .then(() => console.log('✓ MongoDB closed'))
+          .catch(err => console.error('✗ MongoDB close error:', err))
+      );
+    }
+    
+    // Close Redis connection
+    if (redisClient && redisClient.isOpen) {
+      tasks.push(
+        redisClient.quit()
+          .then(() => console.log('✓ Redis closed'))
+          .catch(err => console.error('✗ Redis close error:', err))
+      );
+    }
+    
+    // Complete pending jobs
+    if (jobQueue) {
+      tasks.push(
+        jobQueue.close()
+          .then(() => console.log('✓ Job queue closed'))
+          .catch(err => console.error('✗ Job queue close error:', err))
+      );
+    }
+    
+    // Wait for all cleanup tasks
+    await Promise.allSettled(tasks);
+    console.log('Cleanup completed');
+  }
+  
+  setup() {
+    process.on('SIGTERM', () => this.shutdown('SIGTERM'));
+    process.on('SIGINT', () => this.shutdown('SIGINT'));
+    process.on('SIGQUIT', () => this.shutdown('SIGQUIT'));
+  }
+}
+
+// Usage
+const shutdown = new GracefulShutdown(server, { timeout: 30000 });
+shutdown.setup();
+```
+
+### 3. Health Check During Shutdown
+
+```javascript
+app.get('/health', (req, res) => {
+  if (isShuttingDown) {
+    res.status(503).json({
+      status: 'shutting_down',
+      message: 'Server is shutting down'
+    });
+  } else {
+    res.json({
+      status: 'ok',
+      uptime: process.uptime(),
+      timestamp: Date.now()
+    });
+  }
+});
+```
+
+---
+
+## Circuit Breaker Pattern
+
+Circuit breaker pattern ব্যবহার করে cascading failures prevent করা যায়।
+
+### 1. Circuit Breaker Implementation
+
+```bash
+npm install opossum
+```
+
+```javascript
+const CircuitBreaker = require('opossum');
+const axios = require('axios');
+
+// Function that might fail
+async function callExternalAPI(userId) {
+  const response = await axios.get(`https://api.example.com/users/${userId}`);
+  return response.data;
+}
+
+// Circuit breaker options
+const options = {
+  timeout: 3000,              // Request timeout
+  errorThresholdPercentage: 50, // Open circuit at 50% errors
+  resetTimeout: 30000,        // Try again after 30 seconds
+  rollingCountTimeout: 10000, // Rolling window for statistics
+  rollingCountBuckets: 10     // Number of buckets
+};
+
+// Create circuit breaker
+const breaker = new CircuitBreaker(callExternalAPI, options);
+
+// Circuit breaker events
+breaker.on('open', () => {
+  console.log('Circuit opened - too many failures');
+});
+
+breaker.on('halfOpen', () => {
+  console.log('Circuit half-open - trying again');
+});
+
+breaker.on('close', () => {
+  console.log('Circuit closed - back to normal');
+});
+
+breaker.on('failure', (error) => {
+  console.error('Request failed:', error.message);
+});
+
+breaker.on('success', (result) => {
+  console.log('Request successful');
+});
+
+breaker.on('timeout', () => {
+  console.error('Request timeout');
+});
+
+breaker.on('reject', () => {
+  console.error('Request rejected - circuit open');
+});
+
+// Fallback function
+breaker.fallback(() => {
+  return {
+    id: null,
+    name: 'Default User',
+    cached: true
+  };
+});
+
+// Usage
+async function getUser(userId) {
+  try {
+    const user = await breaker.fire(userId);
+    return user;
+  } catch (error) {
+    console.error('Failed to get user:', error.message);
+    throw error;
+  }
+}
+
+// Express route
+app.get('/users/:id', async (req, res) => {
+  try {
+    const user = await getUser(req.params.id);
+    res.json(user);
+  } catch (error) {
+    res.status(503).json({
+      error: 'Service temporarily unavailable'
+    });
+  }
+});
+```
+
+### 2. Multiple Circuit Breakers
+
+```javascript
+// API Service with multiple endpoints
+class APIService {
+  constructor() {
+    // Separate circuit breakers for different services
+    this.userBreaker = new CircuitBreaker(this.fetchUsers, options);
+    this.orderBreaker = new CircuitBreaker(this.fetchOrders, options);
+    this.paymentBreaker = new CircuitBreaker(this.processPayment, {
+      ...options,
+      timeout: 5000, // Higher timeout for payments
+      errorThresholdPercentage: 30 // Lower threshold
+    });
+    
+    this.setupFallbacks();
+  }
+  
+  setupFallbacks() {
+    this.userBreaker.fallback(() => ({ error: 'User service unavailable' }));
+    this.orderBreaker.fallback(() => ({ error: 'Order service unavailable' }));
+    this.paymentBreaker.fallback(() => {
+      throw new Error('Payment service unavailable - please try again');
+    });
+  }
+  
+  async fetchUsers(userId) {
+    const response = await axios.get(`${API_URL}/users/${userId}`);
+    return response.data;
+  }
+  
+  async fetchOrders(userId) {
+    const response = await axios.get(`${API_URL}/orders?userId=${userId}`);
+    return response.data;
+  }
+  
+  async processPayment(paymentData) {
+    const response = await axios.post(`${API_URL}/payments`, paymentData);
+    return response.data;
+  }
+  
+  async getUser(userId) {
+    return await this.userBreaker.fire(userId);
+  }
+  
+  async getOrders(userId) {
+    return await this.orderBreaker.fire(userId);
+  }
+  
+  async pay(paymentData) {
+    return await this.paymentBreaker.fire(paymentData);
+  }
+  
+  getStatus() {
+    return {
+      users: {
+        opened: this.userBreaker.opened,
+        stats: this.userBreaker.stats
+      },
+      orders: {
+        opened: this.orderBreaker.opened,
+        stats: this.orderBreaker.stats
+      },
+      payments: {
+        opened: this.paymentBreaker.opened,
+        stats: this.paymentBreaker.stats
+      }
+    };
+  }
+}
+
+const apiService = new APIService();
+
+// Health check with circuit breaker status
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    circuitBreakers: apiService.getStatus()
+  });
+});
+```
+
+---
+
+## Retry Mechanisms
+
+Transient errors এর জন্য automatic retry করা যায়।
+
+### 1. Simple Retry Logic
+
+```javascript
+async function retryOperation(operation, maxRetries = 3, delay = 1000) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      console.log(`Attempt ${attempt} failed:`, error.message);
+      
+      if (attempt === maxRetries) {
+        throw error; // Final attempt failed
+      }
+      
+      // Wait before retry
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
+
+// Usage
+async function fetchData() {
+  return await retryOperation(
+    async () => {
+      const response = await fetch('https://api.example.com/data');
+      if (!response.ok) throw new Error('API error');
+      return response.json();
+    },
+    3,  // Max 3 retries
+    1000 // 1 second delay
+  );
+}
+```
+
+### 2. Exponential Backoff
+
+```javascript
+async function retryWithBackoff(
+  operation,
+  maxRetries = 5,
+  baseDelay = 1000,
+  maxDelay = 30000
+) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      if (attempt === maxRetries) {
+        throw error;
+      }
+      
+      // Exponential backoff: 1s, 2s, 4s, 8s, 16s
+      const delay = Math.min(
+        baseDelay * Math.pow(2, attempt - 1),
+        maxDelay
+      );
+      
+      console.log(`Retry ${attempt}/${maxRetries} after ${delay}ms`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
+
+// Usage
+async function saveToDatabase(data) {
+  return await retryWithBackoff(
+    async () => {
+      return await User.create(data);
+    },
+    5,     // Max retries
+    1000,  // Base delay
+    30000  // Max delay
+  );
+}
+```
+
+### 3. Advanced Retry with Axios
+
+```bash
+npm install axios-retry
+```
+
+```javascript
+const axios = require('axios');
+const axiosRetry = require('axios-retry');
+
+// Configure axios retry
+axiosRetry(axios, {
+  retries: 3,
+  retryDelay: axiosRetry.exponentialDelay,
+  retryCondition: (error) => {
+    // Retry on network errors or 5xx errors
+    return axiosRetry.isNetworkOrIdempotentRequestError(error) ||
+           (error.response && error.response.status >= 500);
+  },
+  onRetry: (retryCount, error, requestConfig) => {
+    console.log(`Retry attempt ${retryCount} for ${requestConfig.url}`);
+  }
+});
+
+// Usage
+async function fetchData(url) {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error('Failed after retries:', error.message);
+    throw error;
+  }
+}
+```
+
+### 4. Smart Retry (Conditional)
+
+```javascript
+class SmartRetry {
+  constructor(options = {}) {
+    this.maxRetries = options.maxRetries || 3;
+    this.baseDelay = options.baseDelay || 1000;
+    this.maxDelay = options.maxDelay || 30000;
+    this.retryableErrors = options.retryableErrors || [
+      'ETIMEDOUT',
+      'ECONNRESET',
+      'ENOTFOUND',
+      'ECONNREFUSED'
+    ];
+    this.retryableStatusCodes = options.retryableStatusCodes || [
+      408, 429, 500, 502, 503, 504
+    ];
+  }
+  
+  shouldRetry(error, attempt) {
+    if (attempt >= this.maxRetries) return false;
+    
+    // Check error code
+    if (error.code && this.retryableErrors.includes(error.code)) {
+      return true;
+    }
+    
+    // Check HTTP status
+    if (error.response && 
+        this.retryableStatusCodes.includes(error.response.status)) {
+      return true;
+    }
+    
+    return false;
+  }
+  
+  getDelay(attempt) {
+    const delay = this.baseDelay * Math.pow(2, attempt - 1);
+    return Math.min(delay, this.maxDelay);
+  }
+  
+  async execute(operation) {
+    let lastError;
+    
+    for (let attempt = 1; attempt <= this.maxRetries + 1; attempt++) {
+      try {
+        return await operation();
+      } catch (error) {
+        lastError = error;
+        
+        if (!this.shouldRetry(error, attempt)) {
+          throw error;
+        }
+        
+        const delay = this.getDelay(attempt);
+        console.log(`Retry ${attempt}/${this.maxRetries} after ${delay}ms`);
+        console.log(`Error: ${error.message}`);
+        
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+    }
+    
+    throw lastError;
+  }
+}
+
+// Usage
+const retry = new SmartRetry({
+  maxRetries: 3,
+  baseDelay: 1000,
+  retryableStatusCodes: [429, 500, 502, 503]
+});
+
+async function callAPI(endpoint) {
+  return await retry.execute(async () => {
+    const response = await axios.get(endpoint);
+    return response.data;
+  });
+}
+```
+
+---
+
+## Database Transaction Errors
+
+Database transactions এ error handling বিশেষভাবে গুরুত্বপূর্ণ।
+
+### 1. MongoDB Transaction with Error Handling
+
+```javascript
+const mongoose = require('mongoose');
+
+async function transferMoney(fromUserId, toUserId, amount) {
+  const session = await mongoose.startSession();
+  
+  try {
+    await session.startTransaction();
+    
+    // Deduct from sender
+    const sender = await User.findById(fromUserId).session(session);
+    if (!sender) {
+      throw new Error('Sender not found');
+    }
+    
+    if (sender.balance < amount) {
+      throw new Error('Insufficient balance');
+    }
+    
+    sender.balance -= amount;
+    await sender.save({ session });
+    
+    // Add to receiver
+    const receiver = await User.findById(toUserId).session(session);
+    if (!receiver) {
+      throw new Error('Receiver not found');
+    }
+    
+    receiver.balance += amount;
+    await receiver.save({ session });
+    
+    // Create transaction record
+    await Transaction.create([{
+      from: fromUserId,
+      to: toUserId,
+      amount: amount,
+      status: 'completed',
+      timestamp: Date.now()
+    }], { session });
+    
+    // Commit transaction
+    await session.commitTransaction();
+    
+    console.log('Transaction successful');
+    return { success: true, transactionId: transaction._id };
+    
+  } catch (error) {
+    // Rollback on error
+    await session.abortTransaction();
+    console.error('Transaction failed:', error.message);
+    
+    // Log failed transaction
+    await Transaction.create({
+      from: fromUserId,
+      to: toUserId,
+      amount: amount,
+      status: 'failed',
+      error: error.message,
+      timestamp: Date.now()
+    });
+    
+    throw error;
+    
+  } finally {
+    // Always end session
+    session.endSession();
+  }
+}
+
+// Usage with error handling
+app.post('/transfer', async (req, res) => {
+  try {
+    const { fromUserId, toUserId, amount } = req.body;
+    
+    const result = await transferMoney(fromUserId, toUserId, amount);
+    
+    res.json({
+      success: true,
+      data: result
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+```
+
+### 2. PostgreSQL Transaction (Sequelize)
+
+```javascript
+const { sequelize, User, Transaction } = require('./models');
+
+async function transferMoney(fromUserId, toUserId, amount) {
+  const transaction = await sequelize.transaction();
+  
+  try {
+    // Find sender with lock
+    const sender = await User.findByPk(fromUserId, {
+      lock: transaction.LOCK.UPDATE,
+      transaction
+    });
+    
+    if (!sender) {
+      throw new Error('Sender not found');
+    }
+    
+    if (sender.balance < amount) {
+      throw new Error('Insufficient balance');
+    }
+    
+    // Update sender balance
+    await sender.update(
+      { balance: sender.balance - amount },
+      { transaction }
+    );
+    
+    // Find receiver with lock
+    const receiver = await User.findByPk(toUserId, {
+      lock: transaction.LOCK.UPDATE,
+      transaction
+    });
+    
+    if (!receiver) {
+      throw new Error('Receiver not found');
+    }
+    
+    // Update receiver balance
+    await receiver.update(
+      { balance: receiver.balance + amount },
+      { transaction }
+    );
+    
+    // Create transaction record
+    const txRecord = await Transaction.create({
+      fromUserId,
+      toUserId,
+      amount,
+      status: 'completed'
+    }, { transaction });
+    
+    // Commit
+    await transaction.commit();
+    
+    return { success: true, transactionId: txRecord.id };
+    
+  } catch (error) {
+    // Rollback
+    await transaction.rollback();
+    
+    console.error('Transaction failed:', error.message);
+    
+    // Log error
+    await Transaction.create({
+      fromUserId,
+      toUserId,
+      amount,
+      status: 'failed',
+      errorMessage: error.message
+    });
+    
+    throw error;
+  }
+}
+```
+
+### 3. Deadlock Handling
+
+```javascript
+async function handleDeadlock(operation, maxRetries = 3) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      // Check if it's a deadlock error
+      const isDeadlock = 
+        error.code === 'ER_LOCK_DEADLOCK' || // MySQL
+        error.code === '40P01'; // PostgreSQL
+      
+      if (isDeadlock && attempt < maxRetries) {
+        console.log(`Deadlock detected, retry ${attempt}/${maxRetries}`);
+        
+        // Random delay to avoid repeated deadlocks
+        const delay = Math.random() * 1000;
+        await new Promise(resolve => setTimeout(resolve, delay));
+        
+        continue;
+      }
+      
+      throw error;
+    }
+  }
+}
+
+// Usage
+async function updateInventory(productId, quantity) {
+  return await handleDeadlock(async () => {
+    const transaction = await sequelize.transaction();
+    
+    try {
+      const product = await Product.findByPk(productId, {
+        lock: transaction.LOCK.UPDATE,
+        transaction
+      });
+      
+      if (product.stock < quantity) {
+        throw new Error('Insufficient stock');
+      }
+      
+      await product.update(
+        { stock: product.stock - quantity },
+        { transaction }
+      );
+      
+      await transaction.commit();
+      return product;
+      
+    } catch (error) {
+      await transaction.rollback();
+      throw error;
+    }
+  });
+}
+```
+
+---
+
+## External API Error Handling
+
+External APIs call করার সময় বিভিন্ন ধরনের errors handle করতে হয়।
+
+### 1. Comprehensive API Error Handler
+
+```javascript
+class APIError extends Error {
+  constructor(message, statusCode, originalError) {
+    super(message);
+    this.statusCode = statusCode;
+    this.originalError = originalError;
+    this.isAPIError = true;
+  }
+}
+
+class ExternalAPIClient {
+  constructor(baseURL, options = {}) {
+    this.baseURL = baseURL;
+    this.timeout = options.timeout || 10000;
+    this.retries = options.retries || 3;
+  }
+  
+  async request(endpoint, options = {}) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), this.timeout);
+    
+    try {
+      const response = await fetch(`${this.baseURL}${endpoint}`, {
+        ...options,
+        signal: controller.signal
+      });
+      
+      clearTimeout(timeoutId);
+      
+      // Handle different status codes
+      if (response.ok) {
+        return await response.json();
+      }
+      
+      // Handle error responses
+      const errorData = await response.json().catch(() => ({}));
+      
+      switch (response.status) {
+        case 400:
+          throw new APIError(
+            errorData.message || 'Bad Request',
+            400,
+            errorData
+          );
+        
+        case 401:
+          throw new APIError(
+            'Unauthorized - Invalid API key',
+            401,
+            errorData
+          );
+        
+        case 403:
+          throw new APIError(
+            'Forbidden - Access denied',
+            403,
+            errorData
+          );
+        
+        case 404:
+          throw new APIError(
+            'Resource not found',
+            404,
+            errorData
+          );
+        
+        case 429:
+          const retryAfter = response.headers.get('Retry-After');
+          throw new APIError(
+            `Rate limit exceeded. Retry after ${retryAfter}s`,
+            429,
+            { retryAfter, ...errorData }
+          );
+        
+        case 500:
+        case 502:
+        case 503:
+        case 504:
+          throw new APIError(
+            'External service error',
+            response.status,
+            errorData
+          );
+        
+        default:
+          throw new APIError(
+            `HTTP Error ${response.status}`,
+            response.status,
+            errorData
+          );
+      }
+      
+    } catch (error) {
+      clearTimeout(timeoutId);
+      
+      // Handle network errors
+      if (error.name === 'AbortError') {
+        throw new APIError(
+          `Request timeout after ${this.timeout}ms`,
+          408,
+          error
+        );
+      }
+      
+      if (error.isAPIError) {
+        throw error;
+      }
+      
+      // Network error
+      throw new APIError(
+        'Network error - Unable to reach API',
+        503,
+        error
+      );
+    }
+  }
+  
+  async get(endpoint, options = {}) {
+    return this.request(endpoint, { ...options, method: 'GET' });
+  }
+  
+  async post(endpoint, data, options = {}) {
+    return this.request(endpoint, {
+      ...options,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+      },
+      body: JSON.stringify(data)
+    });
+  }
+}
+
+// Usage with retry
+async function fetchUserWithRetry(userId) {
+  const client = new ExternalAPIClient('https://api.example.com');
+  
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const user = await client.get(`/users/${userId}`);
+      return user;
+      
+    } catch (error) {
+      console.error(`Attempt ${attempt} failed:`, error.message);
+      
+      // Don't retry on 4xx errors (except 429)
+      if (error.statusCode >= 400 && 
+          error.statusCode < 500 && 
+          error.statusCode !== 429) {
+        throw error;
+      }
+      
+      if (attempt === 3) {
+        throw error;
+      }
+      
+      // Wait before retry
+      const delay = attempt * 1000;
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
+```
+
+### 2. Rate Limit Handling
+
+```javascript
+class RateLimitedAPIClient {
+  constructor(baseURL, rateLimit = { requests: 100, per: 60000 }) {
+    this.baseURL = baseURL;
+    this.rateLimit = rateLimit;
+    this.requestQueue = [];
+    this.processing = false;
+  }
+  
+  async request(endpoint, options = {}) {
+    return new Promise((resolve, reject) => {
+      this.requestQueue.push({ endpoint, options, resolve, reject });
+      this.processQueue();
+    });
+  }
+  
+  async processQueue() {
+    if (this.processing || this.requestQueue.length === 0) return;
+    
+    this.processing = true;
+    
+    while (this.requestQueue.length > 0) {
+      const { endpoint, options, resolve, reject } = this.requestQueue.shift();
+      
+      try {
+        const response = await fetch(`${this.baseURL}${endpoint}`, options);
+        
+        if (response.status === 429) {
+          const retryAfter = response.headers.get('Retry-After') || 60;
+          console.log(`Rate limited, waiting ${retryAfter}s`);
+          
+          // Re-queue request
+          this.requestQueue.unshift({ endpoint, options, resolve, reject });
+          
+          // Wait
+          await new Promise(r => setTimeout(r, retryAfter * 1000));
+          continue;
+        }
+        
+        const data = await response.json();
+        resolve(data);
+        
+        // Rate limiting delay
+        const delay = this.rateLimit.per / this.rateLimit.requests;
+        await new Promise(r => setTimeout(r, delay));
+        
+      } catch (error) {
+        reject(error);
+      }
+    }
+    
+    this.processing = false;
+  }
+}
+```
+
+---
+
+## Error Recovery Strategies
+
+বিভিন্ন ধরনের errors এর জন্য আলাদা recovery strategies।
+
+### 1. Error Recovery by Type
+
+```javascript
+class ErrorRecoveryService {
+  constructor() {
+    this.strategies = {
+      'DatabaseError': this.recoverFromDatabaseError,
+      'APIError': this.recoverFromAPIError,
+      'ValidationError': this.recoverFromValidationError,
+      'AuthenticationError': this.recoverFromAuthError
+    };
+  }
+  
+  async recover(error, context) {
+    const errorType = error.constructor.name;
+    const strategy = this.strategies[errorType];
+    
+    if (strategy) {
+      return await strategy.call(this, error, context);
+    }
+    
+    // Default recovery
+    return this.defaultRecovery(error, context);
+  }
+  
+  async recoverFromDatabaseError(error, context) {
+    console.log('Recovering from database error...');
+    
+    // Try to reconnect
+    try {
+      await mongoose.connection.close();
+      await mongoose.connect(process.env.MONGODB_URI);
+      
+      // Retry operation
+      if (context.retryOperation) {
+        return await context.retryOperation();
+      }
+    } catch (retryError) {
+      // Use cache if available
+      if (context.cacheKey && cache.has(context.cacheKey)) {
+        return cache.get(context.cacheKey);
+      }
+      
+      throw error;
+    }
+  }
+  
+  async recoverFromAPIError(error, context) {
+    console.log('Recovering from API error...');
+    
+    // Use fallback API
+    if (context.fallbackAPI) {
+      try {
+        return await context.fallbackAPI();
+      } catch (fallbackError) {
+        // Use cached data
+        if (context.cachedData) {
+          return context.cachedData;
+        }
+      }
+    }
+    
+    // Return default data
+    return context.defaultData || null;
+  }
+  
+  async recoverFromValidationError(error, context) {
+    console.log('Recovering from validation error...');
+    
+    // Use default values
+    if (context.defaults) {
+      return context.defaults;
+    }
+    
+    throw error; // Can't recover from validation errors
+  }
+  
+  async recoverFromAuthError(error, context) {
+    console.log('Recovering from auth error...');
+    
+    // Try to refresh token
+    if (context.refreshToken) {
+      try {
+        const newToken = await refreshAuthToken(context.refreshToken);
+        context.token = newToken;
+        
+        // Retry with new token
+        if (context.retryOperation) {
+          return await context.retryOperation();
+        }
+      } catch (refreshError) {
+        // Redirect to login
+        throw new AuthenticationError('Please login again');
+      }
+    }
+    
+    throw error;
+  }
+  
+  defaultRecovery(error, context) {
+    console.error('No specific recovery strategy for:', error.constructor.name);
+    throw error;
+  }
+}
+
+// Usage
+const recovery = new ErrorRecoveryService();
+
+app.get('/users/:id', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+    res.json(user);
+  } catch (error) {
+    try {
+      const recovered = await recovery.recover(error, {
+        retryOperation: async () => await User.findById(req.params.id),
+        cacheKey: `user:${req.params.id}`,
+        defaultData: { id: req.params.id, name: 'Unknown' }
+      });
+      
+      res.json(recovered);
+    } catch (recoveryError) {
+      next(recoveryError);
+    }
+  }
+});
+```
+
+---
+
+## Production Error Monitoring
+
+Production এ error tracking এবং monitoring অত্যন্ত গুরুত্বপূর্ণ।
+
+### 1. Sentry Integration (Complete Setup)
+
+```bash
+npm install @sentry/node @sentry/tracing
+```
+
+```javascript
+// config/sentry.js
+const Sentry = require('@sentry/node');
+const Tracing = require('@sentry/tracing');
+
+const initSentry = (app) => {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    environment: process.env.NODE_ENV,
+    
+    // Performance monitoring
+    tracesSampleRate: 1.0,
+    
+    // Release tracking
+    release: process.env.RELEASE_VERSION,
+    
+    // Additional integrations
+    integrations: [
+      // HTTP integration
+      new Sentry.Integrations.Http({ tracing: true }),
+      
+      // Express integration
+      new Tracing.Integrations.Express({ app }),
+      
+      // MongoDB integration
+      new Tracing.Integrations.Mongo({
+        useMongoose: true
+      })
+    ],
+    
+    // Custom error filtering
+    beforeSend(event, hint) {
+      const error = hint.originalException;
+      
+      // Don't send validation errors
+      if (error && error.name === 'ValidationError') {
+        return null;
+      }
+      
+      // Add custom context
+      event.contexts = {
+        ...event.contexts,
+        app: {
+          version: process.env.APP_VERSION,
+          environment: process.env.NODE_ENV
+        }
+      };
+      
+      return event;
+    }
+  });
+};
+
+module.exports = initSentry;
+```
+
+**app.js:**
+```javascript
+const express = require('express');
+const Sentry = require('@sentry/node');
+const initSentry = require('./config/sentry');
+
+const app = express();
+
+// Initialize Sentry (must be first)
+initSentry(app);
+
+// Request handler (must be first middleware)
+app.use(Sentry.Handlers.requestHandler());
+
+// Tracing handler
+app.use(Sentry.Handlers.tracingHandler());
+
+// Your routes
+app.get('/users/:id', async (req, res) => {
+  // Add custom context
+  Sentry.setContext('user_request', {
+    userId: req.params.id,
+    timestamp: Date.now()
+  });
+  
+  try {
+    const user = await User.findById(req.params.id);
+    res.json(user);
+  } catch (error) {
+    // Add breadcrumb
+    Sentry.addBreadcrumb({
+      category: 'database',
+      message: 'Failed to fetch user',
+      level: 'error',
+      data: { userId: req.params.id }
+    });
+    
+    throw error;
+  }
+});
+
+// Error handler (must be before other error middleware)
+app.use(Sentry.Handlers.errorHandler());
+
+// Custom error handler
+app.use((err, req, res, next) => {
+  res.status(500).json({
+    error: 'Internal server error',
+    eventId: res.sentry // Sentry event ID
+  });
+});
+
+module.exports = app;
+```
+
+### 2. Custom Error Tracking
+
+```javascript
+// services/errorTracker.js
+class ErrorTracker {
+  constructor() {
+    this.errors = [];
+    this.errorCounts = new Map();
+  }
+  
+  track(error, context = {}) {
+    const errorInfo = {
+      message: error.message,
+      stack: error.stack,
+      type: error.constructor.name,
+      timestamp: Date.now(),
+      context: context,
+      userAgent: context.req?.headers['user-agent'],
+      url: context.req?.url,
+      method: context.req?.method,
+      userId: context.user?.id
+    };
+    
+    // Store error
+    this.errors.push(errorInfo);
+    
+    // Count occurrences
+    const key = `${error.constructor.name}:${error.message}`;
+    this.errorCounts.set(key, (this.errorCounts.get(key) || 0) + 1);
+    
+    // Alert if error occurs too frequently
+    if (this.errorCounts.get(key) > 10) {
+      this.sendAlert(errorInfo);
+    }
+    
+    // Keep only last 1000 errors
+    if (this.errors.length > 1000) {
+      this.errors = this.errors.slice(-1000);
+    }
+  }
+  
+  async sendAlert(errorInfo) {
+    // Send email/SMS/Slack notification
+    console.error('ALERT: Frequent error detected!', errorInfo);
+    
+    // Example: Send to Slack
+    try {
+      await axios.post(process.env.SLACK_WEBHOOK_URL, {
+        text: `⚠️ Error Alert: ${errorInfo.message}`,
+        attachments: [{
+          color: 'danger',
+          fields: [
+            { title: 'Type', value: errorInfo.type, short: true },
+            { title: 'Count', value: this.errorCounts.get(`${errorInfo.type}:${errorInfo.message}`), short: true },
+            { title: 'URL', value: errorInfo.url },
+            { title: 'Stack', value: errorInfo.stack.substring(0, 500) }
+          ]
+        }]
+      });
+    } catch (err) {
+      console.error('Failed to send alert:', err);
+    }
+  }
+  
+  getStats() {
+    const stats = {
+      total: this.errors.length,
+      byType: {},
+      recent: this.errors.slice(-10),
+      topErrors: []
+    };
+    
+    // Group by type
+    this.errors.forEach(error => {
+      stats.byType[error.type] = (stats.byType[error.type] || 0) + 1;
+    });
+    
+    // Top errors
+    stats.topErrors = Array.from(this.errorCounts.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([key, count]) => ({ error: key, count }));
+    
+    return stats;
+  }
+}
+
+const errorTracker = new ErrorTracker();
+
+// Error tracking middleware
+const trackError = (err, req, res, next) => {
+  errorTracker.track(err, {
+    req,
+    user: req.user
+  });
+  next(err);
+};
+
+// Stats endpoint
+app.get('/admin/error-stats', (req, res) => {
+  res.json(errorTracker.getStats());
+});
+
+module.exports = { errorTracker, trackError };
+```
+
+### 3. Performance Monitoring
+
+```javascript
+// middleware/performanceMonitor.js
+class PerformanceMonitor {
+  constructor() {
+    this.metrics = [];
+  }
+  
+  middleware() {
+    return (req, res, next) => {
+      const start = Date.now();
+      
+      // Capture response
+      const originalSend = res.send;
+      res.send = function(data) {
+        const duration = Date.now() - start;
+        
+        // Log slow requests
+        if (duration > 1000) {
+          console.warn('Slow request detected:', {
+            url: req.url,
+            method: req.method,
+            duration: `${duration}ms`
+          });
+        }
+        
+        // Store metrics
+        this.metrics.push({
+          url: req.url,
+          method: req.method,
+          status: res.statusCode,
+          duration,
+          timestamp: Date.now()
+        });
+        
+        return originalSend.call(this, data);
+      }.bind(this);
+      
+      next();
+    };
+  }
+  
+  getMetrics() {
+    const now = Date.now();
+    const last5Min = this.metrics.filter(m => now - m.timestamp < 300000);
+    
+    return {
+      total: last5Min.length,
+      averageResponseTime: last5Min.reduce((sum, m) => sum + m.duration, 0) / last5Min.length,
+      slowRequests: last5Min.filter(m => m.duration > 1000).length,
+      errors: last5Min.filter(m => m.status >= 400).length
+    };
+  }
+}
+
+const monitor = new PerformanceMonitor();
+app.use(monitor.middleware());
+
+app.get('/admin/performance', (req, res) => {
+  res.json(monitor.getMetrics());
 });
 ```
 
