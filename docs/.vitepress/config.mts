@@ -458,6 +458,12 @@ export default defineConfig({
             { text: 'Error Handling & Debugging', link: '/nodejs/error-handling' },
             { text: 'Intermediate Projects', link: '/nodejs/intermediate-projects' },
           ]
+        },
+        {
+          text: 'Level 3: Advanced',
+          items: [
+            { text: 'Asynchronous Programming', link: '/nodejs/async-programming' },
+          ]
         }
       ]
     },

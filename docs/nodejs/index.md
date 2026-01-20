@@ -106,3 +106,14 @@ Real-world projects দিয়ে skills practice করুন।
 - Task Management System.
 - User Management with RBAC.
 - File Upload Service.
+
+## 💎 Level 3: Advanced (3-4 months)
+
+### [1. Asynchronous Programming Deep Dive](./async-programming.md)
+Event Loop, Promises, এবং concurrency patterns।
+- Event Loop Architecture.
+- Microtasks vs Macrotasks.
+- Promise Internals.
+- Async Iterators & Generators.
+- Worker Threads & Child Processes.
+- Cluster Module & PM2.
