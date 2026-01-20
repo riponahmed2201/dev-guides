@@ -109,7 +109,16 @@ Real-world projects দিয়ে skills practice করুন।
 
 ## 💎 Level 3: Advanced (3-4 months)
 
-### [1. Asynchronous Programming Deep Dive](./async-programming.md)
+### [1. Advanced Express Patterns](./advanced-express.md)
+Professional application architecture এবং design patterns।
+- Custom Middleware Development.
+- Middleware Chaining.
+- Advanced Routing & Grouping.
+- MVC Pattern & Controllers.
+- Service Layer & Repository Pattern.
+- Dependency Injection & Design Patterns.
+
+### [2. Asynchronous Programming Deep Dive](./async-programming.md)
 Event Loop, Promises, এবং concurrency patterns।
 - Event Loop Architecture.
 - Microtasks vs Macrotasks.

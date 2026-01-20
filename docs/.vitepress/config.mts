@@ -462,6 +462,7 @@ export default defineConfig({
         {
           text: 'Level 3: Advanced',
           items: [
+            { text: 'Advanced Express Patterns', link: '/nodejs/advanced-express' },
             { text: 'Asynchronous Programming', link: '/nodejs/async-programming' },
           ]
         }
