@@ -126,3 +126,13 @@ Event Loop, Promises, এবং concurrency patterns।
 - Async Iterators & Generators.
 - Worker Threads & Child Processes.
 - Cluster Module & PM2.
+
+### [3. Streams & Buffers](./streams-buffers.md)
+Memory-efficient data processing এবং large file handling।
+- Stream Types (Readable, Writable, Duplex, Transform).
+- Buffer Operations.
+- Pipe Method & Pipelines.
+- Backpressure Handling.
+- Custom Stream Implementation.
+- Large File Processing.
+- Production Streaming Patterns.
