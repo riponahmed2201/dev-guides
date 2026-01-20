@@ -454,6 +454,7 @@ export default defineConfig({
             { text: 'Database Integration', link: '/nodejs/database' },
             { text: 'Authentication & Security', link: '/nodejs/auth' },
             { text: 'Security Best Practices', link: '/nodejs/security' },
+            { text: 'File Handling', link: '/nodejs/file-handling' },
           ]
         }
       ]

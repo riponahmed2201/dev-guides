@@ -80,3 +80,11 @@ Node.js এর সবচেয়ে জনপ্রিয় ওয়েব �
 - Input Validation, Sanitization.
 - SQL Injection, XSS, CSRF Protection.
 - Rate Limiting, Helmet, CORS.
+
+### [6. File Handling](./file-handling.md)
+ফাইল আপলোড, প্রসেসিং এবং স্টোরেজ ম্যানেজমেন্ট।
+- File Upload with Multer.
+- Image Processing with Sharp.
+- Cloud Storage (AWS S3, Cloudinary).
+- CSV/Excel Handling.
+- PDF Generation.
