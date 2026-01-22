@@ -59,6 +59,14 @@
 *   [Asynchronous processing (Kafka, RabbitMQ)](./step-7-message-queues/kafka-rabbitmq)
 *   [Publishers - Subscriber Model](./step-7-message-queues/pub-sub)
 
+### ধাপ ৮: মনোলিথ বনাম মাইক্রোসার্ভিস (Monoliths vs Microservices)
+আধুনিক সিস্টেম আর্কিটেকচার এবং স্কেলিং কৌশল:
+
+*   [Why microservices?](./step-8-microservices/monoliths-microservices)
+*   [Single point of failure & Cascading failures](./step-8-microservices/failure-management)
+*   [Containerization (Docker)](./step-8-microservices/containerization-docker)
+*   [Migrating to Microservices](./step-8-microservices/migration-strategy)
+
 ---
 
 > [!TIP]

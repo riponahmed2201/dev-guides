@@ -540,6 +540,16 @@ export default defineConfig({
             { text: 'Asynchronous processing', link: '/system-design/step-7-message-queues/kafka-rabbitmq' },
             { text: 'Publishers - Subscriber Model', link: '/system-design/step-7-message-queues/pub-sub' },
           ]
+        },
+        {
+          text: 'HLD: Microservices',
+          collapsed: false,
+          items: [
+            { text: 'Why microservices?', link: '/system-design/step-8-microservices/monoliths-microservices' },
+            { text: 'Failure Management', link: '/system-design/step-8-microservices/failure-management' },
+            { text: 'Containerization (Docker)', link: '/system-design/step-8-microservices/containerization-docker' },
+            { text: 'Migrating to Microservices', link: '/system-design/step-8-microservices/migration-strategy' },
+          ]
         }
       ]
     },
