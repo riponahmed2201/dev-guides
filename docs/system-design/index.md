@@ -22,6 +22,13 @@
 *   [Data Replication & Migration](./step-2-databases/replication-migration)
 *   [Data Partitioning & Sharding](./step-2-databases/partitioning-sharding)
 
+### ধাপ ৩: কন্সিস্টেন্সি এবং অ্যাভেইল্যাবিলিটি (Consistency & Availability)
+একটি ডিস্ট্রিবিউটেড সিস্টেমে ডেটা কতটা সঠিক এবং সিস্টেম কতটা সচল থাকবে তা নিয়ে আলোচনা:
+
+*   [Data Consistency & its Levels](./step-3-consistency-availability/consistency-levels)
+*   [Isolation & its Levels (ACID)](./step-3-consistency-availability/isolation-levels)
+*   [CAP Theorem Deep-Dive](./step-3-consistency-availability/cap-theorem)
+
 ---
 
 > [!TIP]

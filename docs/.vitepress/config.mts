@@ -493,6 +493,15 @@ export default defineConfig({
             { text: 'Data Replication & Migration', link: '/system-design/step-2-databases/replication-migration' },
             { text: 'Data Partitioning & Sharding', link: '/system-design/step-2-databases/partitioning-sharding' },
           ]
+        },
+        {
+          text: 'HLD: Consistency & Availability',
+          collapsed: false,
+          items: [
+            { text: 'Consistency & its Levels', link: '/system-design/step-3-consistency-availability/consistency-levels' },
+            { text: 'Isolation & its Levels (ACID)', link: '/system-design/step-3-consistency-availability/isolation-levels' },
+            { text: 'CAP Theorem Deep-Dive', link: '/system-design/step-3-consistency-availability/cap-theorem' },
+          ]
         }
       ]
     },
