@@ -578,6 +578,13 @@ export default defineConfig({
             { text: 'SQL vs NoSQL Tradeoffs', link: '/system-design/step-11-tradeoffs/sql-nosql-tradeoff' },
             { text: 'Performance Tradeoffs', link: '/system-design/step-11-tradeoffs/latency-tradeoffs' },
           ]
+        },
+        {
+          text: 'HLD: Practice',
+          collapsed: false,
+          items: [
+            { text: 'Designing YouTube', link: '/system-design/step-12-practice/youtube' },
+          ]
         }
       ]
     },

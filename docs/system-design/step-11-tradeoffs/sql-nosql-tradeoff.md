@@ -2,7 +2,7 @@
 
 আমরা আগেই [SQL vs NoSQL](../step-2-databases/sql-nosql) নিয়ে বেসিক আলোচনা করেছি। এই সেকশনে আমরা ফোকাস করব **ট্রেড-অফ** বা সিদ্ধান্তের জায়গাগুলোতে। অর্থাৎ, একটি বেছে নিলে আপনাকে কী সেক্রিফাইস (Sacrifice) করতে হবে।
 
-## ১. Structure vs Flexibility
+## 1. Structure vs Flexibility
 
 ### SQL (Structured)
 
@@ -14,7 +14,7 @@
 - **Tradeoff:** স্কিমা না থাকায় ডেটার গঠন একেক ডকুমেন্টে একেক রকম হতে পারে। অ্যাপ্লিকেশনের কোডে অতিরিক্ত লজিক লিখতে হয় ডেটা হ্যান্ডেল করার জন্য।
 - **Gain:** ডেভেলপমেন্ট স্পিড অনেক বাড়ে। নতুন ফিচার বা ফিল্ড যোগ করা খুব সহজ।
 
-## ২. Consistency vs Scalability
+## 2. Consistency vs Scalability
 
 ### SQL (Strong Consistency)
 
@@ -26,7 +26,7 @@
 - **Tradeoff:** অনেক NoSQL ডেটাবেস **BASE** (Basically Available, Soft state, Eventual consistency) মডেল অনুসরণ করে। এর মানে হলো, পড়ার সময় আপনি লেটেস্ট ডেটা নাও পেতে পারেন (Eventual Consistency)।
 - **Scaling:** এগুলো শুরু থেকেই **Horizontal Scaling** বা ডিস্ট্রিবিউটেড আর্কিটেকচারের জন্য তৈরি। সহজেই নতুন সার্ভার যোগ করে ক্যাপাসিটি বাড়ানো যায়।
 
-## ৩. Complex Queries vs Performance
+## 3. Complex Queries vs Performance
 
 ### SQL (Joins)
 

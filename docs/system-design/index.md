@@ -100,6 +100,12 @@
 - [SQL vs NoSQL Tradeoffs](./step-11-tradeoffs/sql-nosql-tradeoff)
 - [Performance Tradeoffs (Latency vs Memory/Throughput/Accuracy)](./step-11-tradeoffs/latency-tradeoffs)
 
+### ধাপ ১২: প্র্যাকটিস এবং কেস স্টাডি (Practice & Case Studies)
+
+থিওরি শেখার পর এখন বড় সিস্টেম ডিজাইন করার পালা।
+
+- [Designing YouTube/Netflix (Real-world Architecture)](./step-12-practice/youtube)
+
 ---
 
 > [!TIP]
