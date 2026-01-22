@@ -21,7 +21,9 @@ export default defineConfig({
       { text: 'Django', link: '/django/' },
       { text: 'DRF', link: '/django-rest-framework/' },
       { text: 'Docker', link: '/docker/' },
-      { text: 'Node.js', link: '/nodejs/' }
+      { text: 'Docker', link: '/docker/' },
+      { text: 'Node.js', link: '/nodejs/' },
+      { text: 'System Design', link: '/system-design/' }
     ],
     sidebar: {
       '/python/': [
@@ -467,6 +469,19 @@ export default defineConfig({
             { text: 'Streams & Buffers', link: '/nodejs/streams-buffers' },
             { text: 'Real-time Communication', link: '/nodejs/realtime-communication' },
             { text: 'Testing & Quality Assurance', link: '/nodejs/testing-quality' },
+          ]
+        }
+      ],
+      '/system-design/': [
+        {
+          text: 'HLD: Fundamentals',
+          collapsed: false,
+          items: [
+            { text: 'Introduction', link: '/system-design/' },
+            { text: 'Serverless vs Serverfull', link: '/system-design/step-1-fundamentals/serverless-serverfull' },
+            { text: 'Scaling (Horizontal vs Vertical)', link: '/system-design/step-1-fundamentals/scaling' },
+            { text: 'Threads & Pages', link: '/system-design/step-1-fundamentals/threads-pages' },
+            { text: 'How the Web Works', link: '/system-design/step-1-fundamentals/how-web-works' },
           ]
         }
       ]
