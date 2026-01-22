@@ -550,6 +550,14 @@ export default defineConfig({
             { text: 'Containerization (Docker)', link: '/system-design/step-8-microservices/containerization-docker' },
             { text: 'Migrating to Microservices', link: '/system-design/step-8-microservices/migration-strategy' },
           ]
+        },
+        {
+          text: 'HLD: Monitoring & Logging',
+          collapsed: false,
+          items: [
+            { text: 'Logging & Metrics', link: '/system-design/step-9-monitoring/logging-metrics' },
+            { text: 'Anomaly Detection', link: '/system-design/step-9-monitoring/anomaly-detection' },
+          ]
         }
       ]
     },

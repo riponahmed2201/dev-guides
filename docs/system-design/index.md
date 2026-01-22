@@ -67,6 +67,12 @@
 *   [Containerization (Docker)](./step-8-microservices/containerization-docker)
 *   [Migrating to Microservices](./step-8-microservices/migration-strategy)
 
+### ধাপ ৯: মনিটরিং এবং লগিং (Monitoring & Logging)
+সিস্টেমের স্বাস্থ্য এবং পারফরম্যান্স ট্রাক করার উপায়:
+
+*   [Logging events & monitoring metrics](./step-9-monitoring/logging-metrics)
+*   [Anomaly Detection](./step-9-monitoring/anomaly-detection)
+
 ---
 
 > [!TIP]
