@@ -586,6 +586,7 @@ export default defineConfig({
             { text: 'Designing YouTube', link: '/system-design/step-12-practice/youtube' },
             { text: 'Designing Twitter', link: '/system-design/step-12-practice/twitter' },
             { text: 'Designing WhatsApp', link: '/system-design/step-12-practice/whatsapp' },
+            { text: 'Designing Uber', link: '/system-design/step-12-practice/uber' },
           ]
         }
       ]

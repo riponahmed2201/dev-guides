@@ -107,6 +107,7 @@
 - [Designing YouTube/Netflix (Real-world Architecture)](./step-12-practice/youtube)
 - [Designing Twitter/X (Newsfeed System)](./step-12-practice/twitter)
 - [Designing WhatsApp (Real-time Chat)](./step-12-practice/whatsapp)
+- [Designing Uber/Pathao (Ride Sharing)](./step-12-practice/uber)
 
 ---
 
