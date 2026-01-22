@@ -568,6 +568,16 @@ export default defineConfig({
             { text: 'Access Control Lists', link: '/system-design/step-10-security/access-control' },
             { text: 'Encryption', link: '/system-design/step-10-security/encryption' },
           ]
+        },
+        {
+          text: 'HLD: Tradeoffs',
+          collapsed: false,
+          items: [
+            { text: 'Push vs Pull Architecture', link: '/system-design/step-11-tradeoffs/push-pull' },
+            { text: 'Consistency vs Availability', link: '/system-design/step-11-tradeoffs/consistency-availability' },
+            { text: 'SQL vs NoSQL Tradeoffs', link: '/system-design/step-11-tradeoffs/sql-nosql-tradeoff' },
+            { text: 'Performance Tradeoffs', link: '/system-design/step-11-tradeoffs/latency-tradeoffs' },
+          ]
         }
       ]
     },
