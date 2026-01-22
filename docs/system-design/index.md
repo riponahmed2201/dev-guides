@@ -53,6 +53,12 @@
 *   [Proxy & Reverse Proxy](./step-6-load-balancers/proxies)
 *   [Rate Limiting](./step-6-load-balancers/rate-limiting)
 
+### ধাপ ৭: মেসেজ কিউ (Message Queues)
+সিস্টেমের বিভিন্ন কম্পোনেন্টের মধ্যে অ্যাসিনক্রোনাস যোগাযোগ:
+
+*   [Asynchronous processing (Kafka, RabbitMQ)](./step-7-message-queues/kafka-rabbitmq)
+*   [Publishers - Subscriber Model](./step-7-message-queues/pub-sub)
+
 ---
 
 > [!TIP]

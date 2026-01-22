@@ -532,6 +532,14 @@ export default defineConfig({
             { text: 'Proxy & Reverse Proxy', link: '/system-design/step-6-load-balancers/proxies' },
             { text: 'Rate Limiting', link: '/system-design/step-6-load-balancers/rate-limiting' },
           ]
+        },
+        {
+          text: 'HLD: Message Queues',
+          collapsed: false,
+          items: [
+            { text: 'Asynchronous processing', link: '/system-design/step-7-message-queues/kafka-rabbitmq' },
+            { text: 'Publishers - Subscriber Model', link: '/system-design/step-7-message-queues/pub-sub' },
+          ]
         }
       ]
     },
