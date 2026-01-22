@@ -522,6 +522,16 @@ export default defineConfig({
             { text: 'Web Sockets', link: '/system-design/step-5-networking/websockets' },
             { text: 'WebRTC & Video Streaming', link: '/system-design/step-5-networking/webrtc-streaming' },
           ]
+        },
+        {
+          text: 'HLD: Load Balancers & Proxies',
+          collapsed: false,
+          items: [
+            { text: 'Load Balancing Algorithms', link: '/system-design/step-6-load-balancers/load-balancers' },
+            { text: 'Consistent Hashing', link: '/system-design/step-6-load-balancers/consistent-hashing' },
+            { text: 'Proxy & Reverse Proxy', link: '/system-design/step-6-load-balancers/proxies' },
+            { text: 'Rate Limiting', link: '/system-design/step-6-load-balancers/rate-limiting' },
+          ]
         }
       ]
     },
