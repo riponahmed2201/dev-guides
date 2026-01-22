@@ -512,6 +512,16 @@ export default defineConfig({
             { text: 'Cache Replacement Policies', link: '/system-design/step-4-cache/replacement-policies' },
             { text: 'Content Delivery Network (CDNs)', link: '/system-design/step-4-cache/cdn' },
           ]
+        },
+        {
+          text: 'HLD: Networking',
+          collapsed: false,
+          items: [
+            { text: 'TCP vs UDP', link: '/system-design/step-5-networking/tcp-udp' },
+            { text: 'HTTP (1/2/3) & HTTPS', link: '/system-design/step-5-networking/http-https' },
+            { text: 'Web Sockets', link: '/system-design/step-5-networking/websockets' },
+            { text: 'WebRTC & Video Streaming', link: '/system-design/step-5-networking/webrtc-streaming' },
+          ]
         }
       ]
     },

@@ -37,6 +37,22 @@
 *   [Replacement Policies: LRU, LFU, etc.](./step-4-cache/replacement-policies)
 *   [Content Delivery Network (CDNs)](./step-4-cache/cdn)
 
+### ধাপ ৫: নেটওয়ার্কিং (Networking)
+সিস্টেমের বিভিন্ন কম্পোনেন্টের মধ্যে যোগাযোগ করার প্রোটোকল এবং পদ্ধতি:
+
+*   [TCP vs UDP](./step-5-networking/tcp-udp)
+*   [What is HTTP (1/2/3) & HTTPS?](./step-5-networking/http-https)
+*   [Web Sockets](./step-5-networking/websockets)
+*   [WebRTC & Video Streaming](./step-5-networking/webrtc-streaming)
+
+### ধাপ ৬: লোড ব্যালেন্সার এবং প্রক্সি (Load Balancers & Proxies)
+সিস্টেমের ট্রাফিক ম্যানেজমেন্ট এবং সিকিউরিটি নিশ্চিত করার উপায়:
+
+*   [Load Balancing Algorithms (Stateless & Stateful)](./step-6-load-balancers/load-balancers)
+*   [Consistent Hashing](./step-6-load-balancers/consistent-hashing)
+*   [Proxy & Reverse Proxy](./step-6-load-balancers/proxies)
+*   [Rate Limiting](./step-6-load-balancers/rate-limiting)
+
 ---
 
 > [!TIP]
