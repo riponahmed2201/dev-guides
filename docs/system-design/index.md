@@ -105,6 +105,7 @@
 থিওরি শেখার পর এখন বড় সিস্টেম ডিজাইন করার পালা।
 
 - [Designing YouTube/Netflix (Real-world Architecture)](./step-12-practice/youtube)
+- [Designing Twitter/X (Newsfeed System)](./step-12-practice/twitter)
 
 ---
 
