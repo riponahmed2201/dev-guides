@@ -502,6 +502,16 @@ export default defineConfig({
             { text: 'Isolation & its Levels (ACID)', link: '/system-design/step-3-consistency-availability/isolation-levels' },
             { text: 'CAP Theorem Deep-Dive', link: '/system-design/step-3-consistency-availability/cap-theorem' },
           ]
+        },
+        {
+          text: 'HLD: Cache & CDNs',
+          collapsed: false,
+          items: [
+            { text: 'What is Cache?', link: '/system-design/step-4-cache/cache-basics' },
+            { text: 'Cache Write Policies', link: '/system-design/step-4-cache/write-policies' },
+            { text: 'Cache Replacement Policies', link: '/system-design/step-4-cache/replacement-policies' },
+            { text: 'Content Delivery Network (CDNs)', link: '/system-design/step-4-cache/cdn' },
+          ]
         }
       ]
     },

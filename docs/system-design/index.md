@@ -29,6 +29,14 @@
 *   [Isolation & its Levels (ACID)](./step-3-consistency-availability/isolation-levels)
 *   [CAP Theorem Deep-Dive](./step-3-consistency-availability/cap-theorem)
 
+### ধাপ ৪: ক্যাশ এবং সিডিএন (Cache & CDNs)
+সিস্টেমের স্পিড বাড়ানোর জন্য ডেটা টেম্পোরারি স্টোর করার কৌশল:
+
+*   [What is Cache? (Redis, Memcached)](./step-4-cache/cache-basics)
+*   [Write Policies: Write Back, Through & Around](./step-4-cache/write-policies)
+*   [Replacement Policies: LRU, LFU, etc.](./step-4-cache/replacement-policies)
+*   [Content Delivery Network (CDNs)](./step-4-cache/cdn)
+
 ---
 
 > [!TIP]
