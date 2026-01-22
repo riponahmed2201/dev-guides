@@ -73,6 +73,14 @@
 *   [Logging events & monitoring metrics](./step-9-monitoring/logging-metrics)
 *   [Anomaly Detection](./step-9-monitoring/anomaly-detection)
 
+### ধাপ ১০: সিকিউরিটি (Security)
+সিস্টেমের নিরাপত্তা নিশ্চিত করার বিভিন্ন লেয়ার এবং টেকনিক:
+
+*   [Tokens for Auth (JWT, Session Tokens)](./step-10-security/auth-tokens)
+*   [SSO & OAuth](./step-10-security/sso-oauth)
+*   [Access Control Lists & Rule Engines](./step-10-security/access-control)
+*   [Encryption (Symmetric & Asymmetric)](./step-10-security/encryption)
+
 ---
 
 > [!TIP]

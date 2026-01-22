@@ -558,6 +558,16 @@ export default defineConfig({
             { text: 'Logging & Metrics', link: '/system-design/step-9-monitoring/logging-metrics' },
             { text: 'Anomaly Detection', link: '/system-design/step-9-monitoring/anomaly-detection' },
           ]
+        },
+        {
+          text: 'HLD: Security',
+          collapsed: false,
+          items: [
+            { text: 'Auth Tokens', link: '/system-design/step-10-security/auth-tokens' },
+            { text: 'SSO & OAuth', link: '/system-design/step-10-security/sso-oauth' },
+            { text: 'Access Control Lists', link: '/system-design/step-10-security/access-control' },
+            { text: 'Encryption', link: '/system-design/step-10-security/encryption' },
+          ]
         }
       ]
     },
