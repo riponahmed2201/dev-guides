@@ -483,6 +483,16 @@ export default defineConfig({
             { text: 'Threads & Pages', link: '/system-design/step-1-fundamentals/threads-pages' },
             { text: 'How the Web Works', link: '/system-design/step-1-fundamentals/how-web-works' },
           ]
+        },
+        {
+          text: 'HLD: Databases',
+          collapsed: false,
+          items: [
+            { text: 'SQL vs NoSQL Databases', link: '/system-design/step-2-databases/sql-nosql' },
+            { text: 'In-Memory Databases (Redis)', link: '/system-design/step-2-databases/in-memory-dbs' },
+            { text: 'Data Replication & Migration', link: '/system-design/step-2-databases/replication-migration' },
+            { text: 'Data Partitioning & Sharding', link: '/system-design/step-2-databases/partitioning-sharding' },
+          ]
         }
       ]
     },

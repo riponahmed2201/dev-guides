@@ -14,6 +14,14 @@
 *   [Threads and Pages](./step-1-fundamentals/threads-pages)
 *   [How the Web Works](./step-1-fundamentals/how-web-works)
 
+### ধাপ ২: ডেটাবেস (Databases)
+ডেটা কিভাবে স্টোর এবং রিট্রিভ করা হয় তা সিস্টেম ডিজাইনের একটি বড় অংশ। এখানে আমরা জানব:
+
+*   [SQL vs NoSQL Databases](./step-2-databases/sql-nosql)
+*   [In-Memory Databases (Redis)](./step-2-databases/in-memory-dbs)
+*   [Data Replication & Migration](./step-2-databases/replication-migration)
+*   [Data Partitioning & Sharding](./step-2-databases/partitioning-sharding)
+
 ---
 
 > [!TIP]
