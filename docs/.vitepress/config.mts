@@ -655,13 +655,13 @@ export default defineConfig({
             { text: 'Module 1: Introduction', link: '/kafka/introduction' },
             { text: 'Module 2: Components', link: '/kafka/components' },
             { text: 'Module 3: Installation', link: '/kafka/installation' },
+            { text: 'Module 4: CLI', link: '/kafka/cli' },
           ]
         },
         {
           text: 'Modules (Coming Soon)',
           collapsed: true,
           items: [
-            { text: 'Module 4: CLI', link: '/kafka/' },
             { text: 'Module 5: Configurations', link: '/kafka/' },
             { text: 'Module 6: Architecture', link: '/kafka/' },
             { text: 'Module 7: Performance', link: '/kafka/' },

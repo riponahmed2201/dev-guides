@@ -26,7 +26,7 @@
 
 ### মডিউল ৪: কাফকা সিএলআই (Kafka CLI)
 
-কমান্ড লাইন ইন্টারফেসের মাধ্যমে কাফকা ব্যবহার।
+- [Kafka CLI Commands (Topics, Producer, Consumer)](./cli)
 
 ### মডিউল ৫: কাফকা কনফিগারেশন (Kafka Configurations)
 
