@@ -14,7 +14,8 @@
 
 বারবার আসা কোডিং সমস্যাগুলো সমাধানের প্রমাণিত উপায়।
 
-- [Design Patterns Roadmap](/design-patterns/)
+- [Design Patterns Deep-Dive](./design-patterns)
+- [Design Patterns Roadmap (GoF)](/design-patterns/)
 
 ### ধাপ ৩: ডেটাবেস ডিজাইন (Low Level Database Design)
 
