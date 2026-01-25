@@ -13,6 +13,7 @@
 - [Core Concepts: Theory & Q&A](./core-concepts)
 - [Database & Storage: Deep-Dive](./database-storage)
 - [Database Scaling Techniques](./database-scaling)
+- [Caching: Deep-Dive](./caching)
 
 ### ধাপ ২: ডিজাইন প্রবলেমস (Design Problems)
 
