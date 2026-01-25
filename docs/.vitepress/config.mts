@@ -657,18 +657,17 @@ export default defineConfig({
             { text: 'Module 3: Installation', link: '/kafka/installation' },
             { text: 'Module 4: CLI', link: '/kafka/cli' },
             { text: 'Module 5: Configurations', link: '/kafka/configurations' },
+            { text: 'Module 6: Architecture', link: '/kafka/architecture' },
+            { text: 'Module 7: Performance', link: '/kafka/performance' },
+            { text: 'Module 8: GUI Tools', link: '/kafka/gui-tools' },
+            { text: 'Module 9: Security', link: '/kafka/security' },
+            { text: 'Module 10: Multi-node Setup', link: '/kafka/multi-node-cluster' },
           ]
         },
         {
           text: 'Modules (Coming Soon)',
           collapsed: true,
-          items: [
-            { text: 'Module 6: Architecture', link: '/kafka/' },
-            { text: 'Module 7: Performance', link: '/kafka/' },
-            { text: 'Module 8: GUI Tools', link: '/kafka/' },
-            { text: 'Module 9: Security', link: '/kafka/' },
-            { text: 'Module 10: Multi-node Setup', link: '/kafka/' },
-          ]
+          items: []
         }
       ]
     },

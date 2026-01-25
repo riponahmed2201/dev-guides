@@ -34,23 +34,23 @@
 
 ### মডিউল ৬: ক্লায়েন্ট-সার্ভার আর্কিটেকচার (Client - Server Architecture)
 
-কিভাবে ক্লায়েন্ট কাফকা ক্লাস্টারের সাথে কানেক্ট হয়।
+- [Kafka Client-Server Architecture & Connection Flow](./architecture)
 
 ### মডিউল ৭: কাফকা পারফরম্যান্স (Kafka Performance)
 
-ডিস্ক, নেটওয়ার্ক, র‍্যাম এবং সিপিইউ অপ্টিমাইজেশন।
+- [Kafka Performance Tuning (Disk, RAM, CPU, OS)](./performance)
 
 ### মডিউল ৮: কাফকা গ্রাফিক্যাল টুলস (Kafka GUI Tools)
 
-Offset Explorer এবং Conduktor এর ব্যবহার।
+- [Kafka GUI Tools (Offset Explorer, Conduktor)](./gui-tools)
 
 ### মডিউল ৯: কাফকা সিকিউরিটি (Kafka Security)
 
-Encryption, Authentication (SSL/TLS) এবং Authorization (ACL)।
+- [Kafka Security (SSL/TLS, SASL, ACLs)](./security)
 
 ### মডিউল ১০: মাল্টি নোড ক্লাস্টার (Kafka Multi Node Cluster Setup)
 
-জু-কিপার কোরাম এবং ব্রোকার ক্লাস্টার সেটআপ।
+- [Kafka Multi-node Cluster Setup (Zookeeper Quorum & Broker Cluster)](./multi-node-cluster)
 
 ---
 
