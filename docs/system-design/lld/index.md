@@ -23,6 +23,12 @@
 
 - [Consistency & Thread Safety](./concurrency)
 
+### ধাপ ৪: UML ডায়াগ্রাম (Unified Modeling Language)
+
+সিস্টেমের ভিজ্যুয়াল রিপ্রেজেন্টেশন এবং আর্কিটেকচার ড্রয়িং।
+
+- [UML Guide](./uml)
+
 ---
 
 > [!NOTE]
