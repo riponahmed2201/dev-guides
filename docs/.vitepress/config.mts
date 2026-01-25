@@ -654,13 +654,13 @@ export default defineConfig({
             { text: 'Kafka Roadmap', link: '/kafka/' },
             { text: 'Module 1: Introduction', link: '/kafka/introduction' },
             { text: 'Module 2: Components', link: '/kafka/components' },
+            { text: 'Module 3: Installation', link: '/kafka/installation' },
           ]
         },
         {
           text: 'Modules (Coming Soon)',
           collapsed: true,
           items: [
-            { text: 'Module 3: Installation', link: '/kafka/' },
             { text: 'Module 4: CLI', link: '/kafka/' },
             { text: 'Module 5: Configurations', link: '/kafka/' },
             { text: 'Module 6: Architecture', link: '/kafka/' },

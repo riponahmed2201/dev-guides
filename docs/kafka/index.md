@@ -22,7 +22,7 @@
 
 ### মডিউল ৩: কাফকা ইন্সটলেশন (Kafka Single-node Installation)
 
-সিঙ্গেল নোড সেটআপ এবং এনভায়রনমেন্ট কনফিগারেশন।
+- [Kafka Installation Guide (Single Node Setup)](./installation)
 
 ### মডিউল ৪: কাফকা সিএলআই (Kafka CLI)
 
