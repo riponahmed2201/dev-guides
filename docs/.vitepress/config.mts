@@ -23,6 +23,7 @@ export default defineConfig({
       { text: 'Docker', link: '/docker/' },
       { text: 'Node.js', link: '/nodejs/' },
       { text: 'Kafka', link: '/kafka/' },
+      { text: 'RabbitMQ', link: '/rabbitmq/' },
       { text: 'System Design', link: '/system-design/' }
     ],
     sidebar: {
@@ -662,6 +663,25 @@ export default defineConfig({
             { text: 'Module 8: GUI Tools', link: '/kafka/gui-tools' },
             { text: 'Module 9: Security', link: '/kafka/security' },
             { text: 'Module 10: Multi-node Setup', link: '/kafka/multi-node-cluster' },
+          ]
+        }
+      ],
+      '/rabbitmq/': [
+        {
+          text: 'RabbitMQ',
+          collapsed: false,
+          items: [
+            { text: 'RabbitMQ Roadmap', link: '/rabbitmq/' },
+            { text: 'Module 1: Introduction', link: '/rabbitmq/introduction' },
+            { text: 'Module 2: Installation', link: '/rabbitmq/installation' },
+            { text: 'Module 3: Core Concepts', link: '/rabbitmq/core-concepts' },
+            { text: 'Module 4: Exchanges & Routing', link: '/rabbitmq/exchanges-routing' },
+            { text: 'Module 5: Message Patterns', link: '/rabbitmq/message-patterns' },
+            { text: 'Module 6: Clustering', link: '/rabbitmq/clustering' },
+            { text: 'Module 7: Management', link: '/rabbitmq/management-monitoring' },
+            { text: 'Module 8: Security', link: '/rabbitmq/security' },
+            { text: 'Module 9: Performance', link: '/rabbitmq/performance' },
+            { text: 'Module 10: Best Practices', link: '/rabbitmq/best-practices' },
           ]
         }
       ]
