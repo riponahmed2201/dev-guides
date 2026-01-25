@@ -30,7 +30,7 @@
 
 ### মডিউল ৫: কাফকা কনফিগারেশন (Kafka Configurations)
 
-ব্রোকার এবং টপিক লেভেলের বিভিন্ন কনফিগারেশন।
+- [Kafka Broker & Topic Configurations (with Framework examples)](./configurations)
 
 ### মডিউল ৬: ক্লায়েন্ট-সার্ভার আর্কিটেকচার (Client - Server Architecture)
 
