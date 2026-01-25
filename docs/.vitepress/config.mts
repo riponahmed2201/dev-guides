@@ -21,8 +21,8 @@ export default defineConfig({
       { text: 'Django', link: '/django/' },
       { text: 'DRF', link: '/django-rest-framework/' },
       { text: 'Docker', link: '/docker/' },
-      { text: 'Docker', link: '/docker/' },
       { text: 'Node.js', link: '/nodejs/' },
+      { text: 'Kafka', link: '/kafka/' },
       { text: 'System Design', link: '/system-design/' }
     ],
     sidebar: {
@@ -643,6 +643,31 @@ export default defineConfig({
             { text: 'Distributed Key-Value Store', link: '/system-design/interview/problems/key-value-store' },
             { text: 'Distributed Job Scheduler', link: '/system-design/interview/problems/job-scheduler' },
             { text: 'Unique ID Generator', link: '/system-design/interview/problems/unique-id-generator' },
+          ]
+        }
+      ],
+      '/kafka/': [
+        {
+          text: 'Apache Kafka',
+          collapsed: false,
+          items: [
+            { text: 'Kafka Roadmap', link: '/kafka/' },
+            { text: 'Module 1: Introduction', link: '/kafka/introduction' },
+          ]
+        },
+        {
+          text: 'Modules (Coming Soon)',
+          collapsed: true,
+          items: [
+            { text: 'Module 2: Components', link: '/kafka/' },
+            { text: 'Module 3: Installation', link: '/kafka/' },
+            { text: 'Module 4: CLI', link: '/kafka/' },
+            { text: 'Module 5: Configurations', link: '/kafka/' },
+            { text: 'Module 6: Architecture', link: '/kafka/' },
+            { text: 'Module 7: Performance', link: '/kafka/' },
+            { text: 'Module 8: GUI Tools', link: '/kafka/' },
+            { text: 'Module 9: Security', link: '/kafka/' },
+            { text: 'Module 10: Multi-node Setup', link: '/kafka/' },
           ]
         }
       ]
