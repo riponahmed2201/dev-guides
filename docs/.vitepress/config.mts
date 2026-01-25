@@ -663,11 +663,6 @@ export default defineConfig({
             { text: 'Module 9: Security', link: '/kafka/security' },
             { text: 'Module 10: Multi-node Setup', link: '/kafka/multi-node-cluster' },
           ]
-        },
-        {
-          text: 'Modules (Coming Soon)',
-          collapsed: true,
-          items: []
         }
       ]
     },
