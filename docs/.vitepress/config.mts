@@ -611,6 +611,7 @@ export default defineConfig({
             { text: 'Database & Storage', link: '/system-design/interview/database-storage' },
             { text: 'Database Scaling', link: '/system-design/interview/database-scaling' },
             { text: 'Caching & CDN', link: '/system-design/interview/caching' },
+            { text: 'Networking', link: '/system-design/interview/networking' },
           ]
         }
       ]
