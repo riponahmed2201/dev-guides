@@ -100,7 +100,14 @@
 - [SQL vs NoSQL Tradeoffs](./step-11-tradeoffs/sql-nosql-tradeoff)
 - [Performance Tradeoffs (Latency vs Memory/Throughput/Accuracy)](./step-11-tradeoffs/latency-tradeoffs)
 
-### ধাপ ১২: প্র্যাকটিস এবং কেস স্টাডি (Practice & Case Studies)
+### ধাপ ১২: লো-লেভেল ডিজাইন (Low Level Design - LLD)
+
+হাই-লেভেল ডিজাইনের পর কোড লেভেলে সিস্টেমকে নিখুঁতভাবে ডিজাইন করার পদ্ধতি:
+
+- [LLD Introduction & Roadmap](./lld/index)
+- [OOP Fundamentals & SOLID Principles](./lld/oop-solid)
+
+### ধাপ ১৩: প্র্যাকটিস এবং কেস স্টাডি (Practice & Case Studies)
 
 থিওরি শেখার পর এখন বড় সিস্টেম ডিজাইন করার পালা।
 

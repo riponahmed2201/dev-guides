@@ -580,6 +580,14 @@ export default defineConfig({
           ]
         },
         {
+          text: 'LLD: Low Level Design',
+          collapsed: false,
+          items: [
+            { text: 'LLD Introduction', link: '/system-design/lld/' },
+            { text: 'OOP & SOLID', link: '/system-design/lld/oop-solid' },
+          ]
+        },
+        {
           text: 'HLD: Practice',
           collapsed: false,
           items: [
