@@ -438,6 +438,7 @@ export default defineConfig({
       '/nodejs/': [
         {
           text: 'Level 1: Foundation (Beginner)',
+          collapsed: false,
           items: [
             { text: 'Introduction', link: '/nodejs/' },
             { text: 'Prerequisites & Setup', link: '/nodejs/prerequisites' },
@@ -451,6 +452,7 @@ export default defineConfig({
         },
         {
           text: 'Level 2: Intermediate',
+          collapsed: true,
           items: [
             { text: 'Express.js Framework', link: '/nodejs/express' },
             { text: 'RESTful API Development', link: '/nodejs/rest-api' },
@@ -464,12 +466,36 @@ export default defineConfig({
         },
         {
           text: 'Level 3: Advanced',
+          collapsed: true,
           items: [
             { text: 'Advanced Express Patterns', link: '/nodejs/advanced-express' },
+            { text: 'NestJS Framework', link: '/nodejs/nestjs' },
+            { text: 'Prisma ORM', link: '/nodejs/prisma' },
             { text: 'Asynchronous Programming', link: '/nodejs/async-programming' },
             { text: 'Streams & Buffers', link: '/nodejs/streams-buffers' },
             { text: 'Real-time Communication', link: '/nodejs/realtime-communication' },
             { text: 'Testing & Quality Assurance', link: '/nodejs/testing-quality' },
+            { text: 'API Documentation', link: '/nodejs/api-docs' },
+            { text: 'Logging & Monitoring', link: '/nodejs/logging' },
+            { text: 'Caching (Redis)', link: '/nodejs/caching' },
+            { text: 'Background Jobs & Queues', link: '/nodejs/background-jobs' },
+            { text: 'GraphQL', link: '/nodejs/graphql' },
+          ]
+        },
+        {
+          text: 'Level 4: Expert',
+          collapsed: true,
+          items: [
+            { text: 'Microservices Architecture', link: '/nodejs/microservices' },
+            { text: 'gRPC & tRPC', link: '/nodejs/grpc-trpc' },
+            { text: 'Message Queues (RabbitMQ, Kafka)', link: '/nodejs/message-queues' },
+            { text: 'Docker & Kubernetes', link: '/nodejs/docker-k8s' },
+            { text: 'CI/CD & DevOps', link: '/nodejs/cicd' },
+            { text: 'Cloud Platforms (AWS, Azure)', link: '/nodejs/cloud' },
+            { text: 'Performance Optimization', link: '/nodejs/performance' },
+            { text: 'Security Advanced', link: '/nodejs/security-advanced' },
+            { text: 'TypeScript with Node.js', link: '/nodejs/typescript' },
+            { text: 'System Design', link: '/nodejs/system-design' },
           ]
         }
       ],
