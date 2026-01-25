@@ -601,6 +601,14 @@ export default defineConfig({
             { text: 'Designing WhatsApp', link: '/system-design/step-12-practice/whatsapp' },
             { text: 'Designing Uber', link: '/system-design/step-12-practice/uber' },
           ]
+        },
+        {
+          text: 'System Design Interview',
+          collapsed: false,
+          items: [
+            { text: 'Interview Guide', link: '/system-design/interview/' },
+            { text: 'Core Concepts Q&A', link: '/system-design/interview/core-concepts' },
+          ]
         }
       ]
     },

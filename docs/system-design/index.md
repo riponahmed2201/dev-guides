@@ -116,6 +116,13 @@
 - [Designing WhatsApp (Real-time Chat)](./step-12-practice/whatsapp)
 - [Designing Uber/Pathao (Ride Sharing)](./step-12-practice/uber)
 
+### ধাপ ১৪: ইন্টারভিউ প্রস্তুতি (Interview Preparation)
+
+সিস্টেম ডিজাইন ইন্টারভিউ ক্র্যাক করার জন্য প্রয়োজনীয় টিপস এবং কোর কনসেপ্টের প্রশ্নোত্তর:
+
+- [Interview Guide & Roadmap](./interview/index)
+- [Core Concepts: Theory & Q&A](./interview/core-concepts)
+
 ---
 
 > [!TIP]
