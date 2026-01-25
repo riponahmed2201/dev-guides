@@ -15,13 +15,36 @@
 - [Database Scaling Techniques](./database-scaling)
 - [Caching: Deep-Dive](./caching)
 - [Networking: Theory & Q&A](./networking)
+- [API Architecture & Design](./api-design)
+- [Asynchronous Systems](./asynchronous)
+- [System Design Tradeoffs](./tradeoffs)
+- [Distributed System Concepts](./distributed-systems)
+- [Microservices Patterns](./microservices)
+- [Big Data Processing](./big-data)
+- [Architectural Patterns](./architectural-patterns)
+- [Observability: Logging, Monitoring & Chaos](./observability)
+- [System Security: Auth, JWT & SSL](./security)
+- [System Design Interview Tips](./tips)
 
 ### ধাপ ২: ডিজাইন প্রবলেমস (Design Problems)
 
 রিয়েল-ওয়ার্ল্ড সিস্টেম ডিজাইনের কেস স্টাডি।
 
-- [Designing YouTube/Netflix](../step-12-practice/youtube)
-- [Designing WhatsApp](../step-12-practice/whatsapp)
+- [Design a URL Shortener](./problems/url-shortener)
+- [Design WhatsApp](./problems/whatsapp)
+- [Design Instagram](./problems/instagram)
+- [Design Spotify](./problems/spotify)
+- [Design Youtube](./problems/youtube)
+- [Design Uber](./problems/uber)
+- [Design Twitter](./problems/twitter)
+- [Design Google Docs](./problems/google-docs)
+- [Proximity Service (Yelp)](./problems/proximity-service)
+- [Distributed Rate Limiter](./problems/rate-limiter)
+- [Web Crawler](./problems/web-crawler)
+- [Scalable Notification Service](./problems/notification-service)
+- [Distributed Key-Value Store](./problems/key-value-store)
+- [Distributed Job Scheduler](./problems/job-scheduler)
+- [Unique ID Generator](./problems/unique-id-generator)
 
 ---
 

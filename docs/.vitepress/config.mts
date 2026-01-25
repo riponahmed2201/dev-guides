@@ -612,6 +612,37 @@ export default defineConfig({
             { text: 'Database Scaling', link: '/system-design/interview/database-scaling' },
             { text: 'Caching & CDN', link: '/system-design/interview/caching' },
             { text: 'Networking', link: '/system-design/interview/networking' },
+            { text: 'API Architecture & Design', link: '/system-design/interview/api-design' },
+            { text: 'Asynchronous Systems', link: '/system-design/interview/asynchronous' },
+            { text: 'System Design Tradeoffs', link: '/system-design/interview/tradeoffs' },
+            { text: 'Distributed System Concepts', link: '/system-design/interview/distributed-systems' },
+            { text: 'Microservices Patterns', link: '/system-design/interview/microservices' },
+            { text: 'Big Data Processing', link: '/system-design/interview/big-data' },
+            { text: 'Architectural Patterns', link: '/system-design/interview/architectural-patterns' },
+            { text: 'Observability', link: '/system-design/interview/observability' },
+            { text: 'System Security', link: '/system-design/interview/security' },
+            { text: 'Interview Tips', link: '/system-design/interview/tips' },
+          ]
+        },
+        {
+          text: 'ডিজাইন প্রবলেমস (Design Problems)',
+          collapsed: true,
+          items: [
+            { text: 'URL Shortener', link: '/system-design/interview/problems/url-shortener' },
+            { text: 'WhatsApp', link: '/system-design/interview/problems/whatsapp' },
+            { text: 'Instagram', link: '/system-design/interview/problems/instagram' },
+            { text: 'Spotify', link: '/system-design/interview/problems/spotify' },
+            { text: 'Youtube', link: '/system-design/interview/problems/youtube' },
+            { text: 'Uber', link: '/system-design/interview/problems/uber' },
+            { text: 'Twitter', link: '/system-design/interview/problems/twitter' },
+            { text: 'Google Docs', link: '/system-design/interview/problems/google-docs' },
+            { text: 'Proximity Service (Yelp)', link: '/system-design/interview/problems/proximity-service' },
+            { text: 'Distributed Rate Limiter', link: '/system-design/interview/problems/rate-limiter' },
+            { text: 'Web Crawler', link: '/system-design/interview/problems/web-crawler' },
+            { text: 'Notification Service', link: '/system-design/interview/problems/notification-service' },
+            { text: 'Distributed Key-Value Store', link: '/system-design/interview/problems/key-value-store' },
+            { text: 'Distributed Job Scheduler', link: '/system-design/interview/problems/job-scheduler' },
+            { text: 'Unique ID Generator', link: '/system-design/interview/problems/unique-id-generator' },
           ]
         }
       ]
