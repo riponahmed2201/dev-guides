@@ -11,6 +11,7 @@
 সিস্টেম ডিজাইনের মূল ভিত্তিগুলো এবং সেগুলোর ওপর ইন্টারভিউ প্রশ্নোত্তর।
 
 - [Core Concepts: Theory & Q&A](./core-concepts)
+- [Database & Storage: Deep-Dive](./database-storage)
 
 ### ধাপ ২: ডিজাইন প্রবলেমস (Design Problems)
 
