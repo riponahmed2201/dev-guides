@@ -17,9 +17,11 @@
 - [Design Patterns Deep-Dive](./design-patterns)
 - [Design Patterns Roadmap (GoF)](/design-patterns/)
 
-### ধাপ ৩: ডেটাবেস ডিজাইন (Low Level Database Design)
+### ধাপ ৩: কনকারেন্সি এবং থ্রেড সেফটি (Consistency & Thread Safety)
 
-টেবিল স্ট্রাকচার, ইনডেক্সিং এবং কুয়েরি অপ্টিমাইজেশন।
+মাল্টি-থ্রেডেড ডাটা হ্যান্ডলিং এবং সিনক্রোনাইজেশন।
+
+- [Consistency & Thread Safety](./concurrency)
 
 ---
 

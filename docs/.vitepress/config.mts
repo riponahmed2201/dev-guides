@@ -586,6 +586,7 @@ export default defineConfig({
             { text: 'LLD Introduction', link: '/system-design/lld/' },
             { text: 'OOP & SOLID', link: '/system-design/lld/oop-solid' },
             { text: 'Design Patterns', link: '/system-design/lld/design-patterns' },
+            { text: 'Concurrency & Thread Safety', link: '/system-design/lld/concurrency' },
           ]
         },
         {
