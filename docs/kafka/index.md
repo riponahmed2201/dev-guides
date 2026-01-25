@@ -18,7 +18,7 @@
 
 ব্রোকার, টপিক, পার্টীশন এবং রিলেটেড থিওরি।
 
-- Broker, Zookeeper, Topics, Partition, Replication, Producer, Consumer.
+- [Kafka Components (Broker, Topics, Partition etc.)](./components)
 
 ### মডিউল ৩: কাফকা ইন্সটলেশন (Kafka Single-node Installation)
 
