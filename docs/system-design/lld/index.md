@@ -35,6 +35,12 @@
 
 - [API Design Guide](./api-design)
 
+### ধাপ ৬: প্র্যাকটিক্যাল LLD ইন্টারভিউ প্রবলেমস (Common LLD Problems)
+
+রিয়েল-ওয়ার্ল্ড প্রবলেম সলভ করে আপনার LLD স্কিল ঝালাই করুন।
+
+- [Common LLD Problems Deep-Dive](./problems/index)
+
 ---
 
 > [!NOTE]

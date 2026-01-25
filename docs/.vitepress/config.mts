@@ -589,6 +589,7 @@ export default defineConfig({
             { text: 'Concurrency & Thread Safety', link: '/system-design/lld/concurrency' },
             { text: 'UML Diagrams', link: '/system-design/lld/uml' },
             { text: 'API Design & Clean Code', link: '/system-design/lld/api-design' },
+            { text: 'Practical LLD Problems', link: '/system-design/lld/problems/' },
           ]
         },
         {
