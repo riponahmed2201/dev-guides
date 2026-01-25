@@ -29,6 +29,12 @@
 
 - [UML Guide](./uml)
 
+### ধাপ ৫: API ডিজাইন এবং ক্লিন কোড (API & Clean Code)
+
+রিকোয়েস্ট/রেসপন্স মডেলিং, ভার্সনিং এবং রাইটিং ক্লিন কোড।
+
+- [API Design Guide](./api-design)
+
 ---
 
 > [!NOTE]
