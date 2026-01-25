@@ -609,6 +609,7 @@ export default defineConfig({
             { text: 'Interview Guide', link: '/system-design/interview/' },
             { text: 'Core Concepts Q&A', link: '/system-design/interview/core-concepts' },
             { text: 'Database & Storage', link: '/system-design/interview/database-storage' },
+            { text: 'Database Scaling', link: '/system-design/interview/database-scaling' },
           ]
         }
       ]
