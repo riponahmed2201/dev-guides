@@ -312,6 +312,7 @@ export default defineConfig({
             { text: 'Deployment - Cloud Platforms', link: '/django/deployment-cloud' },
             { text: 'Scalability', link: '/django/scalability' },
             { text: 'GraphQL with Django', link: '/django/graphql' },
+            { text: 'Django and Microservices', link: '/django/microservices' },
           ]
         }
       ],

@@ -83,3 +83,4 @@ Django কাজ করে MVT আর্কিটেকচারে:
 11. [Static Files](/django/static-files)
     ... (Roadmap remains here as a summary)
     [GraphQL with Django](/django/graphql)
+12. [Django and Microservices](/django/microservices)
