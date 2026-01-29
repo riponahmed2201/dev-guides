@@ -311,6 +311,7 @@ export default defineConfig({
             { text: 'Deployment - Docker', link: '/django/deployment-docker' },
             { text: 'Deployment - Cloud Platforms', link: '/django/deployment-cloud' },
             { text: 'Scalability', link: '/django/scalability' },
+            { text: 'GraphQL with Django', link: '/django/graphql' },
           ]
         }
       ],
