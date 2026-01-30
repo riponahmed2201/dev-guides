@@ -49,7 +49,8 @@ export default defineConfig({
         text: 'CS Fundamentals',
         items: [
           { text: 'Operating System', link: '/os/' },
-          { text: 'Networking', link: '/networking/' }
+          { text: 'Networking', link: '/networking/' },
+          { text: 'DSA', link: '/dsa/' }
         ]
       }
     ],
@@ -848,6 +849,25 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'Interview Q&A', link: '/git/interview' },
+          ]
+        }
+      ],
+      '/dsa/': [
+        {
+          text: 'Level 1: Foundation',
+          collapsed: false,
+          items: [
+            { text: 'Introduction', link: '/dsa/' },
+            { text: '1. DSA Introduction', link: '/dsa/intro' },
+            { text: '2. Algorithm Analysis', link: '/dsa/algorithm-analysis' },
+            { text: '3. Big O Notation', link: '/dsa/big-o-notation' },
+            { text: '4. Space Complexity', link: '/dsa/space-complexity' },
+            { text: '5. Mathematics', link: '/dsa/mathematics' },
+            { text: '6. Bit Manipulation', link: '/dsa/bit-manipulation' },
+            { text: '7. Arrays - Introduction', link: '/dsa/arrays-intro' },
+            { text: '8. Array Operations', link: '/dsa/array-operations' },
+            { text: '9. Basic Array Problems', link: '/dsa/array-problems-basic' },
+            { text: '10. Two Pointer Technique', link: '/dsa/two-pointer' },
           ]
         }
       ],
