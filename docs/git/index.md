@@ -4,7 +4,7 @@ Git হলো আধুনিক সফটওয়্যার ডেভেল�
 
 ## Learning Path
 
-### [Level 1: Foundations](/git/foundations)
+### [Foundations](/git/foundations)
 
 - **Version Control Concepts:** Centralized vs Distributed.
 - **Setup:** Installation & Configuration.
@@ -13,25 +13,25 @@ Git হলো আধুনিক সফটওয়্যার ডেভেল�
 
 ---
 
-### [Level 2: Branching & Merging](/git/branching-merging)
+### [Branching & Merging](/git/branching-merging)
 
 - **Branch Management:** Create, Switch, Delete.
 - **Merging & Conflicts:** Fast-forward, 3-Way, Conflict Resolution.
 - **Rebase:** Linear history maintenance.
 
-### [Level 3: Remote Repositories](/git/remote-repositories)
+### [Remote Repositories](/git/remote-repositories)
 
 - **Remotes:** Manage remote URLs (`origin`).
 - **Syncing:** `push`, `pull`, `fetch`.
 - **Workflow:** Tracking branches & Pull Requests.
 
-### [Level 4: Collaboration & Workflows](/git/collaboration-workflows)
+### [Collaboration & Workflows](/git/collaboration-workflows)
 
 - **Workflows:** Feature Branch, Gitflow, Trunk-Based.
 - **Process:** Pull Requests & Code Reviews.
 - **Strategy:** Monorepo pros/cons.
 
-### [Level 5: Undoing & Cleaning](/git/undoing-cleaning)
+### [Undoing & Cleaning](/git/undoing-cleaning)
 
 - **Undoing:** `reset`, `revert`.
 - **Restoring:** Discard local changes.
@@ -39,7 +39,7 @@ Git হলো আধুনিক সফটওয়্যার ডেভেল�
 
 ---
 
-### [Level 6: Advanced Topics](/git/advanced)
+### [Advanced Topics](/git/advanced)
 
 - **Internals:** Blobs, Trees, Commits.
 - **Power Tools:** `cherry-pick`, `reflog`, `bisect`.
@@ -47,7 +47,7 @@ Git হলো আধুনিক সফটওয়্যার ডেভেল�
 
 ---
 
-### [Level 7: Best Practices](/git/best-practices)
+### [Best Practices](/git/best-practices)
 
 - **Commit Conventions:** Conventional Commits, message formatting.
 - **Branch Naming:** Standard prefixes, team conventions.
