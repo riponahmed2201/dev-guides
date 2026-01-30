@@ -874,6 +874,13 @@ export default defineConfig({
             { text: '14. Basic Sorting', link: '/dsa/sorting-basic' },
             { text: '15. Basic Searching', link: '/dsa/searching-basic' }
           ]
+        },
+        {
+          text: 'Level 2: Intermediate',
+          collapsed: false,
+          items: [
+            { text: '16. Recursion Fundamentals', link: '/dsa/recursion-fundamentals' }
+          ]
         }
       ],
     },

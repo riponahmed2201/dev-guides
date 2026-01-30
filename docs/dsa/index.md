@@ -160,5 +160,20 @@ DSA শেখা প্রোগ্রামিং ক্যারিয়ার�
 
 ---
 
+## 📚 Level 2: Intermediate - Core Data Structures
+
+### [16. Recursion - Fundamentals](./recursion-fundamentals.md)
+
+- Recursion কি
+- Base case এবং Recursive case
+- Call stack
+- Direct vs Indirect recursion
+- Tail recursion
+- Stack overflow
+- Recursion tree
+- When to use recursion
+
+---
+
 > [!TIP]
 > DSA শিখার সময় তাড়াহুড়ো করবেন না। প্রতিটি কনসেপ্ট ভালোমতো বুঝে তারপর সামনের দিকে আগাবেন।
