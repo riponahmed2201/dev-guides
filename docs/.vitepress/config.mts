@@ -760,6 +760,7 @@ export default defineConfig({
             { text: 'OS Fundamentals Q&A', link: '/os/interview-qa' },
             { text: 'Processes & Threads Q&A', link: '/os/interview-processes-threads' },
             { text: 'Deadlocks & Synchronization Q&A', link: '/os/interview-deadlocks' },
+            { text: 'File System & Disk Q&A', link: '/os/interview-filesystem' },
           ]
         }
       ]

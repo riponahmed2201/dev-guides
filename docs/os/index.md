@@ -132,4 +132,10 @@
 3. [Deadlocks & Synchronization Q&A](/os/interview-deadlocks)
    - Banker's Algorithm, Spinlock vs Mutex
    - Dining Philosophers, Readers-Writers Problems
+
    - Priority Inversion (Mars Pathfinder), Deadlock Recovery
+
+4. [File System & Disk Q&A](/os/interview-filesystem)
+   - Inodes, Hard vs Soft Links, Journaling
+   - RAID Levels, Disk Scheduling Algorithms
+   - Scenario: Deleting open files, SSD vs HDD I/O
