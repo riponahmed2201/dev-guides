@@ -793,7 +793,7 @@ export default defineConfig({
       ],
       '/git/': [
         {
-          text: 'Level 1: Foundations',
+          text: 'Foundations',
           collapsed: false,
           items: [
             { text: 'Introduction', link: '/git/' },
@@ -801,7 +801,7 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Level 2: Core Concepts',
+          text: 'Core Concepts',
           collapsed: false,
           items: [
             { text: 'Branching & Merging', link: '/git/branching-merging' },
@@ -809,28 +809,28 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Level 3: Advanced Workflows',
+          text: 'Advanced Workflows',
           collapsed: false,
           items: [
             { text: 'Collaboration & Workflows', link: '/git/collaboration-workflows' },
           ]
         },
         {
-          text: 'Level 4: Tips & Utilities',
+          text: 'Tips & Utilities',
           collapsed: false,
           items: [
             { text: 'Undoing & Cleaning', link: '/git/undoing-cleaning' },
           ]
         },
         {
-          text: 'Level 5: Advanced Topics',
+          text: 'Advanced Topics',
           collapsed: false,
           items: [
             { text: 'Advanced Git', link: '/git/advanced' },
           ]
         },
         {
-          text: 'Level 6: Best Practices',
+          text: 'Best Practices',
           collapsed: false,
           items: [
             { text: 'Best Practices', link: '/git/best-practices' },
@@ -841,6 +841,13 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'Hands-on Projects', link: '/git/projects' },
+          ]
+        },
+        {
+          text: 'Interview Preparation',
+          collapsed: false,
+          items: [
+            { text: 'Interview Q&A', link: '/git/interview' },
           ]
         }
       ],

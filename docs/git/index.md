@@ -66,3 +66,16 @@ Apply your Git knowledge through practical projects:
 3. **Git Hooks Automation** - Code quality and workflow automation
 4. **Open Source Contribution** - Fork, PR, and code review process
 5. **CI/CD with GitHub Actions** - Automated testing and deployment
+
+---
+
+## [Interview Preparation](/git/interview)
+
+Comprehensive Q&A for technical interviews:
+
+- **Basic Commands** - init, clone, add, commit, status, log, fetch, pull, reset
+- **Rebase vs Merge** - Differences, use cases, conflict resolution
+- **Collaboration Workflows** - Gitflow, feature branch, trunk-based development
+- **Branching & Merging** - Fast-forward, 3-way merge, conflict scenarios
+- **Debugging** - reflog, bisect, recovering lost commits
+- **Additional Topics** - Internals, stash, cherry-pick, hooks, submodules
