@@ -733,6 +733,13 @@ export default defineConfig({
             { text: 'Introduction', link: '/os/' },
             { text: 'Foundations', link: '/os/foundations' },
             { text: 'Processes & Threads', link: '/os/processes-threads' },
+            { text: 'Concurrency & Synchronization', link: '/os/concurrency-sync' },
+            { text: 'Memory Management', link: '/os/memory-management' },
+            { text: 'File Systems & Storage', link: '/os/file-systems' },
+            { text: 'I/O & Device Management', link: '/os/io-device-management' },
+            { text: 'Security & Protection', link: '/os/security-protection' },
+            { text: 'Distributed OS Concepts', link: '/os/distributed-concepts' },
+            { text: 'Advanced Topics', link: '/os/advanced-topics' },
           ]
         }
       ]

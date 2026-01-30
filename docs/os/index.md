@@ -1,6 +1,6 @@
 # Operating System Roadmap
 
-অপারেটিং সিস্টেম (OS) হলো কম্পিউটারের হার্ডওয়্যার এবং ইউজারের মধ্যে একটি ইন্টারফেস। একজন সফটওয়্যার ইঞ্জিনিয়ার হিসেবে OS-এর ইন্টারনাল মেকানিজম জানা অত্যন্ত জরুরি।
+অপারেটিং সিস্টেম (OS) হলো কম্পিউটারের হার্ডওয়্যার এবং ইউজারের মধ্যে একটি ইন্টারফেস। একজন সফটওয়্যার ইঞ্জিনিয়ার হিসেবে OS-এর ইন্টারনাল মেকানিজম জানা অত্যন্ত জরুরি।
 
 ## Foundations
 
@@ -23,24 +23,65 @@
 
 ## Concurrency & Synchronization
 
-_(Coming Soon)_
+1. [Concurrency & Synchronization](/os/concurrency-sync)
+   - Race Conditions
+   - Locks & Semaphores
+   - Deadlocks
+   - Critical Sections
+   - Monitors & Condition Variables
 
 ## Memory Management
 
-_(Coming Soon)_
+1. [Memory Management](/os/memory-management)
+   - Physical & Virtual Memory
+   - Paging & Segmentation
+   - Page Replacement Algorithms
+   - Thrashing
+   - Memory Allocation
+   - MMU
 
 ## File Systems & Storage
 
-_(Coming Soon)_
+1. [File Systems & Storage](/os/file-systems)
+   - File System Structure
+   - File Concepts
+   - Directory Implementation
+   - Inodes
+   - Journaling File Systems
+   - Disk Scheduling Algorithms
 
 ## I/O & Device Management
 
-_(Coming Soon)_
+1. [I/O & Device Management](/os/io-device-management)
+   - I/O System Overview
+   - Interrupts
+   - Device Drivers
+   - DMA (Direct Memory Access)
+   - Buffering & Caching
 
 ## Security & Protection
 
-_(Coming Soon)_
+1. [Security & Protection](/os/security-protection)
+   - User Authentication
+   - Capabilities
+   - Sandboxing & Isolation
+   - Access Control Lists
+   - Encryption in OS
 
 ## Distributed OS Concepts
 
-_(Coming Soon)_
+1. [Distributed OS Concepts](/os/distributed-concepts)
+   - Client-Server Model
+   - Distributed File Systems
+   - Consensus (Paxos, Raft)
+   - Process Migration
+   - Clock Synchronization
+
+## Advanced Topics
+
+1. [Advanced Topics](/os/advanced-topics)
+   - Virtualization & Hypervisors
+   - NUMA
+   - Modern OS Internals
+   - Containers vs VMs
+   - Real-Time Operating Systems
