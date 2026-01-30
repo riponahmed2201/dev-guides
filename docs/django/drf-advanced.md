@@ -1,149 +1,72 @@
-# DRF Advanced Topics
+# Django REST Framework (DRF) Advanced
 
-DRF এর বেসিক ফিচারগুলোর বাইরেও প্রোডাকশন গ্রেড API তৈরির জন্য কিছু অ্যাডভান্সড ফিচার জানা প্রয়োজন।
+Django REST Framework (DRF) দিয়ে সাধারণ API তৈরি করা সহজ, তবে প্রোডাকশন লেভেলে এবং জটিল প্রোজেক্টের জন্য কিছু অ্যাডভান্সড ফিচার এবং অপ্টিমাইজেশন জানা প্রয়োজন।
 
-## Filtering
+## 1. Custom Renderers and Parsers
 
-API তে ডেটা ফিল্টার করার জন্য `django-filter` লাইব্রেরিটি সবচেয়ে জনপ্রিয়।
+DRF ডিফল্টভাবে JSON এবং Browsable API রেন্ডার করে। তবে আপনার যদি কাস্টম ফরম্যাট (যেমন- XML বা YAML) প্রয়োজন হয়, তবে আপনি কাস্টম রেন্ডারার তৈরি করতে পারেন।
 
-**Installation:**
-```bash
-pip install django-filter
-```
-
-**Setup:**
-`settings.py` এ `INSTALLED_APPS` এ যোগ করুন এবং `DEFAULT_FILTER_BACKENDS` কনফিগার করুন।
+- **Renderers:** ডেটাকে আউটপুট ফরম্যাটে কনভার্ট করে।
+- **Parsers:** ইনকামিং রিকোয়েস্টের ডেটাকে পাইথন ডিকশনারিতে কনভার্ট করে।
 
 ```python
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
-}
+# Custom XML Renderer example
+from rest_framework.renderers import BaseRenderer
+
+class XMLRenderer(BaseRenderer):
+    media_type = 'application/xml'
+    format = 'xml'
+
+    def render(self, data, accepted_media_type=None, renderer_context=None):
+        # logic to convert data to XML
+        return xml_data
 ```
 
-**Usage in View:**
+## 2. Hyperlinked Serializers
+
+`ModelSerializer` এর পরিবর্তে `HyperlinkedModelSerializer` ব্যবহার করলে API-তে আইডি-র বদলে সরাসরি রিসোর্সের ইউআরএল (URL) রিটার্ন করে। এটি API কে আরও ব্রাউজেবল এবং সেলফ-ডেসক্রিপটিভ করে তোলে।
 
 ```python
-from django_filters.rest_framework import DjangoFilterBackend
-
-class ProductList(generics.ListAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['category', 'in_stock']
-```
-এখন আপনি `/products/?category=electronics&in_stock=true` এভাবে রিকোয়েস্ট করতে পারবেন।
-
-## Searching & Ordering
-
-DRF এর বিল্ট-ইন `SearchFilter` এবং `OrderingFilter` ব্যবহার করা খুব সহজ।
-
-```python
-from rest_framework import filters
-
-class ProductList(generics.ListAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
-    
-    search_fields = ['name', 'description']
-    ordering_fields = ['price', 'created_at']
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email']
 ```
 
-- **Search:** `/products/?search=iphone` (name বা description এ খুঁজবে)
-- **Ordering:** `/products/?ordering=-price` (দাম অনুযায়ী ডিসন্ডিং অর্ডার)
+## 3. API Versioning
 
-## Pagination
+API আপডেট করার সময় পুরনো ইউজারদের সাপোর্ট দেওয়ার জন্য ভার্সনিং প্রয়োজন। DRF-এ কয়েকভাবে ভার্সনিং করা যায়:
 
-গ্লোবালি পেজিনেশন সেট করতে `settings.py` এ কনফিগার করুন:
-
-```python
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
-}
-```
-
-অথবা ভিউ লেভেলে:
+- **URLPathVersioning:** `/api/v1/users/`
+- **QueryParameterVersioning:** `/api/users/?version=1`
+- **AcceptHeaderVersioning:** হেডার দিয়ে ভার্সন কন্ট্রোল করা।
 
 ```python
-class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 100
-    page_size_query_param = 'page_size'
-    max_page_size = 1000
-
-class ProductViewSet(viewsets.ModelViewSet):
-    pagination_class = StandardResultsSetPagination
-```
-
-## Throttling (Rate Limiting)
-
-API কে অ্যাবিউজ থেকে রক্ষা করতে Throttling ব্যবহার করা হয়।
-
-**Global Setup:**
-```python
-REST_FRAMEWORK = {
-    'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle',
-        'rest_framework.throttling.UserRateThrottle'
-    ],
-    'DEFAULT_THROTTLE_RATES': {
-        'anon': '100/day',
-        'user': '1000/day'
-    }
-}
-```
-
-## Versioning
-
-API ভার্সনিং মেইনটেইন করা একটি গুড প্র্যাকটিস। DRF এ `URLPathVersioning` বা `NamespaceVersioning` ব্যবহার করা যায়।
-
-```python
-# settings.py
+# settings.py configuration
 REST_FRAMEWORK = {
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning'
 }
 ```
-URL: `/v1/products/`
 
-## Content Negotiation
+## 4. Nested Routes
 
-DRF ডিফল্টভাবে JSON এবং Browsable API রেন্ডার করে। আপনি চাইলে এটি কন্ট্রোল করতে পারেন।
+জটিল রিলেশনশিপের ক্ষেত্রে (যেমন- `/users/1/posts/`) নেস্টেড রাউট প্রয়োজন হয়। এর জন্য `drf-nested-routers` প্যাকেজটি ব্যাপকভাবে ব্যবহৃত হয়।
 
-```python
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-    ]
-}
-```
-এখন Browsable API ইন্টারফেস আর দেখাবে না, শুধু JSON রিটার্ন করবে।
+## 5. Schema Customization (OpenAPI)
 
-## CORS (Cross-Origin Resource Sharing)
+আপনার API-এর ডকুমেন্টেশন অটোমেট করতে `drf-spectacular` ব্যবহার করা হয়। এটি OpenAPI 3.0 সাপোর্ট করে এবং স্বয়ংক্রিয়ভাবে Swagger UI বা Redoc জেনারেট করে।
 
-ফ্রন্টএন্ড (যেমন: React/Vue) যদি আলাদা ডোমেইন বা পোর্টে থাকে, তবে ব্রাউজার সিকিউরিটির কারণে API কল ব্লক করে দিতে পারে। এটি ফিক্স করতে `django-cors-headers` ব্যবহার করতে হয়।
+## 6. Performance Optimization
 
-**Installation:**
-```bash
-pip install django-cors-headers
-```
+বড় ডেটাসেটের ক্ষেত্রে API স্লো হয়ে যেতে পারে। পারফরম্যান্স বাড়ানোর কিছু উপায়:
 
-**Setup (`settings.py`):**
+- **`select_related` and `prefetch_related`:** ডাটাবেস কোয়েরি কমানোর জন্য।
+- **Pagination:** এক সাথে সব ডেটা না পাঠিয়ে ছোট ছোট পেজে পাঠানো।
+- **Throttling:** রিকোয়েস্টের লিমিট সেট করা যাতে কেউ স্প্যাম করতে না পারে।
 
-```python
-INSTALLED_APPS = [
-    # ...
-    'corsheaders',
-    # ...
-]
+## 7. Caching Strategies
 
-MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # একদম উপরে রাখা ভালো
-    'django.middleware.common.CommonMiddleware',
-    # ...
-]
+API-এর রেসপন্স টাইম কমানোর জন্য ক্যাশিং অত্যন্ত কার্যকর।
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://example.com",
-]
-```
+- **View Caching:** নির্দিষ্ট ভিউ-এর রেজাল্ট ক্যাশ করা।
+- **API Cache:** `drf-extensions` ব্যবহার করে সহজেই মেথড বা ভিউ লেভেলে ক্যাশিং ইমপ্লিমেন্ট করা যায়।
