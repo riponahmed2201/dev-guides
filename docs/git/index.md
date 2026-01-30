@@ -44,3 +44,25 @@ Git হলো আধুনিক সফটওয়্যার ডেভেল�
 - **Internals:** Blobs, Trees, Commits.
 - **Power Tools:** `cherry-pick`, `reflog`, `bisect`.
 - **History:** Interactive Rebase, Hooks.
+
+---
+
+### [Level 7: Best Practices](/git/best-practices)
+
+- **Commit Conventions:** Conventional Commits, message formatting.
+- **Branch Naming:** Standard prefixes, team conventions.
+- **Atomic Commits:** One logical change per commit.
+- **Clean History:** Interactive rebase, squashing, amending.
+- **Code Ownership:** `git blame`, CODEOWNERS file.
+
+---
+
+## [Hands-on Projects](/git/projects)
+
+Apply your Git knowledge through practical projects:
+
+1. **Personal Portfolio Repo** - Professional repository setup with GitHub Pages
+2. **Gitflow Workflow** - Team collaboration and release management
+3. **Git Hooks Automation** - Code quality and workflow automation
+4. **Open Source Contribution** - Fork, PR, and code review process
+5. **CI/CD with GitHub Actions** - Automated testing and deployment

@@ -828,6 +828,20 @@ export default defineConfig({
           items: [
             { text: 'Advanced Git', link: '/git/advanced' },
           ]
+        },
+        {
+          text: 'Level 6: Best Practices',
+          collapsed: false,
+          items: [
+            { text: 'Best Practices', link: '/git/best-practices' },
+          ]
+        },
+        {
+          text: 'Projects',
+          collapsed: false,
+          items: [
+            { text: 'Hands-on Projects', link: '/git/projects' },
+          ]
         }
       ],
     },
