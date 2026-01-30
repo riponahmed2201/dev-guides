@@ -13,19 +13,44 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Python', link: '/python/' },
-      { text: 'Networking', link: '/networking/' },
-      { text: 'Design Patterns', link: '/design-patterns/' },
-      { text: 'Architecture', link: '/solution-architecture/' },
-      { text: 'FastAPI', link: '/fastapi/' },
-      { text: 'Django', link: '/django/' },
-      { text: 'DRF', link: '/django-rest-framework/' },
-      { text: 'Docker', link: '/docker/' },
-      { text: 'Node.js', link: '/nodejs/' },
-      { text: 'Kafka', link: '/kafka/' },
-      { text: 'RabbitMQ', link: '/rabbitmq/' },
-      { text: 'System Design', link: '/system-design/' },
-      { text: 'Operating System', link: '/os/' }
+      {
+        text: 'Languages',
+        items: [
+          { text: 'Python', link: '/python/' },
+          { text: 'Node.js', link: '/nodejs/' }
+        ]
+      },
+      {
+        text: 'Backend Frameworks',
+        items: [
+          { text: 'Django', link: '/django/' },
+          { text: 'FastAPI', link: '/fastapi/' },
+          { text: 'DRF', link: '/django-rest-framework/' }
+        ]
+      },
+      {
+        text: 'DevOps & Tools',
+        items: [
+          { text: 'Docker', link: '/docker/' },
+          { text: 'Kafka', link: '/kafka/' },
+          { text: 'RabbitMQ', link: '/rabbitmq/' }
+        ]
+      },
+      {
+        text: 'Architecture & Design',
+        items: [
+          { text: 'System Design', link: '/system-design/' },
+          { text: 'Architecture', link: '/solution-architecture/' },
+          { text: 'Design Patterns', link: '/design-patterns/' }
+        ]
+      },
+      {
+        text: 'CS Fundamentals',
+        items: [
+          { text: 'Operating System', link: '/os/' },
+          { text: 'Networking', link: '/networking/' }
+        ]
+      }
     ],
     sidebar: {
       '/python/': [
