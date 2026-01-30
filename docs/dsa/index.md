@@ -111,6 +111,45 @@ DSA শেখা প্রোগ্রামিং ক্যারিয়ার�
 - Trapping rainwater (basic)
 - Sort colors (Dutch flag)
 
+### [11. Sliding Window - Basic](./sliding-window.md)
+
+- Fixed size window
+- Variable size window
+- Maximum sum subarray (fixed k)
+- First negative in window
+- Substring problems (basic)
+
+### [12. Strings - Basics](./strings-basics.md)
+
+- String কি
+- String vs Character array
+- String declaration
+- String length
+- String traversal
+- String concatenation
+- String comparison
+- Immutability (language dependent)
+
+### [13. String Operations](./string-operations.md)
+
+- Character access
+- Substring extraction
+- String reversal
+- Palindrome check
+- Character frequency count
+- Anagram check
+- String searching
+- Case conversion
+
+### [15. Basic Searching](./searching-basic.md)
+
+- Linear Search
+- Binary Search (basics)
+- Time complexity comparison
+- Search in sorted array
+- Search in rotated array (basic)
+- First and last occurrence
+
 ---
 
 > [!TIP]

@@ -10,11 +10,11 @@
 
 সব এলিমেন্টকে এক ঘর ডানে সরাতে হয়।
 
-- **Time Complexity:** $O(n)$
+- **Time Complexity:** O(n)
 
-````carousel
+#### Java Implementation
+
 ```java
-// Java Implementation
 public void insertAtBeginning(int[] arr, int size, int element) {
     for (int i = size; i > 0; i--) {
         arr[i] = arr[i - 1];
@@ -22,25 +22,25 @@ public void insertAtBeginning(int[] arr, int size, int element) {
     arr[0] = element;
 }
 ```
-<!-- slide -->
+
+#### Python Implementation
+
 ```python
-# Python Implementation
 def insert_at_beginning(arr, element):
     arr.insert(0, element)
 ```
-````
 
 ### শেষে যোগ করা (At End)
 
 যদি জায়গা থাকে, তবে সরাসরি শেষে বসানো যায়।
 
-- **Time Complexity:** $O(1)$
+- **Time Complexity:** O(1)
 
 ### যেকোনো পজিশনে (At Position)
 
 নির্দিষ্ট ইন্ডেক্সের পরের সব এলিমেন্টকে ডানে সরাতে হয়।
 
-- **Time Complexity:** $O(n)$
+- **Time Complexity:** O(n)
 
 ---
 
@@ -52,25 +52,25 @@ def insert_at_beginning(arr, element):
 
 এলিমেন্ট রিমুভ করার পর ডানের সব এলিমেন্টকে এক ঘর বামে সরাতে হয়।
 
-- **Time Complexity:** $O(n)$
+- **Time Complexity:** O(n)
 
-````carousel
+#### Java Implementation
+
 ```java
-// Java Deletion
 public void deleteAtPos(int[] arr, int size, int pos) {
     for (int i = pos; i < size - 1; i++) {
         arr[i] = arr[i + 1];
     }
 }
 ```
-<!-- slide -->
+
+#### Python Implementation
+
 ```python
-# Python Deletion
 def delete_at_pos(arr, pos):
     if 0 <= pos < len(arr):
         arr.pop(pos)
 ```
-````
 
 ---
 
@@ -78,11 +78,11 @@ def delete_at_pos(arr, pos):
 
 অ্যারের প্রতিটি এলিমেন্ট চেক করে নির্দিষ্ট ভ্যালু খুঁজে বের করা।
 
-- **Time Complexity:** $O(n)$
+- **Time Complexity:** O(n)
 
-````carousel
+#### Java Implementation
+
 ```java
-// Java Linear Search
 public int linearSearch(int[] arr, int target) {
     for (int i = 0; i < arr.length; i++) {
         if (arr[i] == target) return i;
@@ -90,16 +90,16 @@ public int linearSearch(int[] arr, int target) {
     return -1;
 }
 ```
-<!-- slide -->
+
+#### Python Implementation
+
 ```python
-# Python Linear Search
 def linear_search(arr, target):
     for i in range(len(arr)):
         if arr[i] == target:
             return i
     return -1
 ```
-````
 
 ---
 
@@ -107,11 +107,11 @@ def linear_search(arr, target):
 
 অ্যারের এলিমেন্টগুলোকে উল্টো করে সাজানো।
 
-- **Time Complexity:** $O(n)$
+- **Time Complexity:** O(n)
 
-````carousel
+#### Java Implementation
+
 ```java
-// Java Reverse (Two Pointer)
 public void reverse(int[] arr) {
     int start = 0, end = arr.length - 1;
     while (start < end) {
@@ -123,13 +123,13 @@ public void reverse(int[] arr) {
     }
 }
 ```
-<!-- slide -->
+
+#### Python Implementation
+
 ```python
-# Python Reverse
 def reverse_array(arr):
     arr.reverse() # or arr[::-1]
 ```
-````
 
 ---
 
@@ -139,7 +139,7 @@ def reverse_array(arr):
 
 ### Left Rotation by 1
 
-- **Time Complexity:** $O(n)$
+- **Time Complexity:** O(n)
 
 ---
 
@@ -147,10 +147,10 @@ def reverse_array(arr):
 
 | Operation       | Time Complexity |
 | :-------------- | :-------------- |
-| Access          | $O(1)$          |
-| Search (Linear) | $O(n)$          |
-| Insertion       | $O(n)$          |
-| Deletion        | $O(n)$          |
+| Access          | O(1)            |
+| Search (Linear) | O(n)            |
+| Insertion       | O(n)            |
+| Deletion        | O(n)            |
 
 > [!CAUTION]
 > অ্যারের সাইজ যদি বড় হয়, তবে ইনসার্শন বা ডিলিশন অনেক ধীর গতির হতে পারে। এই সমস্যা সমাধানের জন্য আমরা পরবর্তীতে **Linked List** শিখব।

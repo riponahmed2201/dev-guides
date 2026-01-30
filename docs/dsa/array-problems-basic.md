@@ -6,9 +6,9 @@
 
 একটি অ্যারের মধ্য থেকে বৃহত্তম (Largest) বা ক্ষুদ্রতম (Smallest) সংখ্যাটি খুঁজে বের করা।
 
-````carousel
+#### Java Implementation
+
 ```java
-// Java - Find Largest
 public int findLargest(int[] arr) {
     int max = arr[0];
     for (int i = 1; i < arr.length; i++) {
@@ -17,13 +17,13 @@ public int findLargest(int[] arr) {
     return max;
 }
 ```
-<!-- slide -->
+
+#### Python Implementation
+
 ```python
-# Python - Find Largest
 def find_largest(arr):
-    return max(arr) # Or use a loop for logic
+    return max(arr)
 ```
-````
 
 ---
 
@@ -33,9 +33,9 @@ def find_largest(arr):
 
 - **Logic:** বৃহত্তম সংখ্যাটি পাওয়ার পর তার চেয়ে ছোট কিন্তু বাকি সবার চেয়ে বড় সংখ্যাটি খুঁজুন।
 
-````carousel
+#### Java Implementation
+
 ```java
-// Java - Second Largest
 public int secondLargest(int[] arr) {
     int largest = -1, secondLargest = -1;
     for (int x : arr) {
@@ -49,9 +49,10 @@ public int secondLargest(int[] arr) {
     return secondLargest;
 }
 ```
-<!-- slide -->
+
+#### Python Implementation
+
 ```python
-# Python - Second Largest
 def second_largest(arr):
     first = second = float('-inf')
     for x in arr:
@@ -62,7 +63,6 @@ def second_largest(arr):
             second = x
     return second
 ```
-````
 
 ---
 
@@ -70,9 +70,9 @@ def second_largest(arr):
 
 অ্যারেটি ছোট থেকে বড় (Ascending) ক্রমে সাজানো আছে কিনা।
 
-````carousel
+#### Java Implementation
+
 ```java
-// Java
 public boolean isSorted(int[] arr) {
     for (int i = 1; i < arr.length; i++) {
         if (arr[i] < arr[i - 1]) return false;
@@ -80,13 +80,13 @@ public boolean isSorted(int[] arr) {
     return true;
 }
 ```
-<!-- slide -->
+
+#### Python Implementation
+
 ```python
-# Python
 def is_sorted(arr):
     return all(arr[i] <= arr[i+1] for i in range(len(arr)-1))
 ```
-````
 
 ---
 
@@ -94,9 +94,9 @@ def is_sorted(arr):
 
 একটি সর্টেড অ্যারে থেকে ডুপ্লিকেট এলিমেন্টগুলো রিমুভ করা।
 
-````carousel
+#### Java Implementation
+
 ```java
-// Java - Remove Duplicates (Sorted Array)
 public int removeDuplicates(int[] arr) {
     int i = 0;
     for (int j = 1; j < arr.length; j++) {
@@ -108,13 +108,13 @@ public int removeDuplicates(int[] arr) {
     return i + 1; // New size
 }
 ```
-<!-- slide -->
+
+#### Python Implementation
+
 ```python
-# Python - Remove Duplicates
 def remove_duplicates(arr):
-    return list(set(arr)) # If order doesn't matter
+    return list(set(arr))
 ```
-````
 
 ---
 
@@ -126,9 +126,9 @@ def remove_duplicates(arr):
 
 ## ৬. মিসিং নাম্বার খুঁজে বের করা
 
-১ থেকে $n$ পর্যন্ত ক্রমিক সংখ্যার মধ্যে কোনটি মিসিং আছে তা বের করা।
+১ থেকে n পর্যন্ত ক্রমিক সংখ্যার মধ্যে কোনটি মিসিং আছে তা বের করা।
 
-- **Formula:** $Sum = n(n+1)/2$. অ্যারের মোটি যোগফল থেকে এটি বিয়োগ করলেই মিসিং নাম্বার পাওয়া যাবে।
+- **Formula:** Sum = n(n+1)/2. অ্যারের মোটি যোগফল থেকে এটি বিয়োগ করলেই মিসিং নাম্বার পাওয়া যাবে।
 
 ---
 
@@ -136,9 +136,9 @@ def remove_duplicates(arr):
 
 অ্যারের সব ০ এলিমেন্টকে শেষে নিয়ে যাওয়া এবং অন্য এলিমেন্টগুলোর ক্রম ঠিক রাখা।
 
-````carousel
+#### Java Implementation
+
 ```java
-// Java - Move Zeros
 public void moveZeros(int[] arr) {
     int j = 0;
     for (int i = 0; i < arr.length; i++) {
@@ -151,15 +151,15 @@ public void moveZeros(int[] arr) {
     }
 }
 ```
-<!-- slide -->
+
+#### Python Implementation
+
 ```python
-# Python - Move Zeros
 def move_zeros(arr):
     non_zeros = [x for x in arr if x != 0]
     zeros = [0] * (len(arr) - len(non_zeros))
     return non_zeros + zeros
 ```
-````
 
 ---
 

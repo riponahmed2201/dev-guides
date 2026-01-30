@@ -868,6 +868,10 @@ export default defineConfig({
             { text: '8. Array Operations', link: '/dsa/array-operations' },
             { text: '9. Basic Array Problems', link: '/dsa/array-problems-basic' },
             { text: '10. Two Pointer Technique', link: '/dsa/two-pointer' },
+            { text: '11. Sliding Window Basics', link: '/dsa/sliding-window' },
+            { text: '12. Strings - Basics', link: '/dsa/strings-basics' },
+            { text: '13. String Operations', link: '/dsa/string-operations' },
+            { text: '15. Basic Searching', link: '/dsa/searching-basic' }
           ]
         }
       ],
