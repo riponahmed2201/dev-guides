@@ -752,6 +752,15 @@ export default defineConfig({
             { text: 'Build a Process Scheduler Simulator', link: '/os/project-process-scheduler' },
             { text: 'File System Simulation Project', link: '/os/project-file-system' },
           ]
+        },
+        {
+          text: 'Interview Preparation',
+          collapsed: false,
+          items: [
+            { text: 'OS Fundamentals Q&A', link: '/os/interview-qa' },
+            { text: 'Processes & Threads Q&A', link: '/os/interview-processes-threads' },
+            { text: 'Deadlocks & Synchronization Q&A', link: '/os/interview-deadlocks' },
+          ]
         }
       ]
     },

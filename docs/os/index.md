@@ -115,3 +115,21 @@
    - Virtual disk creation with Superblock & Inodes
    - File operations (Create, Read, Write, Delete)
    - Directory structure & bitmap management
+
+## Interview Preparation
+
+1. [OS Fundamentals Q&A](/os/interview-qa)
+   - Theoretical Questions (Process, Thread, Deadlock, Memory)
+   - Scenario-based Questions (Debugging, System Design)
+
+   - Real-world OS internal questions (Chrome, Nginx, DB)
+
+2. [Processes & Threads Q&A](/os/interview-processes-threads)
+   - PCB, Process States, Scheduler Types
+   - User vs Kernel Threads, Fork/Exec detailed
+   - Zombie/Orphan Processes, Context Switching Analysis
+
+3. [Deadlocks & Synchronization Q&A](/os/interview-deadlocks)
+   - Banker's Algorithm, Spinlock vs Mutex
+   - Dining Philosophers, Readers-Writers Problems
+   - Priority Inversion (Mars Pathfinder), Deadlock Recovery
