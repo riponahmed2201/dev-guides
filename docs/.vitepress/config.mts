@@ -871,6 +871,7 @@ export default defineConfig({
             { text: '11. Sliding Window Basics', link: '/dsa/sliding-window' },
             { text: '12. Strings - Basics', link: '/dsa/strings-basics' },
             { text: '13. String Operations', link: '/dsa/string-operations' },
+            { text: '14. Basic Sorting', link: '/dsa/sorting-basic' },
             { text: '15. Basic Searching', link: '/dsa/searching-basic' }
           ]
         }
