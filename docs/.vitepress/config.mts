@@ -31,6 +31,7 @@ export default defineConfig({
       {
         text: 'DevOps & Tools',
         items: [
+          { text: 'Git', link: '/git/' },
           { text: 'Docker', link: '/docker/' },
           { text: 'Kafka', link: '/kafka/' },
           { text: 'RabbitMQ', link: '/rabbitmq/' }
@@ -786,9 +787,49 @@ export default defineConfig({
             { text: 'Processes & Threads Q&A', link: '/os/interview-processes-threads' },
             { text: 'Deadlocks & Synchronization Q&A', link: '/os/interview-deadlocks' },
             { text: 'File System & Disk Q&A', link: '/os/interview-filesystem' },
+            { text: 'Scheduling Case Studies', link: '/os/interview-scheduling-case-studies' },
           ]
         }
-      ]
+      ],
+      '/git/': [
+        {
+          text: 'Level 1: Foundations',
+          collapsed: false,
+          items: [
+            { text: 'Introduction', link: '/git/' },
+            { text: 'Foundations', link: '/git/foundations' },
+          ]
+        },
+        {
+          text: 'Level 2: Core Concepts',
+          collapsed: false,
+          items: [
+            { text: 'Branching & Merging', link: '/git/branching-merging' },
+            { text: 'Remote Repositories', link: '/git/remote-repositories' },
+          ]
+        },
+        {
+          text: 'Level 3: Advanced Workflows',
+          collapsed: false,
+          items: [
+            { text: 'Collaboration & Workflows', link: '/git/collaboration-workflows' },
+          ]
+        },
+        {
+          text: 'Level 4: Tips & Utilities',
+          collapsed: false,
+          items: [
+            { text: 'Undoing & Cleaning', link: '/git/undoing-cleaning' },
+          ]
+        },
+        {
+          text: 'Level 5: Advanced Topics',
+          collapsed: false,
+          items: [
+            { text: 'Advanced Git', link: '/git/advanced' },
+          ]
+        }
+      ],
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/riponahmed2201' },
