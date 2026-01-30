@@ -879,7 +879,23 @@ export default defineConfig({
           text: 'Level 2: Intermediate',
           collapsed: false,
           items: [
-            { text: '16. Recursion Fundamentals', link: '/dsa/recursion-fundamentals' }
+            { text: '16. Recursion Fundamentals', link: '/dsa/recursion-fundamentals' },
+            { text: '17. Recursion Problems', link: '/dsa/recursion-problems' },
+            { text: '18. Backtracking Introduction', link: '/dsa/backtracking-intro' },
+            { text: '19. Singly Linked List', link: '/dsa/linked-list-singly' },
+            { text: '20. Linked List Problems', link: '/dsa/linked-list-problems' },
+            { text: '21. Doubly Linked List', link: '/dsa/linked-list-doubly' },
+            { text: '22. Circular Linked List', link: '/dsa/linked-list-circular' },
+            { text: '23. Stack Basics', link: '/dsa/stack-basics' },
+            { text: '24. Stack Problems', link: '/dsa/stack-problems' },
+            { text: '25. Queue Basics', link: '/dsa/queue-basics' },
+            { text: '26. Queue Problems', link: '/dsa/queue-problems' },
+            { text: '27. Deque Basics', link: '/dsa/deque-basics' },
+            { text: '28. Priority Queue', link: '/dsa/priority-queue' },
+            { text: '29. Hashing Introduction', link: '/dsa/hashing-intro' },
+            { text: '30. Hash Map & Table', link: '/dsa/hash-map' },
+            { text: '31. Hash Set', link: '/dsa/hash-set' },
+            { text: '32. Hashing Problems', link: '/dsa/hashing-problems' }
           ]
         }
       ],

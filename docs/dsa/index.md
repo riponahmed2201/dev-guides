@@ -173,6 +173,149 @@ DSA শেখা প্রোগ্রামিং ক্যারিয়ার�
 - Recursion tree
 - When to use recursion
 
+### [17. Recursion Problems](./recursion-problems.md)
+
+- Factorial & Fibonacci
+- Sum of digits
+- Power calculation
+- Tower of Hanoi
+- Print 1 to N
+- Sum of array
+- Reverse string
+
+### [18. Backtracking Introduction](./backtracking-intro.md)
+
+- Backtracking approach
+- Decision tree & State space tree
+- Pruning
+- N-Queens problem (basic)
+- Rat in maze
+- Subset generation
+
+### [19. Linked List - Singly](./linked-list-singly.md)
+
+- Linked List কি
+- Node structure & Head pointer
+- Traversal & Search
+- Insertion & Deletion
+- Time complexity analysis
+
+### [20. Linked List - Problems](./linked-list-problems.md)
+
+- Reverse linked list
+- Detect cycle (Floyd's algorithm)
+- Find middle element
+- Remove duplicates
+- Merge two sorted lists
+- Palindrome check
+- Intersection point
+- Remove Nth node from end
+
+### [21. Linked List - Doubly](./linked-list-doubly.md)
+
+- Doubly linked list structure
+- Forward and backward traversal
+- Insertion & Deletion operations
+- Advantages over singly
+- Disadvantages
+- Common problems
+
+### [22. Linked List - Circular](./linked-list-circular.md)
+
+- Circular linked list basics
+- Singly circular vs Doubly circular
+- Traversal techniques
+- Insertion and deletion
+- Use cases (Round Robin, Games)
+- Josephus problem
+
+### [23. Stack - Basics](./stack-basics.md)
+
+- Stack কি (LIFO)
+- Push, Pop, Peek, isEmpty
+- Array & Linked list implementation
+- Stack overflow/underflow
+- Applications of stack
+
+### [24. Stack - Problems](./stack-problems.md)
+
+- Balanced parentheses
+- Next Greater Element
+- Stock span problem
+- Implement queue using stacks
+- Min stack
+- Evaluate postfix expression
+- Infix to postfix conversion
+- Histogram area
+
+### [25. Queue - Basics](./queue-basics.md)
+
+- Queue কি (FIFO)
+- Enqueue, Dequeue, Front, Rear
+- Circular Array implementation
+- Linked list implementation
+- Time complexity & Applications
+
+### [26. Queue - Problems](./queue-problems.md)
+
+- Implement stack using queues
+- First non-repeating character
+- Generate binary numbers
+- Level order traversal (intro)
+- Sliding window maximum
+- Circular tour
+
+### [27. Deque (Double-ended Queue)](./deque-basics.md)
+
+- Deque operations
+- Input/Output restricted deque
+- Implementation (Array/DLL)
+- Applications & Problems
+
+### [28. Priority Queue](./priority-queue.md)
+
+- Priority Queue কি
+- Max heap vs Min heap concept
+- Operations (Insert, Extract)
+- Implementation (Binary Heap)
+- Applications (Dijkstra, Huffman)
+- Time complexity
+
+### [29. Hashing - Introduction](./hashing-intro.md)
+
+- Hashing কি
+- Hash function & Hash table
+- Direct addressing
+- Collision handling intro
+- Load factor & Applications
+
+### [30. Hash Map / Hash Table](./hash-map.md)
+
+- HashMap operations
+- Collision resolution (Chaining, Probing)
+- Open addressing (Linear, Quadratic, Double)
+- Rehashing
+- Time complexity
+
+### [31. Hash Set](./hash-set.md)
+
+- Set operations (Add, Remove, Contains)
+- Unique elements property
+- Implementation using HashMap
+- Union, Intersection, Difference
+- Common problems
+
+### [32. Hashing - Problems](./hashing-problems.md)
+
+- Two sum problem
+- Subarray with sum 0
+- Longest subarray with sum k
+- Count distinct elements
+- Frequency counting
+- First repeating element
+- Group anagrams
+- Longest consecutive sequence
+
 ---
 
 > [!TIP]
