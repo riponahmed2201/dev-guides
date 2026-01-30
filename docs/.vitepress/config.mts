@@ -741,6 +741,17 @@ export default defineConfig({
             { text: 'Distributed OS Concepts', link: '/os/distributed-concepts' },
             { text: 'Advanced Topics', link: '/os/advanced-topics' },
           ]
+        },
+        {
+          text: 'Projects',
+          collapsed: false,
+          items: [
+            { text: 'Write a Simple Shell', link: '/os/project-simple-shell' },
+            { text: 'Implement a Virtual Memory Manager', link: '/os/project-vm-manager' },
+            { text: 'Mini OS Kernel (Educational)', link: '/os/project-mini-kernel' },
+            { text: 'Build a Process Scheduler Simulator', link: '/os/project-process-scheduler' },
+            { text: 'File System Simulation Project', link: '/os/project-file-system' },
+          ]
         }
       ]
     },

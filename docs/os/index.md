@@ -85,3 +85,33 @@
    - Modern OS Internals
    - Containers vs VMs
    - Real-Time Operating Systems
+
+## Projects
+
+1. [Write a Simple Shell](/os/project-simple-shell)
+   - Command reading and parsing
+   - Process creation with fork()
+   - Command execution with exec()
+   - Built-in commands
+
+2. [Implement a Virtual Memory Manager](/os/project-vm-manager)
+   - Virtual to physical address translation
+   - TLB simulation
+   - Page table management
+   - Page replacement algorithms
+
+3. [Mini OS Kernel (Educational)](/os/project-mini-kernel)
+   - Bootloader development
+   - Kernel initialization
+   - VGA text mode driver
+   - Keyboard driver and interrupts
+
+4. [Build a Process Scheduler Simulator](/os/project-process-scheduler)
+   - FCFS, SJF, Round Robin implementation
+   - Gantt chart visualization
+   - Waiting time & Turnaround time calculation
+
+5. [File System Simulation Project](/os/project-file-system)
+   - Virtual disk creation with Superblock & Inodes
+   - File operations (Create, Read, Write, Delete)
+   - Directory structure & bitmap management
