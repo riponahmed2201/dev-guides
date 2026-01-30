@@ -24,7 +24,8 @@ export default defineConfig({
       { text: 'Node.js', link: '/nodejs/' },
       { text: 'Kafka', link: '/kafka/' },
       { text: 'RabbitMQ', link: '/rabbitmq/' },
-      { text: 'System Design', link: '/system-design/' }
+      { text: 'System Design', link: '/system-design/' },
+      { text: 'Operating System', link: '/os/' }
     ],
     sidebar: {
       '/python/': [
@@ -721,6 +722,17 @@ export default defineConfig({
             { text: 'Module 8: Security', link: '/rabbitmq/security' },
             { text: 'Module 9: Performance', link: '/rabbitmq/performance' },
             { text: 'Module 10: Best Practices', link: '/rabbitmq/best-practices' },
+          ]
+        }
+      ],
+      '/os/': [
+        {
+          text: 'Foundations',
+          collapsed: false,
+          items: [
+            { text: 'Introduction', link: '/os/' },
+            { text: 'Foundations', link: '/os/foundations' },
+            { text: 'Processes & Threads', link: '/os/processes-threads' },
           ]
         }
       ]
