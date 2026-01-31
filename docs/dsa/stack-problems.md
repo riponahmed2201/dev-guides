@@ -17,7 +17,39 @@
    - স্ট্যাকের **Top** এলিমেন্টের সাথে বর্তমান ক্লোজিং ব্র্যাকেট ম্যাচ করে কি না চেক করুন। ম্যাচ করলে **Pop** করুন।
 4. সবশেষে যদি স্ট্যাক খালি থাকে, তবে স্ট্রিংটি ব্যালেন্সড।
 
----
+#### Implementation
+
+```java
+// Java Balanced Parentheses
+public boolean isValid(String s) {
+    Stack<Character> stack = new Stack<>();
+    for (char c : s.toCharArray()) {
+        if (c == '(' || c == '[' || c == '{') stack.push(c);
+        else {
+            if (stack.isEmpty()) return false;
+            char top = stack.pop();
+            if ((c == ')' && top != '(') || (c == ']' && top != '[') || (c == '}' && top != '{')) return false;
+        }
+    }
+    return stack.isEmpty();
+}
+```
+
+```python
+# Python Balanced Parentheses
+def is_valid(s):
+    stack = []
+    mapping = {")": "(", "}": "{", "]": "["}
+    for char in s:
+        if char in mapping:
+            top = stack.pop() if stack else '#'
+            if mapping[char] != top: return False
+        else:
+            stack.append(char)
+    return not stack
+```
+
+## Broadway
 
 ## 2. নেক্সট গ্রেটার এলিমেন্ট (Next Greater Element)
 
@@ -27,7 +59,38 @@
 
 - **Monotonic Stack:** ডানদিক থেকে ট্রাভার্স করার সময় যদি স্ট্যাকের উপরের এলিমেন্ট ছোট হয়, তবে তা পপ করুন। স্ট্যাকের টপই হবে নেক্সট গ্রেটার এলিমেন্ট। এবার বর্তমান এলিমেন্টটি পুশ করুন।
 
----
+#### Implementation
+
+```java
+// Java Next Greater Element
+public int[] nextGreater(int[] nums) {
+    int n = nums.length;
+    int[] res = new int[n];
+    Stack<Integer> s = new Stack<>();
+    for (int i = n - 1; i >= 0; i--) {
+        while (!s.isEmpty() && s.peek() <= nums[i]) s.pop();
+        res[i] = s.isEmpty() ? -1 : s.peek();
+        s.push(nums[i]);
+    }
+    return res;
+}
+```
+
+```python
+# Python Next Greater Element
+def next_greater(nums):
+    n = len(nums)
+    res = [-1] * n
+    stack = []
+    for i in range(n - 1, -1, -1):
+        while stack and stack[-1] <= nums[i]:
+            stack.pop()
+        if stack: res[i] = stack[-1]
+        stack.append(nums[i])
+    return res
+```
+
+## Broadway
 
 ## 3. স্টক স্প্যান প্রবলেম (Stock Span Problem)
 
@@ -47,7 +110,36 @@
 
 - এঙ্কু (Enqueue) করার সময় সব এলিমেন্ট একটি স্ট্যাকে রাখুন। ডিঙ্কু (Dequeue) করার সময় যদি দ্বিতীয় স্ট্যাক খালি থাকে, তবে প্রথম স্ট্যাকের সব এলিমেন্ট উল্টে দ্বিতীয় স্ট্যাকে নিয়ে সেখান থেকে পপ করুন।
 
----
+#### Implementation
+
+```java
+// Java Queue using Stacks
+class MyQueue {
+    Stack<Integer> s1 = new Stack<>(), s2 = new Stack<>();
+    void enqueue(int x) { s1.push(x); }
+    int dequeue() {
+        if (s2.isEmpty()) {
+            while (!s1.isEmpty()) s2.push(s1.pop());
+        }
+        return s2.pop();
+    }
+}
+```
+
+```python
+# Python Queue using Stacks
+class MyQueue:
+    def __init__(self):
+        self.s1, self.s2 = [], []
+    def enqueue(self, x):
+        self.s1.append(x)
+    def dequeue(self, x):
+        if not self.s2:
+            while self.s1: self.s2.append(self.s1.pop())
+        return self.s2.pop()
+```
+
+## Broadway
 
 ## 5. মিন স্ট্যাক (Min Stack)
 
@@ -57,7 +149,43 @@
 
 একটি এক্সট্রা স্ট্যাক (Auxiliary Stack) ব্যবহার করে প্রতি ধাপে বর্তমান মিনিমাম ভ্যালু ট্র্যাক করা যায়।
 
----
+#### Implementation
+
+```java
+// Java Min Stack
+class MinStack {
+    Stack<Integer> s = new Stack<>(), minS = new Stack<>();
+    void push(int x) {
+        s.push(x);
+        if (minS.isEmpty() || x <= minS.peek()) minS.push(x);
+    }
+    int pop() {
+        int x = s.pop();
+        if (x == minS.peek()) minS.pop();
+        return x;
+    }
+    int getMin() { return minS.peek(); }
+}
+```
+
+```python
+# Python Min Stack
+class MinStack:
+    def __init__(self):
+        self.s, self.min_s = [], []
+    def push(self, x):
+        self.s.append(x)
+        if not self.min_s or x <= self.min_s[-1]:
+            self.min_s.append(x)
+    def pop(self):
+        x = self.s.pop()
+        if x == self.min_s[-1]: self.min_s.pop()
+        return x
+    def get_min(self):
+        return self.min_s[-1]
+```
+
+## Broadway
 
 ## 6. পোস্টফিক্স এক্সপ্রেশন ইভ্যালুয়েশন (Evaluate Postfix Expression)
 

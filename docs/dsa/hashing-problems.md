@@ -15,6 +15,33 @@
 3. `target - num` অর্থাৎ বাকি অংশটি ম্যাপে আছে কি না চেক করুন।
 4. যদি থাকে, তবে আপনি উত্তর পেয়ে গেছেন। না থাকলে `num` কে ম্যাপে ইনডেক্সসহ সেভ করুন।
 
+#### Implementation
+
+```java
+// Java Two Sum (Hashing)
+public int[] twoSum(int[] nums, int target) {
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < nums.length; i++) {
+        int complement = target - nums[i];
+        if (map.containsKey(complement)) return new int[]{map.get(complement), i};
+        map.put(nums[i], i);
+    }
+    return new int[]{-1, -1};
+}
+```
+
+```python
+# Python Two Sum (Hashing)
+def two_sum(nums, target):
+    mapping = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in mapping:
+            return [mapping[complement], i]
+        mapping[num] = i
+    return [-1, -1]
+```
+
 ---
 
 ## 2. সাব-অ্যারে সাম ০ (Subarray with Sum 0)
@@ -24,6 +51,35 @@
 #### 🛠 কর্মপদ্ধতি (Step-by-Step Logic)
 
 - **Prefix Sum + HashSet:** অ্যারের প্রতিটি ইনডেক্স পর্যন্ত যোগফল (Prefix Sum) বের করুন। যদি একই প্রিফিক্স সাম দুইবার পাওয়া যায় অথবা প্রিফিক্স সাম ০ হয়, তবে সেখানে এমন একটি সাব-অ্যারে আছে যার যোগফল ০।
+
+#### Implementation
+
+```java
+// Java Subarray Sum 0
+public boolean hasZeroSumSubarray(int[] arr) {
+    Set<Integer> set = new HashSet<>();
+    int sum = 0;
+    for (int x : arr) {
+        sum += x;
+        if (sum == 0 || set.contains(sum)) return true;
+        set.add(sum);
+    }
+    return false;
+}
+```
+
+```python
+# Python Subarray Sum 0
+def has_zero_sum_subarray(arr):
+    s = set()
+    current_sum = 0
+    for x in arr:
+        current_sum += x
+        if current_sum == 0 or current_sum in s:
+            return True
+        s.add(current_sum)
+    return False
+```
 
 ---
 
@@ -57,6 +113,24 @@
 
 - একটি HashMap ব্যবহার করুন যেখানে **Key** হবে এলিমেন্ট এবং **Value** হবে তার কাউন্টার। প্রতিবার এলিমেন্টটি পেলে ম্যাপের কাউন্টার ১ বাড়িয়ে দিন।
 
+#### Implementation
+
+```java
+// Java Frequency Count
+public Map<Integer, Integer> countFreq(int[] arr) {
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int x : arr) map.put(x, map.getOrDefault(x, 0) + 1);
+    return map;
+}
+```
+
+```python
+# Python Frequency Count
+from collections import Counter
+def count_freq(arr):
+    return dict(Counter(arr))
+```
+
 ---
 
 ## 6. ফার্স্ট রিপিটিং এলিমেন্ট (First Repeating Element)
@@ -77,6 +151,34 @@
 
 1. প্রতিটি শব্দ অ্যালফাবেটিক্যালি সর্ট (Sort) করুন।
 2. এই সর্টেড শব্দটিকে Key হিসেবে ব্যবহার করে HashMap-এ অরিজিনাল শব্দগুলো লিস্ট হিসেবে স্টোর করুন।
+
+#### Implementation
+
+```java
+// Java Group Anagrams
+public List<List<String>> groupAnagrams(String[] strs) {
+    Map<String, List<String>> map = new HashMap<>();
+    for (String s : strs) {
+        char[] ca = s.toCharArray();
+        Arrays.sort(ca);
+        String key = String.valueOf(ca);
+        if (!map.containsKey(key)) map.put(key, new ArrayList<>());
+        map.get(key).add(s);
+    }
+    return new ArrayList<>(map.values());
+}
+```
+
+```python
+# Python Group Anagrams
+from collections import defaultdict
+def group_anagrams(strs):
+    mapping = defaultdict(list)
+    for s in strs:
+        key = "".join(sorted(s))
+        mapping[key].append(s)
+    return list(mapping.values())
+```
 
 ---
 

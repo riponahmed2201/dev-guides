@@ -28,6 +28,41 @@
 - **Push:** প্রথমে চেক করুন স্ট্যাক ফুল কি না। যদি না হয়, তবে `top` এক বাড়িয়ে সেই পজিশনে ডেটা রাখুন।
 - **Pop:** চেক করুন স্ট্যাক খালি কি না। যদি না হয়, তবে `top` পজিশনের ডেটা রিটার্ন করে `top` এক কমিয়ে দিন।
 
+#### Implementation
+
+```java
+// Java Stack using Array
+class Stack {
+    int MAX = 1000;
+    int top;
+    int a[] = new int[MAX];
+    Stack() { top = -1; }
+    boolean push(int x) {
+        if (top >= (MAX - 1)) return false;
+        a[++top] = x;
+        return true;
+    }
+    int pop() {
+        if (top < 0) return 0;
+        return a[top--];
+    }
+}
+```
+
+```python
+# Python Stack using List
+class Stack:
+    def __init__(self):
+        self.stack = []
+    def push(self, x):
+        self.stack.append(x)
+    def pop(self):
+        if self.is_empty(): return None
+        return self.stack.pop()
+    def is_empty(self):
+        return len(self.stack) == 0
+```
+
 ---
 
 ## 4. লিঙ্কড লিস্ট দিয়ে ইমপ্লিমেন্টেশন (Linked List Implementation)
@@ -38,6 +73,52 @@
 
 - **Push:** নতুন একটি নোড তৈরি করুন এবং তার `next` বর্তমান `head`-এ সেট করুন। এবার `head`-কে নতুন নোডে আপডেট করুন।
 - **Pop:** বর্তমান `head`-কে সরিয়ে `head.next`-এ নিয়ে যান।
+
+#### Implementation
+
+```java
+// Java Stack using Linked List
+class StackLL {
+    Node top;
+    class Node {
+        int data;
+        Node next;
+        Node(int d) { data = d; }
+    }
+    public void push(int x) {
+        Node newNode = new Node(x);
+        newNode.next = top;
+        top = newNode;
+    }
+    public int pop() {
+        if (top == null) return -1;
+        int res = top.data;
+        top = top.next;
+        return res;
+    }
+}
+```
+
+```python
+# Python Stack using Linked List
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Stack:
+    def __init__(self):
+        self.top = None
+    def push(self, data):
+        new_node = Node(data)
+        new_node.next = self.top
+        self.top = new_node
+    def pop(self):
+        if not self.top: return None
+        res = self.top.data
+        self.top = self.top.next
+        return res
+```
 
 ---
 

@@ -17,6 +17,34 @@
    - `prev`-কে `curr` এবং `curr`-কে `next`-এ সরিয়ে নিন।
 3. সবশেষে `head`-কে `prev`-এ আপডেট করুন।
 
+#### Implementation
+
+```java
+// Java Reverse
+public Node reverse(Node head) {
+    Node prev = null, curr = head, next = null;
+    while (curr != null) {
+        next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev;
+}
+```
+
+```python
+# Python Reverse
+def reverse(head):
+    prev, curr = None, head
+    while curr:
+        next_node = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next_node
+    return prev
+```
+
 #### 📊 কমপ্লেক্সিটি অ্যানালাইসিস (Complexity Analysis)
 
 - **Time Complexity: O(n)**
@@ -35,6 +63,32 @@
 3. যদি তারা কোনো এক সময় মিলিত হয় (meet), তবে লিস্টে সাইকেল আছে।
 4. যদি `fast` নাল (null) হয়ে যায়, তবে সাইকেল নেই।
 
+#### Implementation
+
+```java
+// Java Cycle Detection
+public boolean hasCycle(Node head) {
+    Node slow = head, fast = head;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow == fast) return true;
+    }
+    return false;
+}
+```
+
+```python
+# Python Cycle Detection
+def has_cycle(head):
+    slow, fast = head, head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast: return True
+    return False
+```
+
 #### 📊 কমপ্লেক্সিটি অ্যানালাইসিস (Complexity Analysis)
 
 - **Time Complexity: O(n)**
@@ -48,6 +102,30 @@
 
 - **Two Pointer approach:** `slow` এক ঘর এবং `fast` দুই ঘর করে আগাতে থাকুন। যখন `fast` লিস্টের শেষে পৌঁছাবে, তখন `slow` থাকবে ঠিক মাঝখানে।
 
+#### Implementation
+
+```java
+// Java Find Middle
+public Node findMiddle(Node head) {
+    Node slow = head, fast = head;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    return slow;
+}
+```
+
+```python
+# Python Find Middle
+def find_middle(head):
+    slow, fast = head, head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+    return slow
+```
+
 ---
 
 ## 4. ডুপ্লিকেট রিমুভ করা (Remove Duplicates)
@@ -56,6 +134,32 @@
 
 1. বর্তমান নোড এবং তার পরের নোড তুলনা করুন।
 2. যদি তারা এক হয়, তবে বর্তমান নোডের `next`-কে এক ঘর বাদ দিয়ে পরের নোডে পয়েন্ট করান।
+
+#### Implementation
+
+```java
+// Java Remove Duplicates
+public Node removeDuplicates(Node head) {
+    Node curr = head;
+    while (curr != null && curr.next != null) {
+        if (curr.data == curr.next.data) curr.next = curr.next.next;
+        else curr = curr.next;
+    }
+    return head;
+}
+```
+
+```python
+# Python Remove Duplicates
+def remove_duplicates(head):
+    curr = head
+    while curr and curr.next:
+        if curr.data == curr.next.data:
+            curr.next = curr.next.next
+        else:
+            curr = curr.next
+    return head
+```
 
 ---
 
@@ -66,6 +170,46 @@
 1. একটি ডামি (Dummy) নোড নিন এবং রেজাল্ট লিস্টটি সেখান থেকে শুরু করুন।
 2. দুটি লিস্টের সামনের নোড তুলনা করুন। যেটির ভ্যালু ছোট, সেটিকে নতুন লিস্টে যোগ করুন এবং সেই প্রসংশিত লিস্টের হেড এক ঘর এগিয়ে নিন।
 3. এভাবে চলতে থাকুন যতক্ষণ না কোনো একটি লিস্ট শেষ হয়।
+
+#### Implementation
+
+```java
+// Java Merge
+public Node mergeTwoLists(Node l1, Node l2) {
+    Node dummy = new Node(0);
+    Node curr = dummy;
+    while (l1 != null && l2 != null) {
+        if (l1.data < l2.data) {
+            curr.next = l1;
+            l1 = l1.next;
+        } else {
+            curr.next = l2;
+            l2 = l2.next;
+        }
+        curr = curr.next;
+    }
+    if (l1 != null) curr.next = l1;
+    if (l2 != null) curr.next = l2;
+    return dummy.next;
+}
+```
+
+```python
+# Python Merge
+def merge_two_lists(l1, l2):
+    dummy = Node(0)
+    curr = dummy
+    while l1 and l2:
+        if l1.data < l2.data:
+            curr.next = l1
+            l1 = l1.next
+        else:
+            curr.next = l2
+            l2 = l2.next
+        curr = curr.next
+    curr.next = l1 or l2
+    return dummy.next
+```
 
 ---
 
@@ -99,6 +243,39 @@
 2. `first`-কে N ঘর আগে আগিয়ে নিন।
 3. এবার `first` এবং `second` একসাথে আগাতে থাকুন। যখন `first` শেষ নোডে পৌঁছাবে, তখন `second` থাকবে লক্ষ্য নোডের ঠিক আগে।
 4. `second.next = second.next.next` করে নোডটি রিমুভ করুন।
+
+#### Implementation
+
+```java
+// Java Remove Nth from End
+public Node removeNthFromEnd(Node head, int n) {
+    Node dummy = new Node(0);
+    dummy.next = head;
+    Node first = dummy, second = dummy;
+    for (int i = 0; i <= n; i++) first = first.next;
+    while (first != null) {
+        first = first.next;
+        second = second.next;
+    }
+    second.next = second.next.next;
+    return dummy.next;
+}
+```
+
+```python
+# Python Remove Nth from End
+def remove_nth_from_end(head, n):
+    dummy = Node(0)
+    dummy.next = head
+    first = second = dummy
+    for _ in range(n + 1):
+        first = first.next
+    while first:
+        first = first.next
+        second = second.next
+    second.next = second.next.next
+    return dummy.next
+```
 
 ---
 

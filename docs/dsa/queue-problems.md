@@ -14,7 +14,36 @@
 2. **Push Operation:** নতুন এলিমেন্ট `q2`-তে এঙ্কু (Enqueue) করুন। এবার `q1`-এর সব এলিমেন্ট এক এক করে `q2`-তে নিয়ে আসুন। সবশেষে `q1` এবং `q2` এর নাম অদলবদল (Swap) করুন।
 3. এতে করে `q1`-এর সামনে সবসময় লেটেস্ট এলিমেন্টটি থাকবে।
 
----
+#### Implementation (Push Efficient)
+
+```java
+// Java Stack using Queues
+class MyStack {
+    Queue<Integer> q1 = new LinkedList<>(), q2 = new LinkedList<>();
+    void push(int x) {
+        q2.add(x);
+        while (!q1.isEmpty()) q2.add(q1.remove());
+        Queue<Integer> temp = q1; q1 = q2; q2 = temp;
+    }
+    int pop() { return q1.remove(); }
+}
+```
+
+```python
+# Python Stack using Queues
+from collections import deque
+class MyStack:
+    def __init__(self):
+        self.q1, self.q2 = deque(), deque()
+    def push(self, x):
+        self.q2.append(x)
+        while self.q1: self.q2.append(self.q1.popleft())
+        self.q1, self.q2 = self.q2, self.q1
+    def pop(self):
+        return self.q1.popleft()
+```
+
+## Broadway
 
 ## 2. ফার্স্ট নন-রিপিটিং ক্যারেক্টার (First Non-repeating Character)
 
@@ -38,7 +67,35 @@
    - কিউ থেকে মেম্বার পপ করুন এবং প্রিন্ট করুন।
    - পপ করা মেম্বারের সাথে "0" এবং "1" যোগ করে পুনরায় কিউ-তে এঙ্কু করুন।
 
----
+#### Implementation
+
+```java
+// Java Binary Number Generation
+public void generateBinary(int n) {
+    Queue<String> q = new LinkedList<>();
+    q.add("1");
+    while (n-- > 0) {
+        String s1 = q.remove();
+        System.out.println(s1);
+        q.add(s1 + "0");
+        q.add(s1 + "1");
+    }
+}
+```
+
+```python
+# Python Binary Number Generation
+from collections import deque
+def generate_binary(n):
+    q = deque(["1"])
+    for _ in range(n):
+        s1 = q.popleft()
+        print(s1)
+        q.append(s1 + "0")
+        q.append(s1 + "1")
+```
+
+## Broadway
 
 ## 4. লেভেল অর্ডার ট্রাভার্সাল (Level Order Traversal - Intro)
 
@@ -51,7 +108,37 @@
    - একটি নোড পপ করুন এবং তার ভ্যালু প্রিন্ট করুন।
    - যদি নোডটির বাম (Left) বা ডান (Right) চাইল্ড থাকে, তবে তাদের কিউ-তে পুশ করুন।
 
----
+#### Implementation
+
+```java
+// Java Level Order Traversal
+public void levelOrder(Node root) {
+    if (root == null) return;
+    Queue<Node> q = new LinkedList<>();
+    q.add(root);
+    while (!q.isEmpty()) {
+        Node curr = q.remove();
+        System.out.print(curr.data + " ");
+        if (curr.left != null) q.add(curr.left);
+        if (curr.right != null) q.add(curr.right);
+    }
+}
+```
+
+```python
+# Python Level Order Traversal
+from collections import deque
+def level_order(root):
+    if not root: return
+    q = deque([root])
+    while q:
+        curr = q.popleft()
+        print(curr.data, end=" ")
+        if curr.left: q.append(curr.left)
+        if curr.right: q.append(curr.right)
+```
+
+## Broadway
 
 ## 5. স্লাইডিং উইন্ডো ম্যাক্সিমাম (Sliding Window Maximum)
 

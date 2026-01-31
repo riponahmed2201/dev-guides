@@ -21,9 +21,8 @@
 - **Time Complexity: O(n)** - লুপের সাহায্যে এক পাশ থেকে অন্য পাশে একবার আসা।
 - **Space Complexity: O(1)**
 
-#### Java Implementation
-
 ```java
+// Java
 public int[] twoSum(int[] arr, int target) {
     int left = 0, right = arr.length - 1;
     while (left < right) {
@@ -36,9 +35,24 @@ public int[] twoSum(int[] arr, int target) {
 }
 ```
 
+```python
+# Python
+def two_sum(arr, target):
+    left, right = 0, len(arr) - 1
+    while left < right:
+        current_sum = arr[left] + arr[right]
+        if current_sum == target:
+            return [left, right]
+        elif current_sum < target:
+            left += 1
+        else:
+            right -= 1
+    return [-1, -1]
+```
+
 ---
 
-## 1. কন্টেইনার উইথ মোস্ট ওয়াটার (Container with Most Water)
+## 2. কন্টেইনার উইথ মোস্ট ওয়াটার (Container with Most Water)
 
 দুটি লাইন বেছে নিতে হবে যাতে তাদের মাঝখানে সবচেয়ে বেশি পানি ধরে রাখা যায়।
 
@@ -53,6 +67,37 @@ public int[] twoSum(int[] arr, int target) {
 
 - **Time Complexity: O(n)**
 - **Space Complexity: O(1)**
+
+#### Implementation
+
+```java
+// Java
+public int maxArea(int[] height) {
+    int left = 0, right = height.length - 1, maxArea = 0;
+    while (left < right) {
+        int h = Math.min(height[left], height[right]);
+        maxArea = Math.max(maxArea, h * (right - left));
+        if (height[left] < height[right]) left++;
+        else right--;
+    }
+    return maxArea;
+}
+```
+
+```python
+# Python
+def max_area(height):
+    left, right = 0, len(height) - 1
+    max_area = 0
+    while left < right:
+        h = min(height[left], height[right])
+        max_area = max(max_area, h * (right - left))
+        if height[left] < height[right]:
+            left += 1
+        else:
+            right -= 1
+    return max_area
+```
 
 ---
 
@@ -71,6 +116,43 @@ public int[] twoSum(int[] arr, int target) {
 
 - **Time Complexity: O(n)** - মাত্র একবার অ্যারে ট্রাভার্স করতে হয়।
 - **Space Complexity: O(1)**
+
+#### Implementation
+
+```java
+// Java
+public void sortColors(int[] nums) {
+    int low = 0, mid = 0, high = nums.length - 1;
+    while (mid <= high) {
+        if (nums[mid] == 0) {
+            int temp = nums[low];
+            nums[low++] = nums[mid];
+            nums[mid++] = temp;
+        } else if (nums[mid] == 1) mid++;
+        else {
+            int temp = nums[high];
+            nums[high--] = nums[mid];
+            nums[mid] = temp;
+        }
+    }
+}
+```
+
+```python
+# Python
+def sort_colors(nums):
+    low, mid, high = 0, 0, len(nums) - 1
+    while mid <= high:
+        if nums[mid] == 0:
+            nums[low], nums[mid] = nums[mid], nums[low]
+            low += 1
+            mid += 1
+        elif nums[mid] == 1:
+            mid += 1
+        else:
+            nums[high], nums[mid] = nums[mid], nums[high]
+            high -= 1
+```
 
 ---
 

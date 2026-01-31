@@ -21,9 +21,8 @@
 - **Time Complexity: O(n)** - মাত্র একবার পুরো অ্যারে ট্রাভার্স করতে হয়।
 - **Space Complexity: O(1)**
 
-#### Java Implementation
-
 ```java
+// Java
 public int maxSum(int[] arr, int k) {
     int maxVal = 0, currentSum = 0;
     for (int i = 0; i < k; i++) {
@@ -36,6 +35,16 @@ public int maxSum(int[] arr, int k) {
     }
     return maxVal;
 }
+```
+
+```python
+# Python
+def max_sum(arr, k):
+    max_val = current_sum = sum(arr[:k])
+    for i in range(k, len(arr)):
+        current_sum += arr[i] - arr[i-k]
+        max_val = max(max_val, current_sum)
+    return max_val
 ```
 
 ---
@@ -56,9 +65,25 @@ public int maxSum(int[] arr, int k) {
 - **Time Complexity: O(n)** - যদিও দুটি পয়েন্টার আছে, প্রতিটি এলিমেন্ট সর্বোচ্চ দুবার প্রসেস হয়।
 - **Space Complexity: O(1)**
 
-#### Python Implementation
+#### Implementation
+
+```java
+// Java
+public int minSubArrayLen(int target, int[] nums) {
+    int left = 0, currentSum = 0, minLen = Integer.MAX_VALUE;
+    for (int right = 0; right < nums.length; right++) {
+        currentSum += nums[right];
+        while (currentSum >= target) {
+            minLen = Math.min(minLen, right - left + 1);
+            currentSum -= nums[left++];
+        }
+    }
+    return minLen == Integer.MAX_VALUE ? 0 : minLen;
+}
+```
 
 ```python
+# Python
 def min_subarray_len(target, nums):
     left = current_sum = 0
     min_len = float('inf')

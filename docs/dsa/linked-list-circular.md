@@ -8,6 +8,28 @@
 
 সাধারণ লিঙ্কড লিস্টের শেষ নোড `null` পয়েন্ট করে, কিন্তু সার্কুলার লিঙ্কড লিস্টে কোনো `null` থাকে না। লিস্টের শেষ নোড আবার প্রথম নোডের অ্যাড্রেস হোল্ড করে।
 
+#### Node Structure
+
+```java
+// Java Circular Node
+class Node {
+    int data;
+    Node next;
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+```
+
+```python
+# Python Circular Node
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+```
+
 ---
 
 ## 2. প্রকারভেদ (Types)
@@ -32,6 +54,31 @@
 2. একটি `do-while` লুপ ব্যবহার করুন (অথবা প্রথমবার ডাটা প্রিন্ট করে লুপ শুরু করুন)।
 3. যতক্ষণ `curr` পুনরায় হেডে না ফিরে আসে, ততক্ষণ ট্রাভার্স করতে থাকুন।
 
+#### Implementation
+
+```java
+// Java Circular Traversal
+public void printList(Node head) {
+    if (head == null) return;
+    Node curr = head;
+    do {
+        System.out.print(curr.data + " ");
+        curr = curr.next;
+    } while (curr != head);
+}
+```
+
+```python
+# Python Circular Traversal
+def print_list(head):
+    if not head: return
+    curr = head
+    while True:
+        print(curr.data, end=" ")
+        curr = curr.next
+        if curr == head: break
+```
+
 ---
 
 ## 4. ইনসার্শন এবং ডিলিশন (Insertion & Deletion)
@@ -40,6 +87,39 @@
 
 - **Insert at Head:** নতুন নোড তৈরি করুন এবং শেষ নোডের `next` হিসেবে এটি সেট করুন।
 - **Deletion:** যদি হেড ডিলিট করতে হয়, তবে টেইল খুঁজে বের করে তার `next` নতুন হেডে সেট করতে হবে।
+
+#### Implementation
+
+```java
+// Java Circular Insertion (at end)
+public Node insertAtEnd(Node head, int data) {
+    Node newNode = new Node(data);
+    if (head == null) {
+        newNode.next = newNode;
+        return newNode;
+    }
+    Node curr = head;
+    while (curr.next != head) curr = curr.next;
+    curr.next = newNode;
+    newNode.next = head;
+    return head;
+}
+```
+
+```python
+# Python Circular Insertion (at end)
+def insert_at_end(head, data):
+    new_node = Node(data)
+    if not head:
+        new_node.next = new_node
+        return new_node
+    curr = head
+    while curr.next != head:
+        curr = curr.next
+    curr.next = new_node
+    new_node.next = head
+    return head
+```
 
 ---
 

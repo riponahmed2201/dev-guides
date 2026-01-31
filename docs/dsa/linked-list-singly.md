@@ -56,11 +56,31 @@ class Node:
 
 লিস্টের শুরু থেকে শেষ পর্যন্ত প্রতিটি নোড দেখা।
 
-#### 🛠 কর্মপদ্ধতি (Step-by-Step Logic)
-
-1. একটি টেম্পোরারি পয়েন্টার `curr` নিন এবং একে `head`-এ সেট করুন।
-2. যতক্ষণ `curr` নাল না হয়, ততক্ষণ লুপ চালান।
 3. প্রতিটি ধাপে `curr.data` প্রিন্ট করুন এবং `curr = curr.next` করে পরের নোডে যান।
+
+#### Implementation
+
+```java
+// Java Traversal
+public void printList(Node head) {
+    Node curr = head;
+    while (curr != null) {
+        System.out.print(curr.data + " -> ");
+        curr = curr.next;
+    }
+    System.out.println("null");
+}
+```
+
+```python
+# Python Traversal
+def print_list(head):
+    curr = head
+    while curr:
+        print(f"{curr.data} ->", end=" ")
+        curr = curr.next
+    print("None")
+```
 
 ---
 
@@ -78,6 +98,43 @@ class Node:
 2. যদি লিস্ট খালি থাকে, তবে একেই `head` বানান।
 3. নতুবা, শেষ নোড পর্যন্ত যান এবং শেষ নোডের `next`-এ নতুন নোডটি সেট করুন।
 
+#### Implementation
+
+```java
+// Java Insertion
+public Node insertAtHead(Node head, int data) {
+    Node newNode = new Node(data);
+    newNode.next = head;
+    return newNode;
+}
+
+public Node insertAtEnd(Node head, int data) {
+    Node newNode = new Node(data);
+    if (head == null) return newNode;
+    Node curr = head;
+    while (curr.next != null) curr = curr.next;
+    curr.next = newNode;
+    return head;
+}
+```
+
+```python
+# Python Insertion
+def insert_at_head(head, data):
+    new_node = Node(data)
+    new_node.next = head
+    return new_node
+
+def insert_at_end(head, data):
+    new_node = Node(data)
+    if not head: return new_node
+    curr = head
+    while curr.next:
+        curr = curr.next
+    curr.next = new_node
+    return head
+```
+
 ---
 
 ## 6. ডিলিট অপারেশন (Deletion)
@@ -90,6 +147,39 @@ class Node:
 
 1. শেষ নোডের আগের নোড পর্যন্ত যান।
 2. সেই নোডের `next`-কে `null` করে দিন।
+
+#### Implementation
+
+```java
+// Java Deletion
+public Node deleteFromBeginning(Node head) {
+    if (head == null) return null;
+    return head.next;
+}
+
+public Node deleteFromEnd(Node head) {
+    if (head == null || head.next == null) return null;
+    Node curr = head;
+    while (curr.next.next != null) curr = curr.next;
+    curr.next = null;
+    return head;
+}
+```
+
+```python
+# Python Deletion
+def delete_from_beginning(head):
+    if not head: return None
+    return head.next
+
+def delete_from_end(head):
+    if not head or not head.next: return None
+    curr = head
+    while curr.next.next:
+        curr = curr.next
+    curr.next = None
+    return head
+```
 
 ---
 

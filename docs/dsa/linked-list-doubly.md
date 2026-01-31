@@ -49,6 +49,46 @@ DLL-এ আমরা দুই দিক থেকেই ট্রাভার�
 
 শেষ থেকে শুরু পর্যন্ত: যদি `tail` পয়েন্টার থাকে, তবে `curr = tail` থেকে শুরু করে `curr = curr.prev` করে পেছনের দিকে ফেরা।
 
+#### Implementation
+
+```java
+// Java DLL Traversal
+public void printForward(Node head) {
+    Node curr = head;
+    while (curr != null) {
+        System.out.print(curr.data + " <-> ");
+        curr = curr.next;
+    }
+    System.out.println("null");
+}
+
+public void printBackward(Node tail) {
+    Node curr = tail;
+    while (curr != null) {
+        System.out.print(curr.data + " <-> ");
+        curr = curr.prev;
+    }
+    System.out.println("null");
+}
+```
+
+```python
+# Python DLL Traversal
+def print_forward(head):
+    curr = head
+    while curr:
+        print(f"{curr.data} <->", end=" ")
+        curr = curr.next
+    print("None")
+
+def print_backward(tail):
+    curr = tail
+    while curr:
+        print(f"{curr.data} <->", end=" ")
+        curr = curr.prev
+    print("None")
+```
+
 ---
 
 ## 3. ইনসার্শন (Insertion)
@@ -66,6 +106,50 @@ DLL-এ আমরা দুই দিক থেকেই ট্রাভার�
 2. শেষ নোডের `next` এ নতুন নোড যুক্ত করুন।
 3. নতুন নোডের `prev` কে আগের শেষ নোডে সেট করুন।
 
+#### Implementation
+
+```java
+// Java DLL Insertion
+public Node insertAtHead(Node head, int data) {
+    Node newNode = new Node(data);
+    if (head != null) {
+        newNode.next = head;
+        head.prev = newNode;
+    }
+    return newNode;
+}
+
+public Node insertAtEnd(Node head, int data) {
+    Node newNode = new Node(data);
+    if (head == null) return newNode;
+    Node curr = head;
+    while (curr.next != null) curr = curr.next;
+    curr.next = newNode;
+    newNode.prev = curr;
+    return head;
+}
+```
+
+```python
+# Python DLL Insertion
+def insert_at_head(head, data):
+    new_node = Node(data)
+    if head:
+        new_node.next = head
+        head.prev = new_node
+    return new_node
+
+def insert_at_end(head, data):
+    new_node = Node(data)
+    if not head: return new_node
+    curr = head
+    while curr.next:
+        curr = curr.next
+    curr.next = new_node
+    new_node.prev = curr
+    return head
+```
+
 ---
 
 ## 4. ডিলিট অপারেশন (Deletion)
@@ -74,6 +158,29 @@ DLL-এ আমরা দুই দিক থেকেই ট্রাভার�
 
 1. নোডটি ডিলিট করার পর তার আগের নোডের `next` কে পরের নোডে এবং পরের নোডের `prev` কে আগের নোডে যুক্ত করতে হয়।
 2. এতে মাঝখানের নোডটি মেমরি থেকে বিচ্ছিন্ন হয়ে যায়।
+
+#### Implementation
+
+```java
+// Java DLL Deletion
+public Node deleteNode(Node head, Node del) {
+    if (head == null || del == null) return head;
+    if (head == del) head = del.next;
+    if (del.next != null) del.next.prev = del.prev;
+    if (del.prev != null) del.prev.next = del.next;
+    return head;
+}
+```
+
+```python
+# Python DLL Deletion
+def delete_node(head, del_node):
+    if not head or not del_node: return head
+    if head == del_node: head = del_node.next
+    if del_node.next: del_node.next.prev = del_node.prev
+    if del_node.prev: del_node.prev.next = del_node.next
+    return head
+```
 
 ---
 

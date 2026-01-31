@@ -48,8 +48,25 @@ def factorial(n):
 
 #### 📊 কমপ্লেক্সিটি অ্যানালাইসিস (Complexity Analysis)
 
-- **Time Complexity: O(2ⁿ)** - এটি এক্সপোনেনশিয়াল (Exponential), কারণ প্রতিটি কলে দুটি করে নতুন কল হয়।
+- **Time Complexity: O(2^n)** - এটি এক্সপোনেনশিয়াল (Exponential), কারণ প্রতিটি কলে দুটি করে নতুন কল হয়।
 - **Space Complexity: O(n)** - স্ট্যাকের গভীরতা n পর্যন্ত যায়।
+
+#### Implementation
+
+```java
+// Java
+public int fib(int n) {
+    if (n <= 1) return n;
+    return fib(n - 1) + fib(n - 2);
+}
+```
+
+```python
+# Python
+def fib(n):
+    if n <= 1: return n
+    return fib(n - 1) + fib(n - 2)
+```
 
 ---
 
@@ -64,7 +81,16 @@ def factorial(n):
 
 #### Implementation
 
+```java
+// Java
+public int sumOfDigits(int n) {
+    if (n == 0) return 0;
+    return (n % 10) + sumOfDigits(n / 10);
+}
+```
+
 ```python
+# Python
 def sum_of_digits(n):
     if n == 0: return 0
     return (n % 10) + sum_of_digits(n // 10)
@@ -80,6 +106,23 @@ def sum_of_digits(n):
 2. **Recursive Case:** `x * power(x, n - 1)` রিটার্ন করুন।
 3. **Optimization:** দ্রুত করার জন্য `divide and conquer` (O(log n)) ব্যবহার করা যায়।
 
+#### Implementation
+
+```java
+// Java
+public int power(int x, int n) {
+    if (n == 0) return 1;
+    return x * power(x, n - 1);
+}
+```
+
+```python
+# Python
+def power(x, n):
+    if n == 0: return 1
+    return x * power(x, n - 1)
+```
+
 ---
 
 ## 5. টাওয়ার অফ হ্যানয় (Tower of Hanoi)
@@ -94,7 +137,33 @@ def sum_of_digits(n):
 
 #### 📊 কমপ্লেক্সিটি অ্যানালাইসিস (Complexity Analysis)
 
-- **Time Complexity: O(2ⁿ - 1)** - n সংখ্যক ডিস্কের জন্য মুভমেন্ট সংখ্যা।
+- **Time Complexity: O(2^n - 1)** - n সংখ্যক ডিস্কের জন্য মুভমেন্ট সংখ্যা।
+
+#### Implementation
+
+```java
+// Java
+public void towerOfHanoi(int n, char from, char to, char aux) {
+    if (n == 1) {
+        System.out.println("Move disk 1 from " + from + " to " + to);
+        return;
+    }
+    towerOfHanoi(n - 1, from, aux, to);
+    System.out.println("Move disk " + n + " from " + from + " to " + to);
+    towerOfHanoi(n - 1, aux, to, from);
+}
+```
+
+```python
+# Python
+def tower_of_hanoi(n, source, destination, auxiliary):
+    if n == 1:
+        print(f"Move disk 1 from {source} to {destination}")
+        return
+    tower_of_hanoi(n - 1, source, auxiliary, destination)
+    print(f"Move disk {n} from {source} to {destination}")
+    tower_of_hanoi(n - 1, auxiliary, destination, source)
+```
 
 ---
 
@@ -105,6 +174,25 @@ def sum_of_digits(n):
 1. **Base Case:** যদি `n == 0` হয়, তবে থামুন।
 2. **Recursive Case (Head Recursion):** প্রথমে `print(n-1)` কল করুন, তারপর `n` প্রিন্ট করুন। এটি করলে 1 থেকে N ক্রমে প্রিন্ট হবে।
 
+#### Implementation
+
+```java
+// Java
+public void print1ToN(int n) {
+    if (n == 0) return;
+    print1ToN(n - 1);
+    System.out.print(n + " ");
+}
+```
+
+```python
+# Python
+def print_1_to_n(n):
+    if n == 0: return
+    print_1_to_n(n - 1)
+    print(n, end=" ")
+```
+
 ---
 
 ## 7. অ্যারের যোগফল (Sum of Array)
@@ -114,6 +202,23 @@ def sum_of_digits(n):
 1. **Base Case:** ইনডেক্স যদি শেষ হয়ে যায়, 0 রিটার্ন করুন।
 2. **Recursive Case:** বর্তমান ইনডেক্সের ভ্যালুর সাথে পরের অংশের যোগফল যোগ করুন।
 
+#### Implementation
+
+```java
+// Java
+public int arraySum(int[] arr, int n) {
+    if (n <= 0) return 0;
+    return arraySum(arr, n - 1) + arr[n - 1];
+}
+```
+
+```python
+# Python
+def array_sum(arr, n):
+    if n <= 0: return 0
+    return array_sum(arr, n - 1) + arr[n - 1]
+```
+
 ---
 
 ## 8. স্ট্রিং রিভার্স (Reverse String)
@@ -122,6 +227,23 @@ def sum_of_digits(n):
 
 1. **Base Case:** স্ট্রিং যদি খালি হয়, খালি স্ট্রিং রিটার্ন করুন।
 2. **Recursive Case:** শেষ ক্যারেক্টারটি নিয়ে তার আগে বাকিগুলোর রিভার্স অংশ যোগ করুন।
+
+#### Implementation
+
+```java
+// Java
+public String reverseString(String s) {
+    if (s.isEmpty()) return s;
+    return reverseString(s.substring(1)) + s.charAt(0);
+}
+```
+
+```python
+# Python
+def reverse_string(s):
+    if len(s) == 0: return s
+    return reverse_string(s[1:]) + s[0]
+```
 
 ---
 

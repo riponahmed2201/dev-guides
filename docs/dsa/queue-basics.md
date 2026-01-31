@@ -29,7 +29,50 @@
 - **Enqueue:** প্রথমে চেক করুন কিউ ফুল কি না (কন্ডিশন: `(rear + 1) % size == front`)। যদি না হয়, তবে `rear = (rear + 1) % size` করে ডেটা রাখুন।
 - **Dequeue:** চেক করুন কিউ খালি কি না। যদি না হয়, তবে `front = (front + 1) % size` করে ডেটা রিমুভ করুন।
 
----
+#### Implementation
+
+```java
+// Java Circular Queue
+class Queue {
+    int front = -1, rear = -1, size = 5;
+    int arr[] = new int[size];
+    void enqueue(int x) {
+        if ((rear + 1) % size == front) return;
+        if (front == -1) front = 0;
+        rear = (rear + 1) % size;
+        arr[rear] = x;
+    }
+    int dequeue() {
+        if (front == -1) return -1;
+        int res = arr[front];
+        if (front == rear) front = rear = -1;
+        else front = (front + 1) % size;
+        return res;
+    }
+}
+```
+
+```python
+# Python Circular Queue
+class CircularQueue:
+    def __init__(self, n):
+        self.size = n
+        self.queue = [None] * n
+        self.front = self.rear = -1
+    def enqueue(self, data):
+        if (self.rear + 1) % self.size == self.front: return
+        if self.front == -1: self.front = 0
+        self.rear = (self.rear + 1) % self.size
+        self.queue[self.rear] = data
+    def dequeue(self):
+        if self.front == -1: return None
+        res = self.queue[self.front]
+        if self.front == self.rear: self.front = self.rear = -1
+        else: self.front = (self.front + 1) % self.size
+        return res
+```
+
+## Broadway
 
 ## 4. লিঙ্কড লিস্ট দিয়ে ইমপ্লিমেন্টেশন (Linked List Implementation)
 
@@ -40,7 +83,58 @@
 - **Enqueue:** নতুন একটি নোড তৈরি করুন। একে `rear.next`-এ সেট করে `rear` কে নতুন নোডে সরিয়ে নিন।
 - **Dequeue:** `front` কে তার পরের নোডে সরিয়ে দিন (`front = front.next`)।
 
----
+#### Implementation
+
+```java
+// Java Queue using Linked List
+class QueueLL {
+    Node front, rear;
+    class Node {
+        int data; Node next;
+        Node(int d) { data = d; }
+    }
+    void enqueue(int x) {
+        Node newNode = new Node(x);
+        if (rear == null) { front = rear = newNode; return; }
+        rear.next = newNode;
+        rear = newNode;
+    }
+    int dequeue() {
+        if (front == null) return -1;
+        int res = front.data;
+        front = front.next;
+        if (front == null) rear = null;
+        return res;
+    }
+}
+```
+
+```python
+# Python Queue using Linked List
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Queue:
+    def __init__(self):
+        self.front = self.rear = None
+    def enqueue(self, data):
+        new_node = Node(data)
+        if not self.rear:
+            self.front = self.rear = new_node
+            return
+        self.rear.next = new_node
+        self.rear = new_node
+    def dequeue(self):
+        if not self.front: return None
+        res = self.front.data
+        self.front = self.front.next
+        if not self.front: self.rear = None
+        return res
+```
+
+## Broadway
 
 ## 5. কিউ ওভারফ্লো এবং আন্ডারফ্লো (Overflow & Underflow)
 
