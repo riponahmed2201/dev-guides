@@ -93,6 +93,70 @@ def KMPSearch(pat, txt):
 
 **Average Time Complexity:** $O(n + m)$
 
+#### Implementation
+
+```python
+# Python Rabin-Karp
+def rabin_karp(text, pattern):
+    n, m = len(text), len(pattern)
+    d = 256
+    q = 101 # Prime number
+    h = 1
+    p = 0
+    t = 0
+
+    for i in range(m-1):
+        h = (h * d) % q
+
+    for i in range(m):
+        p = (d * p + ord(pattern[i])) % q
+        t = (d * t + ord(text[i])) % q
+
+    for i in range(n - m + 1):
+        if p == t:
+            if text[i:i+m] == pattern:
+                print(f"Pattern found at index {i}")
+
+        if i < n - m:
+            t = (d * (t - ord(text[i]) * h) + ord(text[i + m])) % q
+            if t < 0: t += q
+```
+
+```java
+// Java Rabin-Karp
+public void search(String pat, String txt) {
+    int m = pat.length();
+    int n = txt.length();
+    int d = 256;
+    int q = 101;
+    int i, j;
+    int p = 0; // hash value for pattern
+    int t = 0; // hash value for txt
+    int h = 1;
+
+    for (i = 0; i < m - 1; i++)
+        h = (h * d) % q;
+
+    for (i = 0; i < m; i++) {
+        p = (d * p + pat.charAt(i)) % q;
+        t = (d * t + txt.charAt(i)) % q;
+    }
+
+    for (i = 0; i <= n - m; i++) {
+        if (p == t) {
+            for (j = 0; j < m; j++) {
+                if (txt.charAt(i + j) != pat.charAt(j)) break;
+            }
+            if (j == m) System.out.println("Pattern found at index " + i);
+        }
+        if (i < n - m) {
+            t = (d * (t - txt.charAt(i) * h) + txt.charAt(i + m)) % q;
+            if (t < 0) t = (t + q);
+        }
+    }
+}
+```
+
 ## ৪. অ্যানাগ্রাম সার্চ (Anagram Search)
 
 একটি টেক্সটের মধ্যে কোনো নির্দিষ্ট প্যাটার্নের অ্যানাগ্রাম (Anagram) আছে কিনা তা খুঁজে বের করা। এটি সাধারণত স্লাইডিং উইন্ডো এবং ফ্রিকোয়েন্সি অ্যারে (Frequency Array) দিয়ে করা হয়।

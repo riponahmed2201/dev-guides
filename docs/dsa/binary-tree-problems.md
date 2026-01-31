@@ -55,9 +55,61 @@ int countNodes(Node root) {
 
 যেসব নোডের কোনো চাইল্ড নেই তাদের সংখ্যা বের করা।
 
+#### Implementation
+
+```python
+# Python Implementation
+def count_leaf_nodes(root):
+    if root is None:
+        return 0
+    if root.left is None and root.right is None:
+        return 1
+    return count_leaf_nodes(root.left) + count_leaf_nodes(root.right)
+```
+
+```java
+// Java Implementation
+int countLeaves(Node root) {
+    if (root == null) return 0;
+    if (root.left == null && root.right == null) return 1;
+    return countLeaves(root.left) + countLeaves(root.right);
+}
+```
+
 ## ৪. ট্রি ব্যালেন্সড কি না যাচাই (Check if Balanced)
 
 একটি বাইনারি ট্রি ব্যালেন্সড হবে যদি বাম এবং ডান সাব-ট্রির উচ্চতার পার্থক্য সর্বোচ্চ ১ হয়।
+
+#### Implementation
+
+```python
+# Python Implementation
+def is_balanced(root):
+    def check(node):
+        if node is None:
+            return 0
+        left = check(node.left)
+        right = check(node.right)
+        if left == -1 or right == -1 or abs(left - right) > 1:
+            return -1
+        return max(left, right) + 1
+    return check(root) != -1
+```
+
+```java
+// Java Implementation
+int check(Node root) {
+    if (root == null) return 0;
+    int lh = check(root.left);
+    int rh = check(root.right);
+    if (lh == -1 || rh == -1 || Math.abs(lh - rh) > 1) return -1;
+    return Math.max(lh, rh) + 1;
+}
+
+boolean isBalanced(Node root) {
+    return check(root) != -1;
+}
+```
 
 ## ৫. ট্রির ডায়ামিটার (Diameter of Tree)
 
@@ -194,3 +246,34 @@ def lowestCommonAncestor(root, p, q):
 ## ৯. রুট থেকে লিফ পর্যন্ত সব পথ প্রিন্ট করা
 
 রুট থেকে শুরু করে প্রতিটি শেষ নোড (Leaf) পর্যন্ত যতগুলো পথ আছে তা প্রিন্ট করা।
+
+#### Implementation
+
+```python
+# Python Implementation
+def print_paths(root, path):
+    if not root:
+        return
+    path.append(root.val)
+    if not root.left and not root.right:
+        print("->".join(map(str, path)))
+    else:
+        print_paths(root.left, path)
+        print_paths(root.right, path)
+    path.pop()
+```
+
+```java
+// Java Implementation
+void printPaths(Node root, List<Integer> path) {
+    if (root == null) return;
+    path.add(root.data);
+    if (root.left == null && root.right == null) {
+        System.out.println(path);
+    } else {
+        printPaths(root.left, path);
+        printPaths(root.right, path);
+    }
+    path.remove(path.size() - 1);
+}
+```

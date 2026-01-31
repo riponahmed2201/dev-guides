@@ -49,6 +49,81 @@
 4. যদি নিরাপদ হয়, রানী বসান এবং পরের রো-তে যান।
 5. যদি কোনো কলামই নিরাপদ না হয়, তবে আগের রো-তে ফিরে যান এবং পূর্ববর্তী রানীর পজিশন পরিবর্তন করুন (**Backtrack**)।
 
+#### Implementation
+
+```java
+// Java N-Queens
+public class NQueens {
+    public void solveNQueens(int n) {
+        char[][] board = new char[n][n];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                board[i][j] = '.';
+        solve(0, board, n);
+    }
+
+    private void solve(int col, char[][] board, int n) {
+        if (col == n) {
+            printBoard(board, n);
+            return;
+        }
+        for (int row = 0; row < n; row++) {
+            if (isSafe(row, col, board, n)) {
+                board[row][col] = 'Q';
+                solve(col + 1, board, n);
+                board[row][col] = '.'; // Backtrack
+            }
+        }
+    }
+
+    private boolean isSafe(int row, int col, char[][] board, int n) {
+        for (int i = 0; i < col; i++)
+            if (board[row][i] == 'Q') return false;
+        for (int i = row, j = col; i >= 0 && j >= 0; i--, j--)
+            if (board[i][j] == 'Q') return false;
+        for (int i = row, j = col; i < n && j >= 0; i++, j--)
+            if (board[i][j] == 'Q') return false;
+        return true;
+    }
+
+    private void printBoard(char[][] board, int n) {
+        for (int i = 0; i < n; i++) {
+            System.out.println(new String(board[i]));
+        }
+        System.out.println();
+    }
+}
+```
+
+```python
+# Python N-Queens
+def solve_n_queens(n):
+    board = [['.' for _ in range(n)] for _ in range(n)]
+
+    def is_safe(row, col):
+        for i in range(col):
+            if board[row][i] == 'Q': return False
+        for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
+            if board[i][j] == 'Q': return False
+        for i, j in zip(range(row, n, 1), range(col, -1, -1)):
+            if board[i][j] == 'Q': return False
+        return True
+
+    def solve(col):
+        if col == n:
+            for row in board:
+                print("".join(row))
+            print()
+            return
+        for row in range(n):
+            if is_safe(row, col):
+                board[row][col] = 'Q'
+                solve(col + 1)
+                board[row][col] = '.' # Backtrack
+
+    solve(0)
+```
+
 ---
 
 ## 5. র‍্যাট ইন আ মেজ (Rat in a Maze)
@@ -61,6 +136,73 @@
 2. যদি নিরাপদ হয়, ঘরটিকে মার্ক করুন এবং চারদিকে (ডানে, বামে, উপরে, নিচে) চেক করুন।
 3. যদি সমাধান না পাওয়া যায়, তবে ঘরটিকে আন-মার্ক (Unmark) করুন এবং ফিরে আসুন।
 
+#### Implementation
+
+```java
+// Java Rat in a Maze
+public class RatInMaze {
+    public boolean solveMaze(int[][] maze, int n) {
+        int[][] sol = new int[n][n];
+        if (!solve(maze, 0, 0, sol, n)) return false;
+        printSolution(sol, n);
+        return true;
+    }
+
+    private boolean solve(int[][] maze, int x, int y, int[][] sol, int n) {
+        if (x == n - 1 && y == n - 1 && maze[x][y] == 1) {
+            sol[x][y] = 1;
+            return true;
+        }
+        if (isSafe(maze, x, y, n)) {
+            sol[x][y] = 1;
+            if (solve(maze, x + 1, y, sol, n)) return true;
+            if (solve(maze, x, y + 1, sol, n)) return true;
+            sol[x][y] = 0; // Backtrack
+            return false;
+        }
+        return false;
+    }
+
+    private boolean isSafe(int[][] maze, int x, int y, int n) {
+        return (x >= 0 && x < n && y >= 0 && y < n && maze[x][y] == 1);
+    }
+
+    private void printSolution(int[][] sol, int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) System.out.print(" " + sol[i][j] + " ");
+            System.out.println();
+        }
+    }
+}
+```
+
+```python
+# Python Rat in a Maze
+def solve_maze(maze, n):
+    sol = [[0 for _ in range(n)] for _ in range(n)]
+
+    def is_safe(x, y):
+        return 0 <= x < n and 0 <= y < n and maze[x][y] == 1
+
+    def solve(x, y):
+        if x == n - 1 and y == n - 1 and maze[x][y] == 1:
+            sol[x][y] = 1
+            return True
+        if is_safe(x, y):
+            sol[x][y] = 1
+            if solve(x + 1, y): return True
+            if solve(x, y + 1): return True
+            sol[x][y] = 0 # Backtrack
+            return False
+        return False
+
+    if solve(0, 0):
+        for row in sol:
+            print(row)
+    else:
+        print("No solution")
+```
+
 ---
 
 ## 6. সাবসেট জেনারেশন (Subset Generation)
@@ -71,6 +213,43 @@
 
 1. প্রতিটি এলিমেন্টের জন্য দুটি সিদ্ধান্ত থাকে: হয় এলিমেন্টটি সাবসেটে থাকবে, অথবা থাকবে না।
 2. একটি ডিসিশন ট্রি তৈরি করুন যেখানে প্রতিটি ধাপে একটি এলিমেন্ট যোগ করা হয় বা বাদ দেওয়া হয়।
+
+#### Implementation
+
+```java
+// Java Subset Generation
+import java.util.*;
+public class Subsets {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        generate(0, nums, new ArrayList<>(), res);
+        return res;
+    }
+
+    private void generate(int index, int[] nums, List<Integer> current, List<List<Integer>> res) {
+        res.add(new ArrayList<>(current));
+        for (int i = index; i < nums.length; i++) {
+            current.add(nums[i]);
+            generate(i + 1, nums, current, res);
+            current.remove(current.size() - 1); // Backtrack
+        }
+    }
+}
+```
+
+```python
+# Python Subset Generation
+def subsets(nums):
+    res = []
+    def generate(index, current):
+        res.append(current[:])
+        for i in range(index, len(nums)):
+            current.append(nums[i])
+            generate(i + 1, current)
+            current.pop() # Backtrack
+    generate(0, [])
+    return res
+```
 
 ---
 

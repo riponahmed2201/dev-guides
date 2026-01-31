@@ -56,6 +56,37 @@ def find_largest(arr):
 - **Time Complexity: O(n)** - মাত্র এক বার লুপ (Single Pass) চালিয়েই সমাধান করা যায়।
 - **Space Complexity: O(1)**
 
+#### Implementation
+
+```java
+// Java Second Largest
+public int secondLargest(int[] arr) {
+    int largest = Integer.MIN_VALUE, second = Integer.MIN_VALUE;
+    for (int num : arr) {
+        if (num > largest) {
+            second = largest;
+            largest = num;
+        } else if (num > second && num != largest) {
+            second = num;
+        }
+    }
+    return second == Integer.MIN_VALUE ? -1 : second;
+}
+```
+
+```python
+# Python Second Largest
+def second_largest(arr):
+    largest = second = float('-inf')
+    for num in arr:
+        if num > largest:
+            second = largest
+            largest = num
+        elif num > second and num != largest:
+            second = num
+    return second if second != float('-inf') else -1
+```
+
 ---
 
 ## 3. সর্টেড কিনা চেক করা (Check if Sorted)

@@ -75,6 +75,38 @@ def expand(s, l, r):
 
 চেক করা যে একটি স্ট্রিং-কে কি ডিকশনারিতে থাকা শব্দগুলোর মাধ্যমে ছোট ছোট ভাগে ভাগ করা সম্ভব কি না। এটি ডাইনামিক প্রোগ্রামিং (DP) ব্যবহার করে সমাধান করা হয়।
 
+#### Implementation
+
+```python
+# Python Word Break
+def word_break(s, wordDict):
+    dp = [False] * (len(s) + 1)
+    dp[0] = True
+    for i in range(1, len(s) + 1):
+        for j in range(i):
+            if dp[j] and s[j:i] in wordDict:
+                dp[i] = True
+                break
+    return dp[len(s)]
+```
+
+```java
+// Java Word Break
+public boolean wordBreak(String s, List<String> wordDict) {
+    boolean[] dp = new boolean[s.length() + 1];
+    dp[0] = true;
+    for (int i = 1; i <= s.length(); i++) {
+        for (int j = 0; j < i; j++) {
+            if (dp[j] && wordDict.contains(s.substring(j, i))) {
+                dp[i] = true;
+                break;
+            }
+        }
+    }
+    return dp[s.length()];
+}
+```
+
 ## ৪. মিনিমাম উইন্ডো সাবস্ট্রিং (Minimum Window Substring)
 
 একটি স্ট্রিংয়ের মধ্যে ক্ষুদ্রতম সেই সাবস্ট্রিংটি খুঁজে বের করা যার মধ্যে অন্য একটি স্ট্রিংয়ের সব ক্যারেক্টার বিদ্যমান। এটি "Sliding Window" টেকনিকের একটি দারুণ উদাহরণ।
@@ -133,6 +165,92 @@ def lengthOfLongestSubstring(s):
 
 স্ট্রিংকে কম্প্রেস করা যেমন: "aaabb" -> "a3b2"। যদি কম্প্রেসড স্ট্রিং মূল স্ট্রিং থেকে বড় হয় তবে মূল স্ট্রিং রিটার্ন করতে হবে।
 
+#### Implementation
+
+```python
+# Python String Compression
+def compress_string(s):
+    if not s: return ""
+    res = []
+    count = 1
+    for i in range(1, len(s)):
+        if s[i] == s[i-1]:
+            count += 1
+        else:
+            res.append(s[i-1])
+            if count > 1:
+                res.append(str(count))
+            count = 1
+    res.append(s[-1])
+    if count > 1:
+        res.append(str(count))
+
+    compressed_str = "".join(res)
+    return compressed_str if len(compressed_str) < len(s) else s
+```
+
+```java
+// Java String Compression
+public String compress(String s) {
+    if (s == null || s.isEmpty()) return s;
+    StringBuilder sb = new StringBuilder();
+    int count = 1;
+    for (int i = 0; i < s.length(); i++) {
+        if (i + 1 < s.length() && s.charAt(i) == s.charAt(i + 1)) {
+            count++;
+        } else {
+            sb.append(s.charAt(i));
+            if (count > 1) {
+                sb.append(count);
+            }
+            count = 1;
+        }
+    }
+    String compressedString = sb.toString();
+    return compressedString.length() < s.length() ? compressedString : s;
+}
+```
+
 ## ৭. ওয়াইল্ডকার্ড ম্যাচিং (Wildcard Matching - Intro)
 
 স্ট্রিংয়ের সাথে প্যাটার্ন ম্যাচিং যেখানে '?' এবং '\*' এর মত স্পেশাল ক্যারেক্টার থাকে। এটি খুব জনপ্রিয় একটি অ্যাডভান্সড ডাইনামিক প্রোগ্রামিং প্রবলেম।
+
+#### Implementation
+
+```python
+# Python Wildcard Matching
+def is_match(s, p):
+    dp = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]
+    dp[0][0] = True
+    for j in range(1, len(p) + 1):
+        if p[j-1] == '*':
+            dp[0][j] = dp[0][j-1]
+    for i in range(1, len(s) + 1):
+        for j in range(1, len(p) + 1):
+            if p[j-1] == '?' or s[i-1] == p[j-1]:
+                dp[i][j] = dp[i-1][j-1]
+            elif p[j-1] == '*':
+                dp[i][j] = dp[i-1][j] or dp[i][j-1]
+    return dp[len(s)][len(p)]
+```
+
+```java
+// Java Wildcard Matching
+public boolean isMatch(String s, String p) {
+    boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
+    dp[0][0] = true;
+    for (int j = 1; j <= p.length(); j++) {
+        if (p.charAt(j - 1) == '*') dp[0][j] = dp[0][j - 1];
+    }
+    for (int i = 1; i <= s.length(); i++) {
+        for (int j = 1; j <= p.length(); j++) {
+            if (p.charAt(j - 1) == '?' || s.charAt(i - 1) == p.charAt(j - 1)) {
+                dp[i][j] = dp[i - 1][j - 1];
+            } else if (p.charAt(j - 1) == '*') {
+                dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
+            }
+        }
+    }
+    return dp[s.length()][p.length()];
+}
+```
