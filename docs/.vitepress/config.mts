@@ -895,7 +895,23 @@ export default defineConfig({
             { text: '29. Hashing Introduction', link: '/dsa/hashing-intro' },
             { text: '30. Hash Map & Table', link: '/dsa/hash-map' },
             { text: '31. Hash Set', link: '/dsa/hash-set' },
-            { text: '32. Hashing Problems', link: '/dsa/hashing-problems' }
+            { text: '32. Hashing Problems', link: '/dsa/hashing-problems' },
+            { text: '33. Matrix/2D Arrays', link: '/dsa/matrix-2d-arrays' },
+            { text: '35. String Pattern Matching', link: '/dsa/string-pattern-matching' },
+            { text: '36. String Advanced Problems', link: '/dsa/string-advanced-problems' },
+            { text: '37. Prefix Sum Technique', link: '/dsa/prefix-sum-technique' },
+            { text: '38. Kadane\'s Algorithm', link: '/dsa/kadanes-algorithm' }
+          ]
+        },
+        {
+          text: 'Level 3: Advanced',
+          collapsed: true,
+          items: [
+            { text: '39. Tree Basics', link: '/dsa/tree-basics' },
+            { text: '40. Binary Tree Basics', link: '/dsa/binary-tree-basics' },
+            { text: '41. Binary Tree Traversals', link: '/dsa/binary-tree-traversals' },
+            { text: '42. Binary Tree Problems', link: '/dsa/binary-tree-problems' },
+            { text: '43. Binary Search Tree (BST)', link: '/dsa/binary-search-tree' }
           ]
         }
       ],

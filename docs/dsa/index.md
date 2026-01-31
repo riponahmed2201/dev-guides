@@ -316,6 +316,110 @@ DSA শেখা প্রোগ্রামিং ক্যারিয়ার�
 - Group anagrams
 - Longest consecutive sequence
 
+### [33. Matrix/2D Arrays](./matrix-2d-arrays.md)
+
+- 2D array representation
+- Row-major vs Column-major
+- Matrix traversal
+- Spiral traversal
+- Diagonal traversal
+- Matrix rotation
+- Matrix search (sorted)
+- Set matrix zeros
+
+### [35. String Pattern Matching](./string-pattern-matching.md)
+
+- Naive pattern matching
+- KMP Algorithm basics
+- Rabin-Karp Algorithm
+- Pattern search problems
+- Anagram search
+- String matching applications
+
+### [36. String Advanced Problems](./string-advanced-problems.md)
+
+- Longest common prefix
+- Longest palindromic substring
+- Valid parentheses variations
+- Word break problem
+- Minimum window substring
+- Longest substring without repeating
+- String compression
+- Wildcard matching (intro)
+
+### [37. Prefix Sum Technique](./prefix-sum-technique.md)
+
+- Prefix sum array
+- Range sum queries
+- Equilibrium index
+- Subarray sum problems
+- 2D prefix sum
+- Applications
+
+### [38. Kadane's Algorithm](./kadanes-algorithm.md)
+
+- Maximum subarray sum
+- Algorithm explanation
+- Variations (circular array)
+- Maximum product subarray
+- Applications
+
+---
+
+## 📚 Level 3: Advanced - Trees & Graphs
+
+### [39. Tree Basics](./tree-basics.md)
+
+- Tree terminology (root, leaf, parent, child, sibling)
+- Tree properties (height, depth, level)
+- Types of trees
+- Binary tree vs General tree
+- Tree applications
+- Tree representation
+
+### [40. Binary Tree - Basics](./binary-tree-basics.md)
+
+- Binary tree structure
+- Node structure
+- Binary tree properties
+- Full binary tree
+- Complete binary tree
+- Perfect binary tree
+- Balanced binary tree
+- Skewed binary tree
+
+### [41. Binary Tree - Traversals](./binary-tree-traversals.md)
+
+- Inorder traversal (Left-Root-Right)
+- Preorder traversal (Root-Left-Right)
+- Postorder traversal (Left-Right-Root)
+- Level order traversal (BFS)
+- Recursive vs Iterative
+- Morris traversal (advanced)
+
+### [42. Binary Tree - Problems](./binary-tree-problems.md)
+
+- Height of tree
+- Count nodes
+- Count leaf nodes
+- Check if balanced
+- Diameter of tree
+- Mirror tree
+- Check if identical
+- Lowest common ancestor (LCA)
+- Print all paths from root to leaf
+
+### [43. Binary Search Tree (BST)](./binary-search-tree.md)
+
+- BST property
+- BST operations (insert, delete, search)
+- Inorder gives sorted output
+- Find min/max
+- Floor and ceil
+- Kth smallest/largest
+- Check if BST
+- Time complexity: O(h)
+
 ---
 
 > [!TIP]
