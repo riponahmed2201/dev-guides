@@ -420,6 +420,26 @@ DSA শেখা প্রোগ্রামিং ক্যারিয়ার�
 - Check if BST
 - Time complexity: O(h)
 
+### [45. AVL Tree](./avl-tree.md)
+
+- Self-balancing BST
+- Balance factor
+- Rotations (LL, RR, LR, RL)
+- Insertion with balancing
+- Deletion with balancing
+- Height: O(log n)
+- Applications
+
+### [46. Heap Data Structure](./heap-data-structure.md)
+
+- Min heap এবং Max heap
+- Heap property
+- Array representation
+- Parent-child relationship
+- Heapify operation
+- Build heap
+- Time complexity
+
 ---
 
 > [!TIP]

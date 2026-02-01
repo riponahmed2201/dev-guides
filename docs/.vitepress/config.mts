@@ -911,7 +911,9 @@ export default defineConfig({
             { text: '40. Binary Tree Basics', link: '/dsa/binary-tree-basics' },
             { text: '41. Binary Tree Traversals', link: '/dsa/binary-tree-traversals' },
             { text: '42. Binary Tree Problems', link: '/dsa/binary-tree-problems' },
-            { text: '43. Binary Search Tree (BST)', link: '/dsa/binary-search-tree' }
+            { text: '43. Binary Search Tree (BST)', link: '/dsa/binary-search-tree' },
+            { text: '45. AVL Tree', link: '/dsa/avl-tree' },
+            { text: '46. Heap Data Structure', link: '/dsa/heap-data-structure' }
           ]
         }
       ],
