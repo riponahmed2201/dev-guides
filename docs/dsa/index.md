@@ -440,6 +440,17 @@ DSA শেখা প্রোগ্রামিং ক্যারিয়ার�
 - Build heap
 - Time complexity
 
+### [47. Heap Operations & Problems](./heap-operations-problems.md)
+
+- Insert element
+- Delete element (extract max/min)
+- Heap sort
+- Kth largest/smallest element
+- Merge K sorted arrays
+- Median from data stream
+- Top K frequent elements
+- Priority queue implementation
+
 ---
 
 > [!TIP]

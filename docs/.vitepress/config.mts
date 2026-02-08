@@ -913,7 +913,8 @@ export default defineConfig({
             { text: '42. Binary Tree Problems', link: '/dsa/binary-tree-problems' },
             { text: '43. Binary Search Tree (BST)', link: '/dsa/binary-search-tree' },
             { text: '45. AVL Tree', link: '/dsa/avl-tree' },
-            { text: '46. Heap Data Structure', link: '/dsa/heap-data-structure' }
+            { text: '46. Heap Data Structure', link: '/dsa/heap-data-structure' },
+            { text: '47. Heap Operations & Problems', link: '/dsa/heap-operations-problems' },
           ]
         }
       ],
