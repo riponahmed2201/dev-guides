@@ -17,7 +17,8 @@ export default defineConfig({
         text: 'Languages',
         items: [
           { text: 'Python', link: '/python/' },
-          { text: 'Node.js', link: '/nodejs/' }
+          { text: 'Node.js', link: '/nodejs/' },
+          { text: 'TypeScript', link: '/typescript/' }
         ]
       },
       {
@@ -129,6 +130,25 @@ export default defineConfig({
             { text: 'Code Quality', link: '/python/code-quality' },
             { text: 'Debugging', link: '/python/debugging' },
             { text: 'Advanced Topics', link: '/python/adv-topics' },
+          ]
+        }
+      ],
+      '/typescript/': [
+        {
+          text: 'TypeScript Roadmap',
+          collapsed: false,
+          items: [
+            { text: 'Introduction', link: '/typescript/' },
+            { text: 'Phase 1: Foundations', link: '/typescript/beginner' },
+          ]
+        },
+        {
+          text: 'Advanced Levels',
+          collapsed: true,
+          items: [
+            { text: 'Intermediate Concepts', link: '#' },
+            { text: 'Advanced Topics', link: '#' },
+            { text: 'Expert Level', link: '#' },
           ]
         }
       ],
