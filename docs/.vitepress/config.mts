@@ -63,8 +63,10 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'HTTP/HTTPS এর ইতিহাস', link: '/backend/http-https-history' },
-            { text: 'HTTP/HTTPS/Methods', link: '#' },
-            { text: 'Status Codes & Headers', link: '#' },
+            { text: 'HTTP Methods', link: '/backend/http-methods' },
+            { text: 'Status Codes', link: '/backend/status-codes' },
+            { text: 'Request Headers', link: '/backend/request-headers' },
+            { text: 'Response Headers', link: '/backend/response-headers' },
           ]
         },
         {
