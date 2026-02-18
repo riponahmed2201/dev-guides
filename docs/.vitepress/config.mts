@@ -139,7 +139,9 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'Introduction', link: '/typescript/' },
-            { text: 'Phase 1: Foundations', link: '/typescript/beginner' },
+            { text: 'Prerequisites', link: '/typescript/beginner' },
+            { text: 'Getting Started', link: '/typescript/getting-started' },
+            { text: 'Basic Types', link: '/typescript/basic-types' },
           ]
         },
         {
