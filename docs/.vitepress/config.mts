@@ -53,9 +53,100 @@ export default defineConfig({
           { text: 'Networking', link: '/networking/' },
           { text: 'DSA', link: '/dsa/' }
         ]
-      }
+      },
+      { text: 'Backend', link: '/backend/' }
     ],
     sidebar: {
+      '/backend/': [
+        {
+          text: '1. Internet & Protocol Basics',
+          collapsed: false,
+          items: [
+            { text: 'HTTP/HTTPS এর ইতিহাস', link: '/backend/http-https-history' },
+            { text: 'HTTP/HTTPS/Methods', link: '#' },
+            { text: 'Status Codes & Headers', link: '#' },
+          ]
+        },
+        {
+          text: '2. API Development',
+          collapsed: true,
+          items: [
+            { text: 'API Design & REST', link: '#' },
+            { text: 'GraphQL & WebSockets', link: '#' },
+            { text: 'Documentation (Swagger)', link: '#' },
+          ]
+        },
+        {
+          text: '3. Backend Core Concepts',
+          collapsed: true,
+          items: [
+            { text: 'Middleware & Error Handling', link: '#' },
+            { text: 'Validation & Sanitization', link: '#' },
+            { text: 'Background Jobs', link: '#' },
+          ]
+        },
+        {
+          text: '4. Authentication & Security',
+          collapsed: true,
+          items: [
+            { text: 'Auth & OAuth 2.0', link: '#' },
+            { text: 'JWT & Sessions', link: '#' },
+            { text: 'Security (CORS, XSS, SQLi)', link: '#' },
+          ]
+        },
+        {
+          text: '5. Databases',
+          collapsed: true,
+          items: [
+            { text: 'Design & Normalization', link: '#' },
+            { text: 'SQL vs NoSQL', link: '#' },
+            { text: 'ACID & Transactions', link: '#' },
+            { text: 'Indexing & Optimization', link: '#' },
+          ]
+        },
+        {
+          text: '6. Caching & Performance',
+          collapsed: true,
+          items: [
+            { text: 'Caching Strategies', link: '#' },
+            { text: 'Redis & Memcached', link: '#' },
+            { text: 'Rate Limiting', link: '#' },
+          ]
+        },
+        {
+          text: '7. Architecture & Scalability',
+          collapsed: true,
+          items: [
+            { text: 'Monolith vs Microservices', link: '#' },
+            { text: 'Scaling & Load Balancing', link: '#' },
+            { text: 'Messaging (Queues/PubSub)', link: '#' },
+          ]
+        },
+        {
+          text: '8. DevOps & Infrastructure',
+          collapsed: true,
+          items: [
+            { text: 'Docker & Kubernetes', link: '#' },
+            { text: 'CI/CD & Config', link: '#' },
+          ]
+        },
+        {
+          text: '9. System Internals',
+          collapsed: true,
+          items: [
+            { text: 'Async/Await & Promises', link: '#' },
+            { text: 'Memory & Performance', link: '#' },
+          ]
+        },
+        {
+          text: '10. Testing & Tools',
+          collapsed: true,
+          items: [
+            { text: 'Testing & Monitoring', link: '#' },
+            { text: 'Git & Code Review', link: '#' },
+          ]
+        }
+      ],
       '/python/': [
         {
           text: 'Level 1: Beginner',
