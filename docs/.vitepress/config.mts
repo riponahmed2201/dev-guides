@@ -73,9 +73,15 @@ export default defineConfig({
           text: '2. API Development',
           collapsed: true,
           items: [
-            { text: 'API Design & REST', link: '#' },
-            { text: 'GraphQL & WebSockets', link: '#' },
-            { text: 'Documentation (Swagger)', link: '#' },
+            { text: 'API Design & REST', link: '/backend/api-design' },
+            { text: 'RESTful APIs', link: '/backend/restful-apis' },
+            { text: 'GraphQL', link: '/backend/graphql' },
+            { text: 'WebSockets', link: '/backend/websockets' },
+            { text: 'Server-Side Rendering', link: '/backend/server-side-rendering' },
+            { text: 'API Versioning', link: '/backend/api-versioning' },
+            { text: 'API Gateway', link: '/backend/api-gateway' },
+            { text: 'API Docs (Swagger/OpenAPI)', link: '/backend/api-docs-swagger' },
+            { text: 'Postman / Insomnia', link: '/backend/postman-insomnia' },
           ]
         },
         {
