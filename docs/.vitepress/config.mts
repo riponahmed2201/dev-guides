@@ -113,9 +113,8 @@ export default defineConfig({
           text: '5. Databases',
           collapsed: true,
           items: [
-            { text: 'Design & Normalization', link: '#' },
-            { text: 'SQL vs NoSQL', link: '#' },
-            { text: 'ACID & Transactions', link: '#' },
+            { text: 'Database Design & Concepts', link: '/backend/database-design' },
+            { text: 'SQL Queries', link: '/backend/sql-queries' },
             { text: 'Indexing & Optimization', link: '#' },
           ]
         },
