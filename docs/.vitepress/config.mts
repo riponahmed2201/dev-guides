@@ -88,9 +88,16 @@ export default defineConfig({
           text: '3. Backend Core Concepts',
           collapsed: true,
           items: [
-            { text: 'Middleware & Error Handling', link: '#' },
-            { text: 'Validation & Sanitization', link: '#' },
-            { text: 'Background Jobs', link: '#' },
+            { text: 'Middleware', link: '/backend/middleware' },
+            { text: 'Error Handling', link: '/backend/error-handling' },
+            { text: 'Logging', link: '/backend/logging' },
+            { text: 'Input Validation', link: '/backend/input-validation' },
+            { text: 'Output Sanitization', link: '/backend/output-sanitization' },
+            { text: 'File Uploads', link: '/backend/file-uploads' },
+            { text: 'Streaming Data', link: '/backend/streaming-data' },
+            { text: 'Pagination', link: '/backend/pagination' },
+            { text: 'Filtering & Sorting', link: '/backend/filtering-sorting' },
+            { text: 'Background Jobs & Scheduling', link: '/backend/background-jobs' },
           ]
         },
         {
