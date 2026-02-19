@@ -104,9 +104,9 @@ export default defineConfig({
           text: '4. Authentication & Security',
           collapsed: true,
           items: [
-            { text: 'Auth & OAuth 2.0', link: '#' },
-            { text: 'JWT & Sessions', link: '#' },
-            { text: 'Security (CORS, XSS, SQLi)', link: '#' },
+            { text: 'Authentication', link: '/backend/authentication' },
+            { text: 'Authorization & Access Control', link: '/backend/authorization' },
+            { text: 'Security Best Practices', link: '/backend/security-best-practices' },
           ]
         },
         {
