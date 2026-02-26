@@ -247,15 +247,33 @@ export default defineConfig({
             { text: 'Prerequisites', link: '/typescript/beginner' },
             { text: 'Getting Started', link: '/typescript/getting-started' },
             { text: 'Basic Types', link: '/typescript/basic-types' },
+            { text: 'Functions', link: '/typescript/functions' },
+            { text: 'Objects & Interfaces', link: '/typescript/objects-and-interfaces' },
           ]
         },
         {
-          text: 'Advanced Levels',
+          text: 'Phase 2: Intermediate',
+          collapsed: false,
+          items: [
+            { text: 'Advanced Types', link: '/typescript/advanced-types' },
+            { text: 'Classes', link: '/typescript/classes' },
+            { text: 'Generics', link: '/typescript/generics' },
+            { text: 'Modules & Namespaces', link: '/typescript/modules-and-namespaces' },
+          ]
+        },
+        {
+          text: 'Phase 3: Advanced',
+          collapsed: false,
+          items: [
+            { text: 'Advanced Type Features', link: '/typescript/advanced-type-features' },
+            { text: 'Utility Types', link: '/typescript/utility-types' },
+          ]
+        },
+        {
+          text: 'Expert Level',
           collapsed: true,
           items: [
-            { text: 'Intermediate Concepts', link: '#' },
-            { text: 'Advanced Topics', link: '#' },
-            { text: 'Expert Level', link: '#' },
+            { text: 'Coming Soon...', link: '#' },
           ]
         }
       ],
