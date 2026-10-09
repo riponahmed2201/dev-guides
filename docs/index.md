@@ -7,13 +7,20 @@ hero:
   tagline: "Comprehensive, structured, and premium guides for modern technology."
   actions:
     - theme: brand
-      text: 🐍 Start Python
+      text: 🤖 AI Engineering
+      link: /ai-engineering/
+    - theme: alt
+      text: 🐍 Python
       link: /python/
     - theme: alt
       text: 🌐 Networking
       link: /networking/
 
 features:
+  - icon: 🤖
+    title: AI Engineering & Agents
+    details: Master GenAI, LangChain, Advanced RAG, LangGraph, Multi-Agent Systems, and LLMOps.
+    link: /ai-engineering/
   - icon: 🐍
     title: Mastering Python
     details: From basic syntax to advanced concurrency and performance optimization.

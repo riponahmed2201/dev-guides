@@ -54,9 +54,45 @@ export default defineConfig({
           { text: 'DSA', link: '/dsa/' }
         ]
       },
-      { text: 'Backend', link: '/backend/' }
+      { text: 'Backend', link: '/backend/' },
+      { text: 'AI Engineering', link: '/ai-engineering/' }
     ],
     sidebar: {
+      '/ai-engineering/': [
+        {
+          text: 'AI Engineering Roadmap',
+          collapsed: false,
+          items: [
+            { text: '🧭 Overview & Learning Path', link: '/ai-engineering/' },
+          ]
+        },
+        {
+          text: 'Foundation & Core',
+          collapsed: false,
+          items: [
+            { text: '01. Python for AI & Async', link: '/ai-engineering/01-python-async' },
+            { text: '02. LLM Core & Prompting', link: '/ai-engineering/02-llm-core-prompting' },
+          ]
+        },
+        {
+          text: 'Frameworks & RAG',
+          collapsed: false,
+          items: [
+            { text: '03. LangChain & LlamaIndex', link: '/ai-engineering/03-langchain-llamaindex' },
+            { text: '04. Advanced RAG & Vector DBs', link: '/ai-engineering/04-advanced-rag' },
+            { text: '05. Open-Source LLMs & Fine-Tuning', link: '/ai-engineering/05-finetuning-local-llms' },
+          ]
+        },
+        {
+          text: 'Agents, Automation & LLMOps',
+          collapsed: false,
+          items: [
+            { text: '06. Agentic AI & LangGraph', link: '/ai-engineering/06-agentic-langgraph' },
+            { text: '07. Enterprise AI Automation', link: '/ai-engineering/07-enterprise-automation' },
+            { text: '08. Production AI & LLMOps', link: '/ai-engineering/08-production-llmops' },
+          ]
+        }
+      ],
       '/backend/': [
         {
           text: '1. Internet & Protocol Basics',
